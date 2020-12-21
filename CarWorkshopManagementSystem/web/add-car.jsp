@@ -1,6 +1,6 @@
 <%-- 
-    Document   : create-appointment
-    Created on : Dec 18, 2020, 12:13:13 PM
+    Document   : add-car
+    Created on : Dec 21, 2020, 8:26:05 PM
     Author     : asus
 --%>
 
@@ -9,8 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>New Appointment</title>
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <title>Add Car</title><link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
             .navigation-bar {
@@ -19,7 +18,7 @@
                 padding-top: 6px;
                 background-color: #cccccc; 
             }
-            
+
             a {
                 text-decoration: none;
                 color: black;
@@ -36,123 +35,72 @@
                 font-size: 15px;
             }
             
-            h1 {
-                font-family: Arial, Helvetica, sans-serif;
-                margin-top: 15px;
-                margin-left: 35px;
-            }
-            
-            .date-label {
-                font-family: Arial, Helvetica, sans-serif;
-                margin-top: 15px;
-                margin-left: 85px;
-            }
-            
-            .date-input {
-                margin-left: 38px;
-                text-align: center;
-            }
-            
             .back-btn {
-                font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
                 margin-left: 60px;
                 margin-top: 20px;
                 height: 35px;
                 width: 100px;
             }
             
-            .vehicle-tbl {
+            h1 {
                 font-family: Arial, Helvetica, sans-serif;
-                width: 600px;
-                margin-left: 65px;
-                margin-top: 25px;
-                border: 1px solid black;
-                border-radius: 10px;
+                margin-top: 15px;
+                margin-left: 35px;
             }
             
-            .vehicle-tbl input {
+            .search-car-label {
+                margin-top: 20px;
+                margin-left: 55px;
+            }
+            
+            .search-car-input {
+                margin-left: 65px;
+                width: 300px;
                 border-top-style: hidden;
                 border-right-style: hidden;
                 border-left-style: hidden;
                 border-bottom-style: groove;
             }
             
-            .number-label {
-                margin-left: 25px;
+            .search-car-button {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 25px;
+                margin-left: 40px;
+                width: 110px;
+                height: 30px;
+                font-size: 16px;
             }
             
-            .vehicle-first-input {
-                margin-top: 15px;
-                margin-left: 38px;
-                width: 300px;
-            }
-            
-            .type-label {
-                margin-left: 25px;
-            }
-            
-            .vehicle-second-input {
-                margin-top: 15px;
-                margin-left: 110px;
-                margin-bottom: 15px;
-                width: 300px;
+            .search-car-result {
+                margin-top: 10px;
+                margin-left: 55px;
+                border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+                border-bottom-style: hidden;
             }
             
             .service-label {
-                margin-left: 25px;
+                margin-left: 55px;
+                margin-top: 30px;
                 
             }
             
             .service-type {
                 margin-top: 15px;
-                margin-left: 25px;
+                margin-left: 55px;
                 padding-bottom: 15px;
             }
             
-            .customer-tbl {
-                font-family: Arial, Helvetica, sans-serif;
-                width: 600px;
-                margin-left: 65px;
-                margin-top: 25px;
-                border: 1px solid black;
-                border-radius: 10px;
-                height: 100px;
-            }
-            
-            .customer-tbl input {
-                border-top-style: hidden;
-                border-right-style: hidden;
-                border-left-style: hidden;
-                border-bottom-style: groove;
-            }
-            
-            .name-label {
-                margin-left: 25px;
-            }
-            
-            .customer-first-input {
-                margin-top: 15px;
-                margin-left: 100px;
-                width: 300px;
-            }
-            
-            .phone-label {
-                margin-left: 25px;
-            }
-            
-            .customer-second-input {
-                margin-top: 15px;
-                margin-left: 42px;
-                width: 300px;
-            }
-            
-            .submit-btn {
+            .add-car-button {
                 font-family: Arial, Helvetica, sans-serif;
                 margin-left: 70px;
                 margin-top: 20px;
                 height: 35px;
                 width: 100px;
             }
+            
         </style>
         
         <div class="navigation-bar">    
@@ -169,23 +117,20 @@
         
     </head>
     <body>
+
+        <button onclick="document.location='workflow-scheduler.jsp'" class="back-btn">Back</button>
         
-        <button onclick="document.location='main-menu.jsp'" class="back-btn">Back</button>
+        <h1>Add Car</h1>
         
-        <h1>Create Appointment</h1>
+        <div>
+            <label class="search-car-label">Plate Number</label>
+            <input type="text" name="vplatenumber" class="search-car-input" placeholder="Enter Car Plate Number">
+            <input type="submit" name="searchcar" class="search-car-button" value="Search"><br>
+        </div>
         
-        <label for="date" class="date-label">Date<input type="date" name="date" class="date-input"></label>
+            <input type="text" name="carresult" class="search-car-result" placeholder="Result">
         
-        <h1>Vehicle Details</h1>
-        
-        <div class="vehicle-tbl">
-            <div>
-                <label for="vno" class="number-label">Vehicle Number
-                <input type="text" name="vno" class="vehicle-first-input">
-            </label><br>
-            <label for="vtype" class="type-label">Type
-                    <input type="text" name="vtype" class="vehicle-second-input">
-            </label><br>
+        <div>
             <label class="service-label">Service</label>
                 <div class="service-type">   
                     <input type="checkbox" name="optionone" value="EngineOil">
@@ -221,23 +166,8 @@
                     <input type="checkbox" name="optiontwelve" value="TransmissionFluid">
                     <label for="optiontwelve">Refill Transmission Fluid</label><br>
                 </div>
-            </div>
         </div>
-        
-        <h1>Customer Details</h1>
-        
-        <div class="customer-tbl">    
-            <div>
-                <label class="name-label">Name
-                <input type="text" name="cname" class="customer-first-input">
-            </label><br>
-            <label class="phone-label">Phone Number
-                <input type="text" name="cname" class="customer-second-input">
-            </label><br>
-            </div>
-        </div>
-        
-        <button class="submit-btn">Submit</button>
-        
+            
+            <input type="submit" class="add-car-button" value="Add">
     </body>
 </html>

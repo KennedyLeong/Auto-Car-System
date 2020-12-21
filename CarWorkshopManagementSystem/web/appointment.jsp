@@ -102,19 +102,20 @@
             
         </style>
     </head>
-    <body>
-        
-        <div class="navigation-bar">    
+    
+    <div class="navigation-bar">    
             <ul>
                 <li><a href=main-menu.jsp>HOME</a></li>
                 <li><a href=workflow-scheduler.jsp>WORKFLOW SCHEDULER</a></li>
                 <li><a href=search-customer.jsp>CRM</a></li>
                 <li><a href=>BILING</a></li>
                 <li><a href=>INVENTORY</a></li>
+                <li><a href=>REPORT</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>
             </ul>
         </div>
-        
+    
+    <body>
         <button onclick="document.location='main-menu.jsp'" class="back-btn">Back</button>
         
         <h1>Appointment</h1>

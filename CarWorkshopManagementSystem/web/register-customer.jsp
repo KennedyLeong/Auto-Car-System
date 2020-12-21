@@ -160,20 +160,6 @@
                 font-size: 16px;
             }
         </style>
-    </head>
-    <body>
-        
-        <%
-            String status = request.getParameter("success");
-        %>
-        <%
-            if(status!=null){
-            if(status.equals("true")){
-        %>
-        <script>
-                alert("Registration succesful");
-        </script>
-        <%}}%>
         
         <div class="navigation-bar">    
             <ul>
@@ -182,10 +168,13 @@
                 <li><a href=search-customer.jsp>CRM</a></li>
                 <li><a href=>BILING</a></li>
                 <li><a href=>INVENTORY</a></li>
+                <li><a href=>REPORT</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>
             </ul>
         </div>
         
+    </head>
+    <body>
         <a href="search-customer.jsp" class="return-btn">Back</a><br>
         
         <h1>Customer Details</h1>

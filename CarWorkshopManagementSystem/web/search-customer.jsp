@@ -81,8 +81,6 @@
                 margin-top: 13px;
             }
         </style>
-    </head>
-    <body>
         
         <div class="navigation-bar">    
             <ul>
@@ -91,16 +89,20 @@
                 <li><a href=search-customer.jsp>CRM</a></li>
                 <li><a href=>BILING</a></li>
                 <li><a href=>INVENTORY</a></li>
+                <li><a href=>REPORT</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>
             </ul>
         </div>
         
+    </head>
+    <body>
+
         <h1>Search</h1>
         
         <div class="search-tbl">
             <input type="text" placeholder="Enter Customer & Vehicle No." class="search-input" required="">
         </div>
-            <input type="submit" class="search-btn">
+            <input type="submit" class="search-btn" value="Search">
             <a href="register-customer.jsp" class="new-customer-btn">Register Customer</a>
             
        

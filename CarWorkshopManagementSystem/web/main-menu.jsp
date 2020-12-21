@@ -79,6 +79,7 @@
             }
             
         </style>
+        
         <div class="navigation-bar">    
             <ul>
                 <li><a href=main-menu.jsp>HOME</a></li>
@@ -86,6 +87,7 @@
                 <li><a href=search-customer.jsp>CRM</a></li>
                 <li><a href=>BILING</a></li>
                 <li><a href=>INVENTORY</a></li>
+                <li><a href=>REPORT</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>
             </ul>
         </div>

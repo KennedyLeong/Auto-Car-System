@@ -95,8 +95,6 @@
                 width: 100px;
             }
         </style>
-    </head>
-    <body>
         
         <div class="navigation-bar">    
             <ul>
@@ -105,9 +103,14 @@
                 <li><a href=search-customer.jsp>CRM</a></li>
                 <li><a href=>BILING</a></li>
                 <li><a href=>INVENTORY</a></li>
+                <li><a href=>REPORT</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>
             </ul>
         </div>
+        
+    </head>
+    <body>
+ 
         <button onclick="document.location='view-customer-details.jsp'" class="back-btn">Back</button>
         <h1>Send Notification</h1>
         
