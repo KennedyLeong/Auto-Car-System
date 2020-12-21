@@ -37,9 +37,7 @@ public class customerRegistration extends HttpServlet {
     private PreparedStatement stmt;
     private ResultSet rs;
     
-    conn = DriverManager.getConnection(host,user,pass);
-    
-    stmt = conn.prepareStatement
+
 
     
 }
