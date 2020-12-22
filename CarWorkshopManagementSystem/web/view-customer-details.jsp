@@ -208,7 +208,7 @@
         <div>
             <div class="customer-table">
                 <label>Name
-                    <input type="text" name="cname" class="customer-first-input" placeholder="Liew Kah Vun" readonly>
+                    <input type="text" name="cname" class="customer-first-input" placeholder="Ismael Bin Hassan" readonly>
                 </label><br>
             
                 <label>Phone Number
@@ -216,7 +216,7 @@
                 </label><br>
             
                 <label>Email
-                    <input type="text" name="cemail" class="customer-third-input" placeholder="liewkahvun@hotmail.com" readonly>
+                    <input type="text" name="cemail" class="customer-third-input" placeholder="ismaelHassan@gmail.com" readonly>
                 </label><br>
                 
                 <label>Address
@@ -237,7 +237,7 @@
         <div>
             <div class="vehicle-table">
                 <label>Plate Number
-                    <input type="text" class="vehicle-first-input" name="" placeholder="SD58447C" readonly>
+                    <input type="text" class="vehicle-first-input" name="" placeholder="SAA9288D" readonly>
                 </label><br>
             
                 <label>Brand

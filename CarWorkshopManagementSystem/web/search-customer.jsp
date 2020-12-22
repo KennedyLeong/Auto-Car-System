@@ -79,6 +79,33 @@
                 text-align: center;
                 border: 1px solid black;
                 margin-top: 13px;
+                
+            .result-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                border: 1px solid black;
+                width: 1130px;
+                margin-left: 50px;
+                border-radius: 3px
+                }
+            }
+            
+            .result-tbl input {
+                border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+                border-bottom-style: hidden;
+            }
+            
+            .second-input-spacing {
+                margin-top: 110px;
+                margin-left: 50px;
+            }
+            
+            .customer-detail-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 40px;
+                height: 30px;
+                width: 110px;
             }
         </style>
         
@@ -104,6 +131,17 @@
         </div>
             <input type="submit" class="search-btn" value="Search">
             <a href="register-customer.jsp" class="new-customer-btn">Register Customer</a>
+            
+            
+        <div class="result-tbl">          
+            <br><label class="second-input-spacing">Name</label>
+            <input type="text" name="cname" class="second-input" placeholder="Ismael Bin Hassan" readonly>
+            
+            <label>Email</label>
+            <input type="text" name="cemail" class="third-input" placeholder="ismaelHassan@gmail.com" readonly>
+            
+            <button class="customer-detail-btn" onclick="document.location='view-customer-details.jsp'">View</button>
+        </div>
             
        
             

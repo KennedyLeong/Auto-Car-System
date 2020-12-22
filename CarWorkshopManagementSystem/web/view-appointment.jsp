@@ -116,7 +116,7 @@
                 margin-top: 25px;
                 border: 1px solid black;
                 border-radius: 10px;
-                height: 100px;
+                height: 145px;
             }
             
             .customer-tbl input {
@@ -132,7 +132,7 @@
             
             .customer-first-input {
                 margin-top: 15px;
-                margin-left: 100px;
+                margin-left: 107px;
                 width: 300px;
             }
             
@@ -143,6 +143,16 @@
             .customer-second-input {
                 margin-top: 15px;
                 margin-left: 42px;
+                width: 300px;
+            }
+            
+            .status-label {
+                margin-left: 25px;
+            }
+            
+            .status-input {
+                margin-top: 15px;
+                margin-left: 102px;
                 width: 300px;
             }
             
@@ -157,7 +167,7 @@
     </head>
     <body>
         
-        <button onclick="document.location='main-menu.jsp'" class="back-btn">Back</button>
+        <button onclick="document.location='appointment.jsp'" class="back-btn">Back</button>
         
         <h1>Create Appointment</h1>
         
@@ -171,7 +181,7 @@
                 <input type="text" name="vno" class="vehicle-first-input" placeholder="SAA9288D" readonly>
             <br>
             <label for="vtype" class="type-label">Type</label>
-                    <input type="text" name="vtype" class="vehicle-second-input" placeholder="Truck" only>
+                    <input type="text" name="vtype" class="vehicle-second-input" placeholder="Pick-Up Truck" readonly>
             <br>
             <label class="service-label">Service</label>
                 <div class="service-type">   
@@ -215,13 +225,15 @@
         
         <div class="customer-tbl">    
             <div>
-                <label class="name-label">Name
+            <label class="name-label">Name</label>
                 <input type="text" name="cname" class="customer-first-input" placeholder="Ismael Bin Hassan" readonly>
-            </label><br>
-            <label class="phone-label">Phone Number
+            <br>
+            <label class="phone-label">Phone Number</label>
                 <input type="text" name="cname" class="customer-second-input" placeholder="0145842168" readonly>
-            </label><br>
+            <br>
             </div>
+            <label  class="status-label">Status</label>
+            <input type="text" name="cstatus" class="status-input" placeholder="Confirm">
         </div>
         
         <button class="submit-btn">Submit</button>
