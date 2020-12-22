@@ -54,7 +54,7 @@
             .appointment-tbl {
                 font-family: Arial, Helvetica, sans-serif;
                 border: 1px solid black;
-                width: 1000px;
+                width: 1130px;
                 margin-left: 50px;
                 border-radius: 3px
             }
@@ -91,6 +91,13 @@
                 width: 100px;
             } 
             
+            .appointment-view-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 40px;
+                height: 30px;
+                width: 110px;
+            }
+            
             
             .appointment-btn {
                 font-family: Arial, Helvetica, sans-serif;
@@ -121,18 +128,20 @@
         <h1>Appointment</h1>
         
         <div class="appointment-tbl">
-            <label class="first-input-spacing">Date
-                    <input type="text" name="date" class="first-input">
-            </label><br>
-            <label class="second-input-spacing">Name
-                    <input type="text" name="cname" class="second-input">
-            </label>
-            <label>Email
-                    <input type="text" name="cemail" class="third-input">
-            </label>
-            <label>Status
-                    <input type="text" name="status" class="fourth-input">
-            </label>
+            <label class="first-input-spacing">Date</label>
+            <input type="text" name="date" class="first-input"><br>
+            
+            <label class="second-input-spacing">Name</label>
+            <input type="text" name="cname" class="second-input">
+            
+            <label>Email</label>
+            <input type="text" name="cemail" class="third-input">
+            
+            <label>Status</label>
+            <input type="text" name="status" class="fourth-input">
+            
+            <button class="appointment-view-btn" onclick="document.location='view-appointment.jsp'">View</button>
+            
         </div>
         
         <button onclick="document.location='create-appointment.jsp'" class="appointment-btn">Create Appointment</button>

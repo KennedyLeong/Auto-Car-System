@@ -208,16 +208,16 @@
                             </script>
                     </div>
                     <div class="">
-                        <input type="button" onclick="document.location='.jsp'" class="first-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.jsp'" class="second-activity" Value="Add Car"><br>
-                        <input type="button" onclick="document.location='.jsp'" class="third-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.jsp'" class="fourth-activity" Value="Add Car"><br>
+                        <input type="button" onclick="document.location='add-car.jsp'" class="first-activity" Value="Add Car">
+                        <input type="button" onclick="document.location='.add-car.jsp'" class="second-activity" Value="Add Car"><br>
+                        <input type="button" onclick="document.location='.add-car.jsp'" class="third-activity" Value="Add Car">
+                        <input type="button" onclick="document.location='.add-car.jsp'" class="fourth-activity" Value="Add Car"><br>
                     </div>
                     <div class="">
-                        <input type="button" onclick="document.location='.jsp'" class="fifth-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.jsp'" class="six-activity" Value="Add Car"><br>
-                        <input type="button" onclick="document.location='.jsp'" class="seven-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.jsp'" class="eight-activity" Value="Add Car"><br>
+                        <input type="button" onclick="document.location='.add-car.jsp'" class="fifth-activity" Value="Add Car">
+                        <input type="button" onclick="document.location='.add-car.jsp'" class="six-activity" Value="Add Car"><br>
+                        <input type="button" onclick="document.location='.add-car.jsp'" class="seven-activity" Value="Add Car">
+                        <input type="button" onclick="document.location='.add-car.jsp'" class="eight-activity" Value="Add Car"><br>
                     </div>
                 </div>
             </div>
