@@ -110,7 +110,7 @@
                 </script>
             </div>
             <div class="table-appointment">
-                <input type="button" onclick="document.location='cutomer-create-appointment.jsp'" value="MAKE AN APPOINTMENT" name="submit" class="submit-btn"> 
+                <input type="button" onclick="document.location='customer-create-appointment.jsp'" value="MAKE AN APPOINTMENT" name="submit" class="submit-btn"> 
             </div>
         </div>
         

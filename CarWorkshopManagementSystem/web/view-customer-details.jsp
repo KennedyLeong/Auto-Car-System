@@ -74,6 +74,13 @@
                 width: 180px;
             }
             
+            .customer-tbl-btn button {
+                margin-left: 12px;
+                border-radius: 10px;
+                height: 40px;
+                width: 180px;
+            }
+            
             .customer-first-input{
                 margin-left: 128px;
                 width: 300px;
@@ -194,37 +201,35 @@
         
     </head>
     <body>
-        
-        
-        
-        <button onclick="document.location='search-customer.jsp'"class="return-btn">Back</button><br><br><br>
+       
+        <button onclick="document.location='search-customer.jsp'" class="return-btn">Back</button><br><br><br>
             
         <h1>Customer Details</h1>
         <div>
             <div class="customer-table">
                 <label>Name
-                    <input type="text" name="cname" class="customer-first-input">
+                    <input type="text" name="cname" class="customer-first-input" placeholder="Liew Kah Vun" readonly>
                 </label><br>
             
                 <label>Phone Number
-                    <input type="text" name="cphonenumber" class="customer-second-input">
+                    <input type="text" name="cphonenumber" class="customer-second-input" placeholder="01115876158" readonly>
                 </label><br>
             
                 <label>Email
-                    <input type="text" name="cemail" class="customer-third-input">
+                    <input type="text" name="cemail" class="customer-third-input" placeholder="liewkahvun@hotmail.com" readonly>
                 </label><br>
                 
                 <label>Address
-                    <input type="text" name="caddress" class="customer-fourth-input">
+                    <input type="text" name="caddress" class="customer-fourth-input"placeholder="Taman Farmosa, Jalan Bundusan, Penampang, Kota Kinabalu, Sabah" readonly>
                 </label><br>
                 
                 <label>Points
-                    <input type="text" name="cpoints" class="customer-fifth-input">
+                    <input type="text" name="cpoints" class="customer-fifth-input" placeholder="500 pts" readonly>
                 </label>
             </div>
             <div class="customer-tbl-btn">
-                <input type="button" href="" value="Send Notification">
-                <input type="button" href="" value="Update Details">
+                <button onclick="document.location='send-notification.jsp'">Send Notification</button>
+                <button onclick="document.location='update-customer-details.jsp'">Update Details</button>
                 <input type="button" href="" value="Delete">
             </div>
         </div>
@@ -232,23 +237,23 @@
         <div>
             <div class="vehicle-table">
                 <label>Plate Number
-                    <input type="text" class="vehicle-first-input" name="">
+                    <input type="text" class="vehicle-first-input" name="" placeholder="SD58447C" readonly>
                 </label><br>
             
                 <label>Brand
-                    <input type="text" class="vehicle-second-input" name="">
+                    <input type="text" class="vehicle-second-input" name="" placeholder="Toyota" readonly>
                 </label><br>
             
                 <label>Type
-                    <input type="text" class="vehicle-third-input" name="">
+                    <input type="text" class="vehicle-third-input" name="" placeholder="Pick Up Truck" readonly>
                 </label><br>
             
                 <label>Color
-                    <input type="text" class="vehicle-fourth-input" name="">
+                    <input type="text" class="vehicle-fourth-input" name="" placeholder="Black" readonly>
                 </label><br>
             
                 <label>Mileage 
-                    <input type="text" class="vehicle-fifth-input" name="">
+                    <input type="text" class="vehicle-fifth-input" name="" placeholder="102500" readonly>
                 </label><br>
             </div>
                 <div class="vehicle-tbl-btn">

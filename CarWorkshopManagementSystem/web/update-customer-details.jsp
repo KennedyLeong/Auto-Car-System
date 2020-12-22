@@ -133,31 +133,32 @@
         
     </head>
     <body>
-        <button onclick="document.location='view-customer-details.jsp'"class="return-btn">Back</button><br><br>
+        
+        <button onclick="document.location='view-customer-details.jsp'" class="return-btn">Back</button><br><br>
         
         
         <h1>Customer Details</h1>
         <div>
             <div class="customer-table">
-                <label>Name
-                    <input type="text" name="cname" class="customer-first-input">
-                </label><br>
+                <label>Name</label>
+                    <input type="text" name="cname" class="customer-first-input" placeholder="Liew Kah Vun">
+                <br>
             
-                <label>Phone Number
-                    <input type="text" name="cphonenumber" class="customer-second-input">
-                </label><br>
+                <label>Phone Number</label>
+                    <input type="text" name="cphonenumber" class="customer-second-input" placeholder="01115876158">
+                <br>
             
-                <label>Email
-                    <input type="text" name="cemail" class="customer-third-input">
-                </label><br>
+                <label>Email</label>
+                    <input type="text" name="cemail" class="customer-third-input" placeholder="liewkahvun@hotmail.com">
+                <br>
                 
-                <label>Address
-                    <input type="text" name="caddress" class="customer-fourth-input">
-                </label><br>
+                <label>Address</label>
+                    <input type="text" name="caddress" class="customer-fourth-input" placeholder="Taman Farmosa, Jalan Bundusan, Penampang, Kota Kinabalu, Sabah">
+                <br>
                 
-                <label>Points
-                    <input type="text" name="cpoints" class="customer-fifth-input">
-                </label>
+                <label>Points</label>
+                    <input type="text" name="cpoints" class="customer-fifth-input" placeholder="500 pts" readonly>
+                
             </div>
             <div class="update-tbl-btn">
                 <button class="reset-btn">Reset</button>
