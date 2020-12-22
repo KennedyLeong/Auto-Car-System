@@ -141,7 +141,7 @@
         <div>
             <div class="customer-table">
                 <label>Name</label>
-                    <input type="text" name="cname" class="customer-first-input" placeholder="Liew Kah Vun">
+                    <input type="text" name="cname" class="customer-first-input" placeholder="Ismael Bin Hassan">
                 <br>
             
                 <label>Phone Number</label>
@@ -149,7 +149,7 @@
                 <br>
             
                 <label>Email</label>
-                    <input type="text" name="cemail" class="customer-third-input" placeholder="liewkahvun@hotmail.com">
+                    <input type="text" name="cemail" class="customer-third-input" placeholder="ismaelHassan@gmail.com">
                 <br>
                 
                 <label>Address</label>

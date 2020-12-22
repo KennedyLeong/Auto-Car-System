@@ -107,11 +107,10 @@
             </div>
             <div class="table-appointment">
                 <div class="appointment-label">
-                <h3>UPCOMING, <br>APPOINTMENT</h3>
+                <h3>APPOINTMENT, <br>FOR TODAY</h3>
                 </div><br>
             
-                <p>Name : Ismael Bin Hasan <br> Vehicle No : SAA9288D <br> Phone No: 0145842168</p><br></p>
- 
+                <p> No Appointment.....</p> 
   
                 <input type="button" onclick="document.location='appointment.jsp'" value="View Appointment" name="submit" class="submit-btn"> 
             </div>
