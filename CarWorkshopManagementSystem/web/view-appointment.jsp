@@ -1,6 +1,6 @@
 <%-- 
-    Document   : customer-create-appointment
-    Created on : Dec 22, 2020, 9:52:49 AM
+    Document   : view-appointment
+    Created on : Dec 22, 2020, 10:36:52 AM
     Author     : asus
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Make an Appointment</title>
+        <title>JSP Page</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -153,24 +153,11 @@
                 height: 35px;
                 width: 100px;
             }
-            
-        </style>
-        
-        <div class="navigation-bar">    
-            <ul>
-                <li><a href=main-menu.jsp>HOME</a></li>
-                <li><a href=workflow-scheduler.jsp>WORKFLOW SCHEDULER</a></li>
-                <li><a href=search-customer.jsp>CRM</a></li>
-                <li><a href=>BILING</a></li>
-                <li><a href=>INVENTORY</a></li>
-                <li><a href=>REPORT</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>
-            </ul>
-        </div>
-        
+    </style>
     </head>
     <body>
-        <button onclick="document.location='index.jsp'" class="back-btn">Back</button>
+        
+        <button onclick="document.location='main-menu.jsp'" class="back-btn">Back</button>
         
         <h1>Create Appointment</h1>
         
@@ -180,45 +167,45 @@
         
         <div class="vehicle-tbl">
             <div>
-                <label for="vno" class="number-label">Vehicle Number
-                <input type="text" name="vno" class="vehicle-first-input">
-            </label><br>
-            <label for="vtype" class="type-label">Type
-                    <input type="text" name="vtype" class="vehicle-second-input">
-            </label><br>
+                <label for="vno" class="number-label">Vehicle Number</label>
+                <input type="text" name="vno" class="vehicle-first-input" placeholder="SAA9288D" readonly>
+            <br>
+            <label for="vtype" class="type-label">Type</label>
+                    <input type="text" name="vtype" class="vehicle-second-input" placeholder="Truck" only>
+            <br>
             <label class="service-label">Service</label>
                 <div class="service-type">   
-                    <input type="checkbox" name="optionone" value="EngineOil">
+                    <input type="checkbox" name="optionone" value="EngineOil" onclick="return false;">
                     <label for="optionone">Engine Oil</label><br>
             
-                    <input type="checkbox" name="optiontwo" value="OilFilter">
+                    <input type="checkbox" name="optiontwo" value="OilFilter" onclick="return false;">
                     <label for="optiontwo">Replace Oil Filter</label><br>
             
-                    <input type="checkbox" name="optionethree" value="AilFilter">
+                    <input type="checkbox" name="optionethree" value="AilFilter" onclick="return false;">
                     <label for="optionethree">Replace Ail Filter</label><br>
             
-                    <input type="checkbox" name="optionfour" value="FuelFilter">
+                    <input type="checkbox" name="optionfour" value="FuelFilter" onclick="return false;">
                     <label for="optionfour">Replace Fuel Filter</label><br>
             
-                    <input type="checkbox" name="optionfive" value="AirconFilter">
+                    <input type="checkbox" name="optionfive" value="AirconFilter" onclick="return false;">
                     <label for="optionfive">Replace A/C Filter</label><br>
             
-                    <input type="checkbox" name="optionsix" value="SparkPlugs">
+                    <input type="checkbox" name="optionsix" value="SparkPlugs" onclick="return false;">
                     <label for="optionsix">Replace Spark Plugs</label><br>
             
-                    <input type="checkbox" name="optionseven" value="BrakePads">
+                    <input type="checkbox" name="optionseven" value="BrakePads" onclick="return false;">
                     <label for="optionseven">Replace Brake Pads</label><br>
             
-                    <input type="checkbox" name="optioneight" value="Battery">
+                    <input type="checkbox" name="optioneight" value="Battery" onclick="return false;">
                     <label for="optioneight">Replace Battery</label><br>
             
-                    <input type="checkbox" name="optionten" value="BrakeFluid">
+                    <input type="checkbox" name="optionten" value="BrakeFluid" onclick="return false;">
                     <label for="optionten">Refill Brake Fluid</label><br>
             
-                    <input type="checkbox" name="optioneleven" value="PowerSteeringFluid">
+                    <input type="checkbox" name="optioneleven" value="PowerSteeringFluid" onclick="return false;">
                     <label for="optioneleven">Refill Power Steering Fluid</label><br>
             
-                    <input type="checkbox" name="optiontwelve" value="TransmissionFluid">
+                    <input type="checkbox" name="optiontwelve" value="TransmissionFluid" onclick="return false;">
                     <label for="optiontwelve">Refill Transmission Fluid</label><br>
                 </div>
             </div>
@@ -229,14 +216,15 @@
         <div class="customer-tbl">    
             <div>
                 <label class="name-label">Name
-                <input type="text" name="cname" class="customer-first-input">
+                <input type="text" name="cname" class="customer-first-input" placeholder="Ismael Bin Hassan" readonly>
             </label><br>
             <label class="phone-label">Phone Number
-                <input type="text" name="cname" class="customer-second-input">
+                <input type="text" name="cname" class="customer-second-input" placeholder="0145842168" readonly>
             </label><br>
             </div>
         </div>
         
         <button class="submit-btn">Submit</button>
+        
     </body>
 </html>

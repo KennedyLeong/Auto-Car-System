@@ -129,16 +129,16 @@
         
         <div class="appointment-tbl">
             <label class="first-input-spacing">Date</label>
-            <input type="text" name="date" class="first-input"><br>
+            <input type="text" name="date" class="first-input" placeholder="28 January 2020" readonly><br>
             
             <label class="second-input-spacing">Name</label>
-            <input type="text" name="cname" class="second-input">
+            <input type="text" name="cname" class="second-input" placeholder="Ismael Bin Hassan" readonly>
             
             <label>Email</label>
-            <input type="text" name="cemail" class="third-input">
+            <input type="text" name="cemail" class="third-input" placeholder="ismaelHassan@gmail.com" readonly>
             
             <label>Status</label>
-            <input type="text" name="status" class="fourth-input">
+            <input type="text" name="status" class="fourth-input" placeholder="Confirm" readonly>
             
             <button class="appointment-view-btn" onclick="document.location='view-appointment.jsp'">View</button>
             
