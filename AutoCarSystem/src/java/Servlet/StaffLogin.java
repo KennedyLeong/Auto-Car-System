@@ -25,37 +25,32 @@ import javax.transaction.UserTransaction;
  *
  * @author asus
  */
-@WebServlet (name = "CustomerLogin", urlPatterns = {"/CustomerLogin"})
-public class CustomerLogin extends HttpServlet {
+@WebServlet (name = "StaffLogin", urlPatterns = {"/StaffLogin"})
+public class StaffLogin extends HttpServlet{
     @PersistenceContext EntityManager em;
     @Resource UserTransaction utx;
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try{
+        
+        try {
             String email = request.getParameter("email");
-            String password = request.getParameter("upassword");
+            String password = request.getParameter("password");
             
-            Query query = em.createNamedQuery("Customer.findAll");
-            List<Customer> customerList = query.getResultList();
+            Query query = em.createNamedQuery("Staff.findAll");
+            List<Staff> staffList = query.getResultList();
             
-            for(int i=0; i<customerList.size(); i++) {
-                Customer cust = customerList.get(i);
-                if(cust.getCustomerEmail().equals(email) && cust.getCustomerPassword().equals(password)) {
-                    Customer cus = em.find(Customer.class ,email);
+            for(int i=0; i<staffList.size(); i++) {
+                Staff staf = staffList.get(i);
+                if(staf.getStaffEmail().equals(email) && staf.getStaffPassword().equals(password)) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("customer", cust);
-                    session.setAttribute("customerLoggedIn", true);
+                    session.setAttribute("staff", staf);
+                    session.setAttribute("staffLoggdIn", true);
                     
-                    Query vehiclequery = em.createNamedQuery("Vehicle.findAll");
-                    
-                    List<Vehicle> vehicleList = vehiclequery.getResultList();
-                    session.setAttribute("vehicleList", vehicleList);
-                    
-                    response.sendRedirect("index.jsp?status=customerloggingin");
+                    response.sendRedirect("staff-login.jsp?status=staffloggingin");
                 }
             }
-            response.sendRedirect("index.jsp?status=loginfailed");
+            response.sendRedirect("staff-login.jsp?status=loginfailed");
             
             
         } catch (Exception ex) {

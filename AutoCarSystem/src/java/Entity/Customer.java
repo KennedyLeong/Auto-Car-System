@@ -6,16 +6,19 @@
 package Entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,6 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Customer.findByCustomerEmail", query = "SELECT c FROM Customer c WHERE c.customerEmail = :customerEmail")
     , @NamedQuery(name = "Customer.findByCustomerPassword", query = "SELECT c FROM Customer c WHERE c.customerPassword = :customerPassword")})
 public class Customer implements Serializable {
+
+    @OneToMany(mappedBy = "customerId")
+    private Collection<Vehicle> vehicleCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -145,6 +151,15 @@ public class Customer implements Serializable {
     @Override
     public String toString() {
         return "Entity.Customer[ customerId=" + customerId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Vehicle> getVehicleCollection() {
+        return vehicleCollection;
+    }
+
+    public void setVehicleCollection(Collection<Vehicle> vehicleCollection) {
+        this.vehicleCollection = vehicleCollection;
     }
     
 }

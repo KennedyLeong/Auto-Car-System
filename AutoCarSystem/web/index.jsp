@@ -142,7 +142,7 @@
                 <div class="table-signin">
                     <h2>Log in</h2><br>
                         <div class="login-input">
-                            <input type="text" placeholder="ID / Email" name="uname" class="first-input" required><br>
+                            <input type="text" placeholder="ID / Email" name="email" class="first-input" required><br>
 
                             <input type="password" placeholder="Password" name="upassword" class="second-input" required>
                         </div>

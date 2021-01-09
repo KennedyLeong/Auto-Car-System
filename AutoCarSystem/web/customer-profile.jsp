@@ -52,7 +52,15 @@
                 margin-left: 80px;
                 margin-top: 50px;
                 height: 35px;
-                width: 110px;
+                width: 160px;
+            }
+            
+            .add-vehicle-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 80px;
+                margin-top: 25px;
+                height: 35px;
+                width: 160px;
             }
             
             .submit-btn {
@@ -60,7 +68,7 @@
                 margin-left: 80px;
                 margin-top: 25px;
                 height: 35px;
-                width: 110px;
+                width: 160px;
             }
             
         </style>
@@ -102,7 +110,11 @@
                     document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +" "+ months[dt.getMonth()] +" "+ (dt.getFullYear()) +" <br> "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                 </script>
                 
-                <a href="view-customer-details.jsp"><button class="customer-detail-btn">View Profile</button></a>
+                <a href="view-customer-details.jsp"><button class="customer-detail-btn">View Profile</button></a><br>
+                
+                <a href="register-vehicle.jsp"><button class="add-vehicle-btn">Register Vehicle</button></a><br>
+                
+                <a href="view-vehicle-details.jsp"><button class="add-vehicle-btn">View Vehicle</button></a>
                 
                 <form action="LogOut" method="GET" id="logoutform">
                     <input type="submit" class="submit-btn" value="Logout" form="logoutform">

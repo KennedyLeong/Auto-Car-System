@@ -188,7 +188,7 @@
     <body>
         <button onclick="document.location='index.jsp'" class="back-btn">Back</button>
     
-    <form action="../" method="POST">    
+    <form action="CreateAppointment" method="POST" id="appointmentform">    
         <h1>Create Appointment</h1>
     <div class="appointment-tbl">    
         <label for="date" class="date-label">Date</label>
@@ -210,61 +210,61 @@
     <div class="maintenance box">
         <fieldset>
             <legend>Lubricant/ Fluids</legend>
-            <input type="checkbox" class="" name="service1" value="EngineOil">
+            <input type="checkbox" class="" name="services" value="EngineOil">
             <label for="service1">Engine Oil</label><br>
 
-            <input type="checkbox" class="" name="service2" value="ATF">
+            <input type="checkbox" class="" name="services" value="ATF">
             <label for="service2">Automatic Transmission Fluid</label><br>
 
-            <input type="checkbox" class="" name="service3" value="GearOil">
+            <input type="checkbox" class="" name="services" value="GearOil">
             <label for="service3">Gear Oil</label><br>
 
-            <input type="checkbox" class="" name="service4" value="RadiatorCoolant">
+            <input type="checkbox" class="" name="services" value="RadiatorCoolant">
             <label for="service4">Radiator Coolant</label><br>
 
-            <input type="checkbox" class="" name="service5" value="BrakeFluid">
+            <input type="checkbox" class="" name="services" value="BrakeFluid">
             <label for="service5">Radiator Coolant</label><br>
 
-            <input type="checkbox" class="" name="service6" value="PowerSteeringFluid">
+            <input type="checkbox" class="" name="services" value="PowerSteeringFluid">
             <label for="service6">Power Steering Fluid</label><br>
         </fieldset>
             
         <fieldset>
             <legend>Replacement Part</legend>
-            <input type="checkbox" class="" name="service7" value="OilFilter">
+            <input type="checkbox" class="" name="services" value="OilFilter">
             <label for="service7">Oil Filter</label><br>
 
-            <input type="checkbox" class="" name="service8" value="FuelFilter">
+            <input type="checkbox" class="" name="services" value="FuelFilter">
             <label for="service8">Fuel Filter</label><br>
 
-            <input type="checkbox" class="" name="service9" value="BreakPad">
+            <input type="checkbox" class="" name="services" value="BreakPad">
             <label for="service9">Break Pad</label><br>
 
-            <input type="checkbox" class="" name="service10" value="AirFilter">
+            <input type="checkbox" class="" name="services" value="AirFilter">
             <label for="service10">Ail Filter</label><br>
 
-            <input type="checkbox" class="" name="service11" value="SparkPlugs">
+            <input type="checkbox" class="" name="services" value="SparkPlugs">
             <label for="service11">Spark Plugs</label><br>
 
-            <input type="checkbox" class="" name="service12" value="AircondBelt">
+            <input type="checkbox" class="" name="services" value="AircondBelt">
             <label for="service12">Air-Cond Belt</label><br>
 
-            <input type="checkbox" class="" name="service13" value="AlternatorBelt">
+            <input type="checkbox" class="" name="services" value="AlternatorBelt">
             <label for="service13">Alternator Belt</label><br>
 
-            <input type="checkbox" class="" name="service14" value="PowerSteeringBelt">
+            <input type="checkbox" class="" name="services" value="PowerSteeringBelt">
             <label for="service14">Power Steering Belt</label><br>
 
-            <input type="checkbox" class="" name="service15" value="TimingBelt">
+            <input type="checkbox" class="" name="services" value="TimingBelt">
             <label for="service15">Timing Belt</label><br>
 
-            <input type="checkbox" class="" name="service16" value="TimingChain">
+            <input type="checkbox" class="" name="services" value="TimingChain">
             <label for="service16">Timing Chain</label><br>
 
-            <input type="checkbox" class="" name="service17" value="ClutchPlate">
+            <input type="checkbox" class="" name="services" value="ClutchPlate">
             <label for="service17">Clutch Plate</label><br>
 
-            <input type="checkbox" class="" name="service18" value="WaterPump">
+            <input type="checkbox" class="" name="services" value="WaterPump">
             <label for="service18">Water Pump</label><br>
         </fieldset>
     </div>
@@ -301,6 +301,6 @@
             <textarea class="comment-input" name="comment"></textarea><br>
         </div>       
     </form> 
-        <input type="submit" value="Submit" class="submit-btn" form="">
+        <input type="submit" value="Submit" class="submit-btn" form="appointmentform">
     </body>
 </html>

@@ -5,13 +5,7 @@
  */
 package Servlet;
 
-/**
- *
- * @author asus
- */
-
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,15 +15,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import Entity.Customer;
+import Entity.*;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.Query;
 import javax.transaction.UserTransaction;
 
-
-@WebServlet(name = "CustomerRegistration", urlPatterns = {"/CustomerRegistration"})
-public class CustomerRegistration extends HttpServlet{
+/**
+ *
+ * @author asus
+ */
+@WebServlet(name = "VehicleRegistration", urlPatterns = {"/VehicleRegistration"})
+public class VehicleRegistration extends HttpServlet {
     @PersistenceContext EntityManager em;
     @Resource UserTransaction utx;
     
@@ -40,38 +37,41 @@ public class CustomerRegistration extends HttpServlet{
     private Connection conn;
     private PreparedStatement stmt;
     
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try{
+        try {
             
-            String customerID = "";
-            String name = request.getParameter("name");
-            String phoneNumber = request.getParameter("phonenumber");
-            String address = request.getParameter("address");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            String customerID = (String)request.getParameter("id");
+
+            Customer customer = em.find(Customer.class, customerID);
             
-            Query query = em.createNamedQuery("Customer.findAll");
-            List<Customer> customerlist = query.getResultList();
+            String vehicleID = "";
+            String number = request.getParameter("vnumber");
+            String brand = request.getParameter("vbrand");
+            String type = request.getParameter("vtype");
+            String color = request.getParameter("vcolor");
+            int mileage = Integer.parseInt(request.getParameter("vmileage"));
             
-            if(customerlist.size() == 0){
-                customerID = "CS" + String.format("%04d", customerlist.size() + 1);
+            Query query = em.createNamedQuery("Vehicle.findAll");
+            List<Vehicle> vehiclelist = query.getResultList();
+            
+            if(vehiclelist.size() == 0){
+                vehicleID = "V" + String.format("%04d", vehiclelist.size() + 1);
             } else {
-                customerID = "CS" + String.format("%04d", customerlist.size() + 1);
+                vehicleID = "V" + String.format("%04d", vehiclelist.size() + 1);
             }
             
             conn = DriverManager.getConnection(host, user, pass);
-   
-            utx.begin();
-            Customer customer = new Customer (customerID, name, phoneNumber, address, email, password);
-            em.persist(customer);
-            utx.commit();
-            response.sendRedirect("index.jsp?success=true");
 
-            
-        } catch (Exception ex) {
+            utx.begin();
+            Vehicle vehicle = new Vehicle (vehicleID, number, brand, type, color, mileage, customer);
+            em.persist(vehicle);
+            utx.commit();
+            response.sendRedirect("register-vehicle.jsp?success=true");
+                        
+        } catch (Exception ex){
             ex.printStackTrace();
-        }
     }
-    
+   } 
 }
