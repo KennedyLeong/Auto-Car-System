@@ -156,9 +156,6 @@
             
             for (int i=0 ; i<vehicleList.size() ; i++){
                 Vehicle vehicle = vehicleList.get(i);
-                if(vehicle.getCustomerId().getCustomerId().equals(customer.getCustomerId())) {
-                    counts++;
-                }
         %>
         <div>
             <div class="vehicle-table">

@@ -47,7 +47,7 @@ public class StaffLogin extends HttpServlet{
                     session.setAttribute("staff", staf);
                     session.setAttribute("staffLoggdIn", true);
                     
-                    response.sendRedirect("staff-login.jsp?status=staffloggingin");
+                    response.sendRedirect("main-menu.jsp?status=staffloggingin");
                 }
             }
             response.sendRedirect("staff-login.jsp?status=loginfailed");

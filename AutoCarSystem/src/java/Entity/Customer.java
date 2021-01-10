@@ -37,9 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Customer.findByCustomerPassword", query = "SELECT c FROM Customer c WHERE c.customerPassword = :customerPassword")})
 public class Customer implements Serializable {
 
-    @OneToMany(mappedBy = "customerId")
-    private Collection<Vehicle> vehicleCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -47,7 +44,9 @@ public class Customer implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "CUSTOMER_ID")
     private String customerId;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "CUSTOMER_NAME")
     private String customerName;
     @Size(max = 15)
@@ -56,14 +55,26 @@ public class Customer implements Serializable {
     @Size(max = 99)
     @Column(name = "CUSTOMER_ADDRESS")
     private String customerAddress;
-    @Size(max = 30)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "CUSTOMER_EMAIL")
     private String customerEmail;
-    @Size(max = 30)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "CUSTOMER_PASSWORD")
     private String customerPassword;
+    @OneToMany(mappedBy = "customerId")
+    private Collection<Vehicle> vehicleCollection;
+    @OneToMany(mappedBy = "customerId")
+    private Collection<Appointment> appointmentCollection;
 
     public Customer() {
+    }
+
+    public Customer(String customerId) {
+        this.customerId = customerId;
     }
 
     public Customer(String customerId, String customerName, String customerPhoneNumber, String customerAddress, String customerEmail, String customerPassword) {
@@ -73,11 +84,6 @@ public class Customer implements Serializable {
         this.customerAddress = customerAddress;
         this.customerEmail = customerEmail;
         this.customerPassword = customerPassword;
-        
-    }
-    
-    public Customer(String customerId) {
-        this.customerId = customerId;
     }
 
     public String getCustomerId() {
@@ -128,6 +134,24 @@ public class Customer implements Serializable {
         this.customerPassword = customerPassword;
     }
 
+    @XmlTransient
+    public Collection<Vehicle> getVehicleCollection() {
+        return vehicleCollection;
+    }
+
+    public void setVehicleCollection(Collection<Vehicle> vehicleCollection) {
+        this.vehicleCollection = vehicleCollection;
+    }
+
+    @XmlTransient
+    public Collection<Appointment> getAppointmentCollection() {
+        return appointmentCollection;
+    }
+
+    public void setAppointmentCollection(Collection<Appointment> appointmentCollection) {
+        this.appointmentCollection = appointmentCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -151,15 +175,6 @@ public class Customer implements Serializable {
     @Override
     public String toString() {
         return "Entity.Customer[ customerId=" + customerId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Vehicle> getVehicleCollection() {
-        return vehicleCollection;
-    }
-
-    public void setVehicleCollection(Collection<Vehicle> vehicleCollection) {
-        this.vehicleCollection = vehicleCollection;
     }
     
 }

@@ -16,6 +16,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import Entity.Appointment;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.Query;
@@ -43,17 +44,26 @@ public class CreateAppointment extends HttpServlet{
     throws ServletException, IOException {
         try {
             
-            //String date = request.getParameter("date");
-            //String time = request.getParameter("time");
-            String vehicleNumber = request.getParameter("vehicleNo");
-            //String vehicleType = request.getParameter("");
+            String appointmentID = "";
+            String date = request.getParameter("date");
+            String time = request.getParameter("time");
             String requestType = request.getParameter("serviceType");
             String[] services = request.getParameterValues("services");
             String serviceStr = "";
             double price = 0.0;
+            int priceint = (int) price;
             
-            //Date appointmentDate = new SimpleDateFormat("yyyy-MM-dd").parse(date); 
-            //Date appointmentTime = new SimpleDateFormat("hh:mm:ss").parse(time);
+            Date appointmentDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+            System.out.print(appointmentDate);
+            System.out.print(time);
+            Query query = em.createNamedQuery("Appointment.findAll");
+            List<Appointment> appointmentlist = query.getResultList();
+            
+            if(appointmentlist.size() == 0){
+                appointmentID = "AP" + String.format("%06d", appointmentlist.size() + 1);
+            } else {
+                appointmentID = "AP" + String.format("%06d", appointmentlist.size() + 1);
+            }
             
             for(int i = 0; i < services.length; i++) {
                 if (i > 0) {
@@ -67,7 +77,7 @@ public class CreateAppointment extends HttpServlet{
             for (String service : services) {
                 switch (service) {
                     case "EngineOil":
-                        price += 1.0;
+                        price += 1.5;
                         break;
                     case "ATF":
                         price += 1.0;
@@ -127,13 +137,13 @@ public class CreateAppointment extends HttpServlet{
             
             System.out.println("Total Price is: RM" + price);
             
-            //conn = DriverManager.getConnection(host, user, pass);
+            conn = DriverManager.getConnection(host, user, pass);
             
-            /*utx.commit();
-            Appointment appointment = (date, time, vehicleNumber, vehicleType, requestType, serviceStr);
+            utx.begin();
+            Appointment appointment = new Appointment( appointmentID, appointmentDate, time, requestType, serviceStr, priceint);
             em.persist(appointment);
             utx.commit();
-            */response.sendRedirect("customer-create-appointment.jsp?success=true");
+            response.sendRedirect("customer-create-appointment.jsp?success=true");
             
             
         } catch (Exception ex) {

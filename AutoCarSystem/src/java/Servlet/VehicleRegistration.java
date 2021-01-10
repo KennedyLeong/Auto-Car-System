@@ -65,7 +65,7 @@ public class VehicleRegistration extends HttpServlet {
             conn = DriverManager.getConnection(host, user, pass);
 
             utx.begin();
-            Vehicle vehicle = new Vehicle (vehicleID, number, brand, type, color, mileage, customer);
+            Vehicle vehicle = new Vehicle (vehicleID, number, brand, type, color, mileage);
             em.persist(vehicle);
             utx.commit();
             response.sendRedirect("register-vehicle.jsp?success=true");

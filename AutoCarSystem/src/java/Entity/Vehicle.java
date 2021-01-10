@@ -6,6 +6,7 @@
 package Entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,23 +46,41 @@ public class Vehicle implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "VEHICLE_ID")
     private String vehicleId;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "VEHICLE_NUMBER")
     private String vehicleNumber;
-    @Size(max = 30)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "VEHICLE_BRAND")
     private String vehicleBrand;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "VEHICLE_TYPE")
     private String vehicleType;
     @Size(max = 50)
     @Column(name = "VEHICLE_COLOR")
     private String vehicleColor;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "VEHICLE_MILEAGE")
-    private Integer vehicleMileage;
+    private int vehicleMileage;
+    @JoinColumn(name = "APPOINTMENT_ID", referencedColumnName = "APPOINTMENT_ID")
+    @ManyToOne
+    private Appointment appointmentId;
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
     @ManyToOne
     private Customer customerId;
+    @JoinColumn(name = "SERVICE_ID", referencedColumnName = "SERVICE_ID")
+    @ManyToOne
+    private Service serviceId;
+    @OneToMany(mappedBy = "vehicleId")
+    private Collection<Appointment> appointmentCollection;
+    @OneToMany(mappedBy = "vehicleId")
+    private Collection<Service> serviceCollection;
 
     public Vehicle() {
     }
@@ -68,13 +89,15 @@ public class Vehicle implements Serializable {
         this.vehicleId = vehicleId;
     }
 
-    public Vehicle(String vehicleId, String vehicleNumber, String vehicleBrand, String vehicleType, String vehicleColor, int vehicleMileage, Customer customerId) {
+    public Vehicle(String vehicleId, String vehicleNumber, String vehicleBrand, String vehicleType, String vehicleColor, int vehicleMileage, Service serviceId, Appointment appointmentId, Customer customerId) {
         this.vehicleId = vehicleId;
         this.vehicleNumber = vehicleNumber;
         this.vehicleBrand = vehicleBrand;
         this.vehicleType = vehicleType;
         this.vehicleColor = vehicleColor;
         this.vehicleMileage = vehicleMileage;
+        this.serviceId = serviceId;
+        this.appointmentId = appointmentId;
         this.customerId = customerId;
     }
 
@@ -118,12 +141,20 @@ public class Vehicle implements Serializable {
         this.vehicleColor = vehicleColor;
     }
 
-    public Integer getVehicleMileage() {
+    public int getVehicleMileage() {
         return vehicleMileage;
     }
 
-    public void setVehicleMileage(Integer vehicleMileage) {
+    public void setVehicleMileage(int vehicleMileage) {
         this.vehicleMileage = vehicleMileage;
+    }
+
+    public Appointment getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Appointment appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public Customer getCustomerId() {
@@ -132,6 +163,32 @@ public class Vehicle implements Serializable {
 
     public void setCustomerId(Customer customerId) {
         this.customerId = customerId;
+    }
+
+    public Service getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Service serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    @XmlTransient
+    public Collection<Appointment> getAppointmentCollection() {
+        return appointmentCollection;
+    }
+
+    public void setAppointmentCollection(Collection<Appointment> appointmentCollection) {
+        this.appointmentCollection = appointmentCollection;
+    }
+
+    @XmlTransient
+    public Collection<Service> getServiceCollection() {
+        return serviceCollection;
+    }
+
+    public void setServiceCollection(Collection<Service> serviceCollection) {
+        this.serviceCollection = serviceCollection;
     }
 
     @Override

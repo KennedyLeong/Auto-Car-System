@@ -45,10 +45,10 @@ public class CustomerLogin extends HttpServlet {
                     Customer cus = em.find(Customer.class ,email);
                     HttpSession session = request.getSession();
                     session.setAttribute("customer", cust);
-                    session.setAttribute("customerLoggedIn", true);
-                    
+                    session.setAttribute("customerLoggedIn", true); 
+                  
                     Query vehiclequery = em.createNamedQuery("Vehicle.findAll");
-                    
+                  
                     List<Vehicle> vehicleList = vehiclequery.getResultList();
                     session.setAttribute("vehicleList", vehicleList);
                     
