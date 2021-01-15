@@ -55,7 +55,7 @@
 
             .table-signin {
                 font-family: Arial, Helvetica, sans-serif;
-                float: right; 
+                float: right;
                 width: 380px;
                 border: 1px solid black;
                 border-radius: 10px;
@@ -63,11 +63,7 @@
                 margin-top: 25px;
                 
             }
-            
-            .first-input {
-                
-            }
-            
+
             .second-input {
                 margin-top: 30px;
             }
@@ -83,15 +79,21 @@
             .submit-btn {
                 width: 300px;
                 height: 40px;
-                margin-top:  40px;
+                margin-top:  30px;
+            }
+            
+            input[type=checkbox] {
+                transform: scale(2.0);
+                margin-left: 15px;
+            }
+
+
+            u {
+                color: blue;
             }
             
             .create-account-tbl {
-                margin-top: 25px;
-            }
-            
-            u {
-                color: blue;
+                margin-top: 15px;
             }
 
             
@@ -144,13 +146,27 @@
                         <div class="login-input">
                             <input type="text" placeholder="ID / Email" name="email" class="first-input" required><br>
 
-                            <input type="password" placeholder="Password" name="upassword" class="second-input" required>
+                            <input type="password" placeholder="Password" name="upassword" id="myInput" class="second-input" required><br><br>
+                            
                         </div>
-                    <a href="main-menu.jsp"><button class="submit-btn" form="loginform">LOGIN</button></a><br>
-                            <div class="create-account-tbl">
+                            <label>Show Password</label>
+                            <input type="checkbox" onclick="myFunction()" class="hide-btn">
+                            
+                            <script>
+                                function myFunction() {
+                                  var x = document.getElementById("myInput");
+                                  if (x.type === "password") {
+                                    x.type = "text";
+                                  } else {
+                                    x.type = "password";
+                                  }
+                                }
+                            </script>   
+                        <a href="main-menu.jsp"><button class="submit-btn" form="loginform">LOGIN</button></a><br>
+                        <div class="create-account-tbl">
                             <labe>Not registered?</labe>
                             <a href="register-customer.jsp"><u>Create an account</u></a>
-                    </div>
+                        </div>
                 </div>
             </form>
         </div>

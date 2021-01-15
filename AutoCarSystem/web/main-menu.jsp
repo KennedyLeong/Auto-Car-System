@@ -97,7 +97,7 @@
                 <li><a href="#">BILLING</a></li>
                 <li><a href="#">INVENTORY</a></li>
                 <li><a href="#">REPORT</a></li>
-                <li><a href=staff-login.jsp><%= staff.getStaffName()%></a></li>             
+                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
         <%} else {%>

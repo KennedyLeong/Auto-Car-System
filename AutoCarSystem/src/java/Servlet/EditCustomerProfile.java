@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import Entity.Customer;
-import java.util.HashSet;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
@@ -47,13 +46,6 @@ public class EditCustomerProfile extends HttpServlet {
                 customer.setCustomerAddress(address);
                 customer.setCustomerEmail(email);
                 customer.setCustomerPassword(newpassword);
-                
-                System.out.print(id);
-                System.out.print(name);
-                System.out.print(phoneNumber);
-                System.out.print(address);
-                System.out.print(email);
-                System.out.print(newpassword);
                 
                 utx.begin();
                 em.merge(customer);

@@ -138,7 +138,7 @@
         <form action="SendMail">
             <div class="recipient-tbl">
                 <label for="recipientaddress" class="to-label">Recipient Address</label>
-                <input  type="textbox" name="recipientaddress" class="email-input"><br>
+                <input  type="textbox" name="recipientaddress" value="<%= request.getParameter("recipientaddress") %>" class="email-input"><br>
 
                 <label for="subject" class="subject-label">Subject</label>
                 <input type="textbox" name="subject" class="subject-input"><br> 
@@ -147,7 +147,7 @@
             </div>
 
 
-            <textarea name="msg" placeholder="Enter your message..." class="message-input"></textarea><br>
+            <textarea  maxlength="250" name="msg" placeholder="Maximum character 250..." class="message-input"></textarea><br>
 
             <button class="send-btn">Send</button><br>
         </form>

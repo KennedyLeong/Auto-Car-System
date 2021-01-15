@@ -16,7 +16,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import Entity.Appointment;
+import Entity.*;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.Query;
@@ -44,18 +44,25 @@ public class CreateAppointment extends HttpServlet{
     throws ServletException, IOException {
         try {
             
+            String customerID = request.getParameter("id");
+            Customer customer = em.find(Customer.class, customerID);
+            
+            String vehicleID = request.getParameter("vnumber");
+            Vehicle vehicle = em.find(Vehicle.class, vehicleID);
+            
+            
+            
             String appointmentID = "";
             String date = request.getParameter("date");
             String time = request.getParameter("time");
             String requestType = request.getParameter("serviceType");
             String[] services = request.getParameterValues("services");
             String serviceStr = "";
+            String status = "PENDING";
             double price = 0.0;
-            int priceint = (int) price;
-            
+
             Date appointmentDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-            System.out.print(appointmentDate);
-            System.out.print(time);
+            
             Query query = em.createNamedQuery("Appointment.findAll");
             List<Appointment> appointmentlist = query.getResultList();
             
@@ -72,75 +79,71 @@ public class CreateAppointment extends HttpServlet{
                 serviceStr += services[i];
             }
             
-            System.out.println(serviceStr);
-            
             for (String service : services) {
                 switch (service) {
-                    case "EngineOil":
-                        price += 1.5;
+                    case "Engine Oil":
+                        price += 120.0;
                         break;
-                    case "ATF":
-                        price += 1.0;
+                    case "Automatic Transmission Fluid":
+                        price += 75.0;
                         break;
-                    case "GearOil":
-                        price += 1.0;
+                    case "Gear Oil":
+                        price += 80.0;
                         break;
-                    case "RadiatorCoolant":
-                        price += 1.0;
+                    case "Radiator Coolant":
+                        price += 20.0;
                         break;
-                    case "BrakeFluid":
-                        price += 1.0;
+                    case "Brake Fluid":
+                        price += 20.0;
                         break;
-                    case "PowerSteeringFluid":
-                        price += 1.0;
+                    case "Power Steering Fluid":
+                        price += 35.0;
                         break;
-                    case "OilFilter":
-                        price += 1.0;
+                    case "Oil Filter":
+                        price += 40.0;
                         break;
-                    case "FuelFilter":
-                        price += 1.0;
+                    case "Fuel Filter":
+                        price += 30.0;
                         break;
-                    case "BreakPad":
-                        price += 1.0;
+                    case "Break Pad":
+                        price += 50.0;
                         break;
-                    case "AirFilter":
-                        price += 1.0;
+                    case "Air Filter":
+                        price += 30.0;
                         break;
-                    case "SparkPlugs":
-                        price += 1.0;
+                    case "Spark Plugs":
+                        price += 20.0;
+                        break; 
+                    case "Aircond Belt":
+                        price += 38.0;
                         break;
-                    case "AircondBelt":
-                        price += 1.0;
+                    case "Alternator Belt":
+                        price += 60.0;
                         break;
-                    case "AlternatorBelt":
-                        price += 1.0;
+                    case "Power Steering Belt":
+                        price += 40.0;
                         break;
-                    case "PowerSteeringBelt":
-                        price += 1.0;
+                    case "Timing Belt":
+                        price += 270.0;
                         break;
-                    case "TimingBelt":
-                        price += 1.0;
+                    case "Timing Chain":
+                        price += 360.0;
                         break;
-                    case "TimingChain":
-                        price += 1.0;
+                    case "Clutch Plate":
+                        price += 280.0;
                         break;
-                    case "ClutchPlate":
-                        price += 1.0;
-                        break;
-                    case "WaterPump":
-                    price += 1.0;
+                    case "Water Pump":
+                    price += 320.0;
                     break;
                     
                     default:
                 }
             }
-            
-            System.out.println("Total Price is: RM" + price);
-            
+                  
             conn = DriverManager.getConnection(host, user, pass);
             
             utx.begin();
-            Appointment appointment = new Appointment( appointmentID, appointmentDate, time, requestType, serviceStr, priceint);
+            Appointment appointment = new Appointment( appointmentID, appointmentDate, requestType, serviceStr, status, vehicle, customer, time, price );
             em.persist(appointment);
             utx.commit();
             response.sendRedirect("customer-create-appointment.jsp?success=true");

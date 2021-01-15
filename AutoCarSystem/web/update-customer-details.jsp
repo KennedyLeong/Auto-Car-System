@@ -42,10 +42,9 @@
                 float: left;
                 height: 30px;
                 width: 115px;
-                text-align: center;
                 border: 1px solid black;
                 margin-left: 45px;
-                margin-top: 13px;
+                margin-top: 30px;
             }
             
             h1 {
@@ -161,8 +160,7 @@
     </head>
     <body>
         
-        <button onclick="document.location='view-customer-details.jsp'" class="return-btn">Back</button><br><br>
-        
+        <a href="view-customer-details.jsp"><button class="return-btn">Back</button></a><br><br>
         
         <h1>Customer Details</h1>
         <form action="EditCustomerProfile" method="POST" id="updateform">
@@ -172,7 +170,7 @@
                 <br>
                 
                 <label>Name</label>
-                <input type="text" name="cname" class="customer-first-input" value="<%= customer.getCustomerName()%>">
+                <input type="text" name="cname" class="customer-first-input" value="<%= customer.getCustomerName()%>" readonly="">
                 <br>
             
                 <label>Phone Number</label>
@@ -184,19 +182,19 @@
                 <br>
                 
                 <label>Email</label>
-                    <input type="text" name="cemail" class="customer-third-input" value="<%= customer.getCustomerEmail()%>">
+                <input type="text" name="cemail" class="customer-third-input" value="<%= customer.getCustomerEmail()%>" readonly="">
                 <br>
                 
                 <label>Old Password</label>
-                    <input type="text" name="oldpassword" class="customer-fifth-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <input type="password" name="oldpassword" class="customer-fifth-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                 <br>
                 
                 <label>New Password</label>
-                    <input type="text" name="newpassword" class="customer-six-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <input type="password" name="newpassword" class="customer-six-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                 <br>
                 
                 <label>Confirm New Password</label>
-                    <input type="text" name="cnpassowrd" class="customer-seven-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <input type="password" name="cnpassowrd" class="customer-seven-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                 <br>
                 
             </div>

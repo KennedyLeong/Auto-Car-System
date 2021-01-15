@@ -1,6 +1,6 @@
 <%-- 
-    Document   : register-vehicle
-    Created on : Jan 7, 2021, 9:36:31 PM
+    Document   : staff-send-notification
+    Created on : Jan 15, 2021, 6:06:57 PM
     Author     : asus
 --%>
 
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Vehicle Registration</title>
+        <title>Send Notification</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -20,7 +20,7 @@
                 padding-top: 6px;
                 background-color: #cccccc; 
             }
-
+            
             a {
                 text-decoration: none;
                 color: black;
@@ -37,77 +37,78 @@
                 font-size: 15px;
             }
             
-            h1 {
+            .back-btn {
                 font-family: Arial, Helvetica, sans-serif;
-                font-size: 28px;
-                margin-top: 35px;
                 margin-left: 45px;
-            }
-            
-            .return-btn {
-                font-family: Arial, Helvetica, sans-serif;
-                margin-left: 60px;
-                margin-top: 30px;
+                margin-top: 20px;
                 height: 35px;
                 width: 100px;
             }
             
-            .submit-btn {
+            h1 {
+                margin-top: 35px;
+                margin-left: 50px;
                 font-family: Arial, Helvetica, sans-serif;
-                float: right;
-                width: 140px;
-                height: 50px;
-                margin-top:  45px;
-                margin-right: 70px;
-                font-size: 16px;
             }
             
-            .vehicle-first-input {
-                margin-left: 56px;
-                width: 300px; 
-            }
-            
-            .vehicle-second-input {
-                margin-left: 125px;
-                width: 300px;
-                margin-top: 15px;
-            }
-            
-            .vehicle-third-input {
-                margin-left: 133px;
-                width: 300px;
-                margin-top: 15px;
-            }
-            
-            .vehicle-fourth-input {
-                margin-left: 130px;
-                width: 300px;
-                margin-top: 15px;
-            }
-            
-            .vehicle-fifth-input {
-                margin-left: 113px;
-                width: 300px;
-                margin-top: 15px;
-            }
-            
-            .vehicle-table {
-               font-family: Arial, Helvetica, sans-serif;
-               border: 1px solid black;
-               border-radius: 10px;
-               margin-top: 30px;
-               margin-left: 75px;
-               padding: 20px;
-               width: 625px;
-            }
-            
-            .vehicle-table input {
+            .recipient-tbl input {
                 border-top-style: hidden;
                 border-right-style: hidden;
                 border-left-style: hidden;
                 border-bottom-style: groove;
             }
             
+            .to-label {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 15px;
+                margin-left: 50px;
+            }
+            
+            .email-input {
+                margin-left: 40px;
+                width: 300px;
+            }
+            
+            .subject-label {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 50px;
+            }
+            
+            .subject-input {
+                margin-top: 15px;
+                margin-left: 114px;
+                width: 300px;
+            }
+            
+            .message-label {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 30px;
+                margin-left: 50px;
+            }
+            
+            .message-input {
+                width: 500px;
+                height: 250px;
+                border-radius: 10px;
+                margin-top: 10px;
+                margin-left: 45px;
+            }
+            
+            .send-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 45px;
+                margin-top: 20px;
+                height: 35px;
+                width: 100px;
+            }
+            
+            .all-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 45px;
+                margin-top: 20px;
+                height: 35px;
+                width: 100px;
+            }
         </style>
         
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
@@ -135,33 +136,28 @@
             </ul>
         </div>
         <%}%>
-    
     </head>
     <body>
-        
-        <a href="customer-profile.jsp"><button class="return-btn">Back</button></a>
+        <button onclick="document.location='view-customer-details.jsp'" class="back-btn">Back</button>
+        <h1>Send Notification</h1>
+        <form action="SendMail">
+            <div class="recipient-tbl">
+                <label for="recipientaddress" class="to-label">Recipient Address</label>
+                <input  type="textbox" name="recipientaddress" value="${emailStr}" class="email-input"><br>
 
-        <input type="submit" class="submit-btn" value="Register" form="regform">
-        <h1>Vehicle Details</h1>
-        <form action="VehicleRegistration" method="POST" id="regform">
-                <div class="vehicle-table">
-                    <input type="hidden" name="id" value="<%= customer.getCustomerId()%>"><br>
-                    
-                    <label>Vehicle Number</label>
-                    <input type="text" class="vehicle-first-input" name="vnumber"><br>
+                <label for="subject" class="subject-label">Subject</label>
+                <input type="textbox" name="subject" class="subject-input"><br> 
 
-                    <label>Brand</label>
-                    <input type="text" class="vehicle-second-input" name="vbrand"><br>
+                <label for="msg" class="message-label">Message</label>
+            </div>
 
-                    <label>Type</label>
-                    <input type="text" class="vehicle-third-input" name="vtype"><br>
 
-                    <label>Color</label>
-                    <input type="text" class="vehicle-fourth-input" name="vcolor"><br>
+            <textarea  maxlength="250" name="msg" placeholder="Maximum character 250..." class="message-input"></textarea><br>
 
-                    <label>Mileage</label> 
-                    <input type="text" class="vehicle-fifth-input" name="vmileage"><br>
-                </div>
-            </form>        
+            <button class="send-btn">Send</button><br>  
+            </form>
+                <form action="AllEmail" method="GET" id="mailform"> 
+                    <button class="all-btn" form="mailform">All</button><br>
+                </form>
     </body>
 </html>

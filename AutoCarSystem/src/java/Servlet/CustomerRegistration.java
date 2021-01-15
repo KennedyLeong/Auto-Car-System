@@ -52,23 +52,36 @@ public class CustomerRegistration extends HttpServlet{
             String password = request.getParameter("password");
             
             Query query = em.createNamedQuery("Customer.findAll");
-            List<Customer> customerlist = query.getResultList();
+            List<Customer> customerList = query.getResultList();
             
-            if(customerlist.size() == 0){
-                customerID = "CS" + String.format("%04d", customerlist.size() + 1);
+            if(customerList.size() == 0){
+                customerID = "CS" + String.format("%04d", customerList.size() + 1);
             } else {
-                customerID = "CS" + String.format("%04d", customerlist.size() + 1);
+                customerID = "CS" + String.format("%04d", customerList.size() + 1);
             }
-            
-            conn = DriverManager.getConnection(host, user, pass);
+          
+          	Query nameQuery = em.createNamedQuery("Customer.findByCustomerName");
+          	nameQuery.setParameter("customerName", name);
+          
+          	Query emailQuery = em.createNamedQuery("Customer.findByCustomerEmail");
+          	emailQuery.setParameter("customerEmail", email);
+         	  
+            if (nameQuery.getResultList().isEmpty() && emailQuery.getResultList().isEmpty()) { // no duplicates found
+              
+               conn = DriverManager.getConnection(host, user, pass);
    
-            utx.begin();
-            Customer customer = new Customer (customerID, name, phoneNumber, address, email, password);
-            em.persist(customer);
-            utx.commit();
-            response.sendRedirect("index.jsp?success=true");
-
-            
+                    utx.begin();
+                    Customer customer = new Customer (customerID, name, phoneNumber, address, email, password);
+                    em.persist(customer);
+                    utx.commit();
+                    response.sendRedirect("index.jsp?success=true");  
+            	
+            } else { // duplicates found
+              
+              	response.sendRedirect("register-customer.jsp?status=duplicatedNameorEmail");
+              
+            }         
+      
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -82,16 +82,73 @@
                 border-bottom-style: hidden;
             }
             
-            .service-label {
-                margin-left: 55px;
+            .date-label {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 80px;
                 margin-top: 30px;
-                
             }
             
-            .service-type {
+            .date-input {
+                margin-left: 85px;
+                text-align: center;
+            }
+            
+            .time-label {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 80px;
+                margin-top: 20px;
+            }
+            
+            .time-input {
+                margin-left: 85px;
+                width: 170px;
+                text-align: center;
+            }
+            
+            .service-type-label {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 80px;
+                margin-top: 20px;
+            }
+            
+            .service-type-input {
+                margin-left: 20px;
+                width: 225px;
+            }
+            
+            .maintenance {
+                margin-left: 60px;
+            }
+            
+            .abnormalCondition {
+                margin-left: 60px;
+            }
+            
+            .box {
+                color: black;
+                padding: 20px;
+                display: none;
+                margin-top: 20px;
+            }
+            
+            .comment-label {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 20px;
+            }
+            
+            .comment-input {
+                font-family: Arial, Helvetica, sans-serif;
                 margin-top: 15px;
-                margin-left: 55px;
-                padding-bottom: 15px;
+                width: 500px;
+                height: 150px;
+            }
+            
+            .submit-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 50px;
+                margin-top: 45px;
+                height: 35px;
+                width: 100px;
             }
             
             .add-car-button {
@@ -103,6 +160,22 @@
             }
             
         </style>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $("select").change(function(){
+                $(this).find("option:selected").each(function(){
+                    var optionValue = $(this).attr("value");
+                    if(optionValue){
+                        $(".box").not("." + optionValue).hide();
+                        $("." + optionValue).show();
+                    } else{
+                        $(".box").hide();
+                    }
+                });
+            }).change();
+        });
+        </script>
         
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
@@ -135,6 +208,7 @@
 
         <button onclick="document.location='workflow-scheduler.jsp'" class="back-btn">Back</button>
         
+        <form action="" method="POST" id="serviceform">
         <h1>Add Car</h1>
         
         <div>
@@ -143,46 +217,116 @@
             <input type="submit" name="searchcar" class="search-car-button" value="Search"><br>
         </div>
         
-            <input type="text" name="carresult" class="search-car-result" placeholder="Result">
+            <label for="date" class="date-label">Date</label>
+            <input type="date" name="date" class="date-input"><br>
+            
+            <label for="time" class="time-label">Time</label>
+            <input type="time" name="time" class="time-input" min="08:00" max="17:00" step="600"><br>
+            
+            <label for="id" class="vehicle-No-label" hidden="">Customer ID</label>
+            <input type ="textbox" name="id" class="vehicle-No-Input" value="&{output}" hidden=""><br>
+            
+        <label for="serviceType" class="service-type-label">Request Type</label>
+        <select name="serviceType" class="service-type-input">
+            <option>Choose your option</option>
+            <option value="maintenance">Service</option>
+            <option value="abnormalCondition">Diagnostic Tests</option>
+        <select><br>
         
+        <div class="maintenance box">
+        <fieldset>
+            <legend>Lubricant/ Fluids</legend>
+            <input type="checkbox" class="" name="services" value="EngineOil">
+            <label for="service1"><strong>Engine Oil</strong> RM 120 [Recommended : 5,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="ATF">
+            <label for="service2"><strong>Automatic Transmission Fluid</strong> RM 75 [Recommended : 30,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="GearOil">
+            <label for="service3"><strong>Gear Oil</strong> RM 80 [Recommended : 30,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="RadiatorCoolant">
+            <label for="service4"><strong>Radiator Coolant</strong> RM 20 [Recommended : 50,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="BrakeFluid">
+            <label for="service5"><strong>Brake Fluid</strong> Rm 20 [Recommended : 60,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="PowerSteeringFluid">
+            <label for="service6"><strong>Power Steering Fluid</strong> RM 35 [Recommended : 60,000 KM]</label><br>
+        </fieldset>
+            
+        <fieldset>
+            <legend>Replacement Part</legend>
+            <input type="checkbox" class="" name="services" value="OilFilter">
+            <label for="service7"><strong>Oil Filter</strong> RM 40 [Recommended : 5,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="FuelFilter">
+            <label for="service8"><strong>Fuel Filter</strong> Rm 30 [Recommended : 40,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="BreakPad">
+            <label for="service9"><strong>Break Pad</strong> RM 50 [Recommended : 5,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="AirFilter">
+            <label for="service10"><strong>Ail Filter</strong> RM 30 [Recommended : 20,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="SparkPlugs">
+            <label for="service11"><strong>Spark Plugs</strong> RM 20 [Recommended : 20,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="AircondBelt">
+            <label for="service12"><strong>Air-Cond Belt</strong> RM 38 [Recommended : 60,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="AlternatorBelt">
+            <label for="service13"><strong>Alternator Belt</strong> RM 60 [Recommended : 60,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="PowerSteeringBelt">
+            <label for="service14"><strong>Power Steering Belt</strong> RM 40 [Recommended : 60,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="TimingBelt">
+            <label for="service15"><strong>Timing Belt</strong> RM 270 [Recommended : 60,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="TimingChain">
+            <label for="service16"><strong>Timing Chain</strong> RM 360 [Recommended : 250,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="ClutchPlate">
+            <label for="service17"><strong>Clutch Plate</strong> RM 280 [Recommended : 100,000 KM]</label><br>
+
+            <input type="checkbox" class="" name="services" value="WaterPump">
+            <label for="service18"><strong>Water Pump</strong> RM 320 [Recommended : 120,000 KM]</label><br>
+        </fieldset>
+    </div>
+            
+    <div class="abnormalCondition box">
         <div>
-            <label class="service-label">Service</label>
-                <div class="service-type">   
-                    <input type="checkbox" name="optionone" value="EngineOil">
-                    <label for="optionone">Engine Oil</label><br>
-            
-                    <input type="checkbox" name="optiontwo" value="OilFilter">
-                    <label for="optiontwo">Replace Oil Filter</label><br>
-            
-                    <input type="checkbox" name="optionethree" value="AilFilter">
-                    <label for="optionethree">Replace Ail Filter</label><br>
-            
-                    <input type="checkbox" name="optionfour" value="FuelFilter">
-                    <label for="optionfour">Replace Fuel Filter</label><br>
-            
-                    <input type="checkbox" name="optionfive" value="AirconFilter">
-                    <label for="optionfive">Replace A/C Filter</label><br>
-            
-                    <input type="checkbox" name="optionsix" value="SparkPlugs">
-                    <label for="optionsix">Replace Spark Plugs</label><br>
-            
-                    <input type="checkbox" name="optionseven" value="BrakePads">
-                    <label for="optionseven">Replace Brake Pads</label><br>
-            
-                    <input type="checkbox" name="optioneight" value="Battery">
-                    <label for="optioneight">Replace Battery</label><br>
-            
-                    <input type="checkbox" name="optionten" value="BrakeFluid">
-                    <label for="optionten">Refill Brake Fluid</label><br>
-            
-                    <input type="checkbox" name="optioneleven" value="PowerSteeringFluid">
-                    <label for="optioneleven">Refill Power Steering Fluid</label><br>
-            
-                    <input type="checkbox" name="optiontwelve" value="TransmissionFluid">
-                    <label for="optiontwelve">Refill Transmission Fluid</label><br>
-                </div>
+            <legend></legend>
+            <input type="checkbox" class="" name="inspection1" value="BrakeSystem">
+            <label for="inspection1">Brake System</label><br>
+
+            <input type="checkbox" class="" name="inspection2" value="EngineTransmissionSystem">
+            <label for="inspection2">Engine & Transmission System</label><br>
+
+            <input type="checkbox" class="" name="inspection3" value="SteeringSuspensionWheelSystem">
+            <label for="inspection3">Steering, Suspension & Wheel System</label><br>
+
+            <input type="checkbox" class="" name="inspection4" value="ExhaustSystem">
+            <label for="inspection4">Exhaust System</label><br>
+
+            <input type="checkbox" class="" name="inspection5" value="CoolingSystem">
+            <label for="inspection5">Cooling System</label><br>
+
+            <input type="checkbox" class="" name="inspection6" value="BatteriesChargingSystem">
+            <label for="inspection6">Batteries & Charging System</label><br>
+
+            <input type="checkbox" class="" name="inspection7" value="DiagnosticSystem">
+            <label for="inspection7">Vehicle Diagnostic System</label><br>
+
+            <input type="checkbox" class="" name="inspection8" value="ACSystem">
+            <label for="inspection8">Air Conditioner System</label><br>
         </div>
-            
-            <input type="submit" class="add-car-button" value="Add">
+
+        <label for="comment" class="comment-label">Describe the problem you faced</label><br>
+            <textarea class="comment-input" name="comment"></textarea><br>
+        </div> 
+    </form>        
+            <input type="submit" value="Submit" class="submit-btn" form="serviceform">
     </body>
 </html>

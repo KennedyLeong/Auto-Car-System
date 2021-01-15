@@ -44,15 +44,7 @@
                 height: 35px;
                 width: 100px;
             }
-            
-            
-            .search-input {
-                float: right;
-                margin-top: 20px;
-                margin-right: 15px;
-                width: 415px;
-                
-            }
+
             
             .top-section input {
                 border-top-style: hidden;
@@ -97,77 +89,30 @@
             }
             
             .activity-tbl {
-                float: right;
-                border: 1px solid black;
-                margin-right: 50px;
-                width: 1150px;
-                height: 450px;
+                margin-right: 80px;
+                margin-left: 350px;
+                padding-left: 50px;
+            }
+            
+            .updatde-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               border: 1px solid black;
+               padding: 5px;
+               border-radius: 5px;
+            }
+            
+            .complete-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               border: 1px solid black;
+               padding: 5px;
+               margin-left: 20px;
+               border-radius: 5px; 
             }
             
             .right-side-date-time {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-left: 45px;
+                float: right;
                 padding-bottom: 15px;
-            }
-
-            
-            .first-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                height: 60px;
-            }
-            
-            .second-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                height: 60px;
-            }
-            
-            .third-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                margin-top: 15px;
-                height: 60px;
-            }
-            
-            .fourth-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                height: 60px;
-            }
-            
-            .fifth-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                margin-top: 15px;
-                height: 60px;
-            }
-            
-            .six-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                height: 60px;
-            }
-            
-            .seven-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                margin-top: 15px;
-                height: 60px;
-            }
-            
-            .eight-activity {
-                width: 525px;
-                margin-left: 35px;
-                border-radius: 10px;
-                height: 60px;
             }
             
         </style>
@@ -202,13 +147,15 @@
     <body>        
         <div class="top-section">
             <a href="main-menu.jsp"><button class="back-btn">Back</button></a>
-            
-            <input type="text" placeholder="Enter Vehicle No." class="search-input">
         </div>
             <div class="middle-section">
                 <div class="left-side-btn">
-                    <a href="appointment.jsp"><button class="appointment-btn">Appointment</button></a><br>
-                    <a href="waiting-list.jsp"><button class="waiting-list-btn">Waiting List</button></a><br>
+                    <form action="CheckAppointment" method="GET" id="appointmentform">
+                        <button class="appointment-btn" form="appointmentform">Appointment</button><br>
+                    </form>
+                    <form action="CheckService" method="GET" id="appointmentform">
+                        <button class="waiting-list-btn">Refresh</button><br>
+                    </form>
                     <a href="estimate-time.jsp"><button class="estimate-time-btn">Estimate Time</button></a><br>
                 </div>
                 <div class="activity-tbl">
@@ -223,17 +170,8 @@
                                 document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +" "+ months[dt.getMonth()] +" "+ (dt.getFullYear()) +" <br> "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                             </script>
                     </div>
-                    <div class="">
-                        <input type="button" onclick="document.location='add-car.jsp'" class="first-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.add-car.jsp'" class="second-activity" Value="Add Car"><br>
-                        <input type="button" onclick="document.location='.add-car.jsp'" class="third-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.add-car.jsp'" class="fourth-activity" Value="Add Car"><br>
-                    </div>
-                    <div class="">
-                        <input type="button" onclick="document.location='.add-car.jsp'" class="fifth-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.add-car.jsp'" class="six-activity" Value="Add Car"><br>
-                        <input type="button" onclick="document.location='.add-car.jsp'" class="seven-activity" Value="Add Car">
-                        <input type="button" onclick="document.location='.add-car.jsp'" class="eight-activity" Value="Add Car"><br>
+                    <div>
+                        ${output}
                     </div>
                 </div>
             </div>

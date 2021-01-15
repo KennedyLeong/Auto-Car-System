@@ -43,8 +43,10 @@ public class VehicleRegistration extends HttpServlet {
         try {
             
             String customerID = (String)request.getParameter("id");
-
-            Customer customer = em.find(Customer.class, customerID);
+            
+            Query customerQuery = em.createNamedQuery("Customer.findByCustomerId");
+            customerQuery.setParameter("customerId", customerID);
+            Customer customer =  (Customer) customerQuery.getSingleResult();
             
             String vehicleID = "";
             String number = request.getParameter("vnumber");
@@ -62,13 +64,23 @@ public class VehicleRegistration extends HttpServlet {
                 vehicleID = "V" + String.format("%04d", vehiclelist.size() + 1);
             }
             
-            conn = DriverManager.getConnection(host, user, pass);
+            Query numberQuery = em.createNamedQuery("Vehicle.findByVehicleNumber");
+            numberQuery.setParameter("vehicleNumber", number);
+            
+            if (numberQuery.getResultList().isEmpty()){
+                conn = DriverManager.getConnection(host, user, pass);
 
-            utx.begin();
-            Vehicle vehicle = new Vehicle (vehicleID, number, brand, type, color, mileage);
-            em.persist(vehicle);
-            utx.commit();
-            response.sendRedirect("register-vehicle.jsp?success=true");
+                utx.begin();
+                Vehicle vehicle = new Vehicle (vehicleID, number, brand, type, color, mileage, customer);
+                em.persist(vehicle);
+                utx.commit();
+                
+                response.sendRedirect("register-vehicle.jsp?success=true");
+            } else {
+                response.sendRedirect("register-vehicle.jsp?status=duplicateVehicleNumber");
+            }
+            
+            
                         
         } catch (Exception ex){
             ex.printStackTrace();

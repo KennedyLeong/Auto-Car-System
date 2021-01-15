@@ -49,6 +49,7 @@
             
             h1 {
                font-family: Arial, Helvetica, sans-serif;
+               margin-top: 60px;
                margin-left: 80px;
             }
             
@@ -151,7 +152,7 @@
     </head>
     <body>
        
-        <button onclick="document.location='customer-profile.jsp'" class="return-btn">Back</button><br><br><br>
+        <a href="customer-profile.jsp"><button class="return-btn">Back</button></a><br>
             
         <h1>Customer Details</h1>
         <div>
@@ -173,10 +174,8 @@
                 </label><br>
 
             </div>
-            <div class="customer-tbl-btn">
-                <button onclick="document.location='send-notification.jsp'">Send Notification</button>
+            <div class="customer-tbl-btn">             
                 <button onclick="document.location='update-customer-details.jsp'">Update Details</button>
-                <input type="button" href="" value="Delete">
             </div>
         </div>
         </div>

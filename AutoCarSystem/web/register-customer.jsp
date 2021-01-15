@@ -79,7 +79,7 @@
             
             .customer-first-input{
                 margin-top: 15px;
-                margin-left: 128px;
+                margin-left: 100px;
                 width: 300px;
             }
             
@@ -175,6 +175,11 @@
                 height: 35px;
                 font-size: 16px;
             }
+              
+            .input[type=checkbox] {
+                transform: scale(2.0);
+                margin-left: 15px;
+            }
         
         </style>
 
@@ -215,8 +220,9 @@
         
         <form action="CustomerRegistration" method="POST" id="regform">
             <div class="customer-table">
-                <label>Name</label>
+                <label>Full Name</label>
                 <input type="text" name="name" class="customer-first-input" required><br>
+                <p>&bull;Your full name <Strong>MUST</strong> be the same as your MyKad</p>
 
                 <label>Phone Number</label>
                 <input type="text" name="phonenumber" class="customer-second-input" required placeholder="e.g 888 888 8888" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"><br>
@@ -228,27 +234,12 @@
                 <input type="text" name="email" class="customer-fourth-input" required placeholder="abc@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
 
                 <label>Password</label>
-                <input type="password" name="password" class="customer-fifth-input" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>
-
+                <input type="password" name="password" id="myInput" class="customer-fifth-input" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>
+                
                 <label>Confirm Password</label>
-                <input type="password" name="confirmpassword" class="customer-six-input" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>
+                <input type="password" name="confirmpassword" id="myInput2" class="customer-six-input" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>    
             </div>
         </form>
-        
-            <script>
-                var password = document.getElementById("password")
-                ,   confirm_password = document.getElementById("confirmpassword");
-                
-                function validatePassword() {
-                    if (password.value !== confirm_password.value) {
-                        confirm_password.setCustomValidity("Passwords Don't Match");
-                    } else {
-                        confirm_password.setCustomValidty('');
-                    }
-                }
-                
-                password.onchange = validatePassword;
-                confirm_password.onkeyup = validatePassword;
-            </script> 
+
     </body>
 </html>

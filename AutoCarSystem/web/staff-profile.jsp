@@ -1,16 +1,16 @@
 <%-- 
-    Document   : customer-profile
-    Created on : Jan 6, 2021, 8:06:50 AM
+    Document   : staff-profile
+    Created on : Jan 11, 2021, 1:56:19 PM
     Author     : asus
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Customer Profile</title>
+        <title>Staff Profile</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -70,37 +70,11 @@
                 height: 35px;
                 width: 160px;
             }
-            
-        </style>
-        <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
-        <div class="navigation-bar">    
-            <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="">BILLING</a></li>
-                <li><a href="">INVENTORY</a></li>
-                <li><a href="">REPORT</a></li>
-                <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
-            </ul>
-        </div>
-        <%} else {%>
-        <div class="navigation-bar">    
-            <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>             
-            </ul>
-        </div>
-        <%}%>
+     </style>       
     </head>
     <body>
         <div class="title-label">
-            <h1>Welcome, <%= customer.getCustomerName()%></h1>
+            <h1>Welcome, <%= staff.getStaffName()%></h1>
 
             <span id="datetime"></span><br>
         </div>
@@ -109,18 +83,8 @@
                     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
                     document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +" "+ months[dt.getMonth()] +" "+ (dt.getFullYear()) +" <br> "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                 </script>
-                
-                <a href="view-customer-details.jsp"><button class="customer-detail-btn">View Profile</button></a><br>
-                
-                <a href="register-vehicle.jsp"><button class="add-vehicle-btn">Register Vehicle</button></a><br>
-                
-                <a href="view-vehicle-details.jsp"><button class="add-vehicle-btn">View Vehicle</button></a><br>
-                
-                <a href="customer-create-appointment.jsp"><button class="add-vehicle-btn">Make Appointment</button></a>
-                
-                <form action="LogOut" method="GET" id="logoutform">
+        <form action="LogOut" method="GET" id="logoutform">
                     <input type="submit" class="submit-btn" value="Logout" form="logoutform">
-                </form>
-        
+        </form>
     </body>
 </html>

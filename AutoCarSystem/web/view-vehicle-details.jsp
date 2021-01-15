@@ -8,6 +8,7 @@
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
 <%@page import="Entity.Vehicle, java.util.*" %>
 <% List<Vehicle> vehicleList = (List<Vehicle>) session.getAttribute("vehicleList"); %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,6 +53,14 @@
             
             h1 {
                font-family: Arial, Helvetica, sans-serif;
+               margin-top: 60px;
+               margin-left: 80px;
+            }
+            
+            p {
+               font-family: Arial, Helvetica, sans-serif;
+               font-size: 20px;
+               margin-top: 80px;
                margin-left: 80px;
             }
             
@@ -88,6 +97,7 @@
                font-family: Arial, Helvetica, sans-serif;
                border: 1px solid black;
                border-radius: 10px;
+               margin-top: 25px;
                margin-left: 125px;
                padding: 20px;
                width: 625px;
@@ -145,13 +155,12 @@
     </head>
     <body>
         
-        <button onclick="document.location='search-customer.jsp'" class="return-btn">Back</button><br><br><br>
-        
-         <h1>Vehicle Details</h1>
+        <a href="customer-profile.jsp"><button class="return-btn">Back</button></a><br>
+         
         <%
             if(vehicleList.size() !=0){
         %>
-
+        <h1>Vehicle Details</h1>
         <%  int counts = 0;
             
             for (int i=0 ; i<vehicleList.size() ; i++){
@@ -176,12 +185,11 @@
             </div>
                 <div class="vehicle-tbl-btn">
                     <input type="button" href="" value="View History">
-                    <input type="button" value="Remove">
                 </div>
             </div>
          <%}}else{%>
          
-         <h2>Currently there's no vehicle record under this customer.</h2>
+         <p>Currently there's no vehicle record under this customer.</p>
          
          <%}%>
     </body>

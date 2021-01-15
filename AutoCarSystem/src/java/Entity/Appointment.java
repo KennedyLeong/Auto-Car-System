@@ -36,11 +36,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a")
     , @NamedQuery(name = "Appointment.findByAppointmentId", query = "SELECT a FROM Appointment a WHERE a.appointmentId = :appointmentId")
     , @NamedQuery(name = "Appointment.findByAppointmentDate", query = "SELECT a FROM Appointment a WHERE a.appointmentDate = :appointmentDate")
-    , @NamedQuery(name = "Appointment.findByAppointmentTime", query = "SELECT a FROM Appointment a WHERE a.appointmentTime = :appointmentTime")
     , @NamedQuery(name = "Appointment.findByAppointmentRequesttype", query = "SELECT a FROM Appointment a WHERE a.appointmentRequesttype = :appointmentRequesttype")
     , @NamedQuery(name = "Appointment.findByAppointmentServicestr", query = "SELECT a FROM Appointment a WHERE a.appointmentServicestr = :appointmentServicestr")
+    , @NamedQuery(name = "Appointment.findByAppointmentStatus", query = "SELECT a FROM Appointment a WHERE a.appointmentStatus = :appointmentStatus")
+    , @NamedQuery(name = "Appointment.findByAppointmentTime", query = "SELECT a FROM Appointment a WHERE a.appointmentTime = :appointmentTime")
     , @NamedQuery(name = "Appointment.findByAppointmentTotalprice", query = "SELECT a FROM Appointment a WHERE a.appointmentTotalprice = :appointmentTotalprice")
-    , @NamedQuery(name = "Appointment.findByAppointmentStatus", query = "SELECT a FROM Appointment a WHERE a.appointmentStatus = :appointmentStatus")})
+    , @NamedQuery(name = "Appointment.findByCustomerId", query = "SELECT a FROM Appointment a WHERE a.customerId = :customerId")
+, @NamedQuery(name = "Appointment.findByVehicleId", query = "SELECT a FROM Appointment a WHERE a.vehicleId = :vehicleId")})
 public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,11 +59,6 @@ public class Appointment implements Serializable {
     private Date appointmentDate;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "APPOINTMENT_TIME")
-    @Temporal(TemporalType.TIME)
-    private Date appointmentTime;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 30)
     @Column(name = "APPOINTMENT_REQUESTTYPE")
     private String appointmentRequesttype;
@@ -70,23 +67,26 @@ public class Appointment implements Serializable {
     @Size(min = 1, max = 300)
     @Column(name = "APPOINTMENT_SERVICESTR")
     private String appointmentServicestr;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "APPOINTMENT_TOTALPRICE")
-    private int appointmentTotalprice;
     @Size(max = 30)
     @Column(name = "APPOINTMENT_STATUS")
     private String appointmentStatus;
+    @Size(max = 20)
+    @Column(name = "APPOINTMENT_TIME")
+    private String appointmentTime;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "APPOINTMENT_TOTALPRICE")
+    private Double appointmentTotalprice;
     @OneToMany(mappedBy = "appointmentId")
     private Collection<Vehicle> vehicleCollection;
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
     @ManyToOne
     private Customer customerId;
+    @JoinColumn(name = "STAFF_ID", referencedColumnName = "STAFF_ID")
+    @ManyToOne
+    private Staff staffId;
     @JoinColumn(name = "VEHICLE_ID", referencedColumnName = "VEHICLE_ID")
     @ManyToOne
     private Vehicle vehicleId;
-    @OneToMany(mappedBy = "appointmentId")
-    private Collection<Service> serviceCollection;
 
     public Appointment() {
     }
@@ -95,16 +95,16 @@ public class Appointment implements Serializable {
         this.appointmentId = appointmentId;
     }
 
-    public Appointment(String appointmentId, Date appointmentDate, Date appointmentTime, String appointmentRequesttype, String appointmentServicestr, int appointmentTotalprice, String appointmentStatus, Customer customerId, Vehicle vehicleId) {
+    public Appointment(String appointmentId, Date appointmentDate, String appointmentRequesttype, String appointmentServicestr, String appointmentStatus, Vehicle vehicleId, Customer customerId, String appointmentTime,   double appointmentTotalprice   ) {
         this.appointmentId = appointmentId;
         this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
         this.appointmentRequesttype = appointmentRequesttype;
         this.appointmentServicestr = appointmentServicestr;
-        this.appointmentTotalprice = appointmentTotalprice;
         this.appointmentStatus = appointmentStatus;
-        this.customerId = customerId;
         this.vehicleId = vehicleId;
+        this.customerId = customerId;
+        this.appointmentTime = appointmentTime;  
+        this.appointmentTotalprice = appointmentTotalprice;     
     }
 
     public String getAppointmentId() {
@@ -123,14 +123,6 @@ public class Appointment implements Serializable {
         this.appointmentDate = appointmentDate;
     }
 
-    public Date getAppointmentTime() {
-        return appointmentTime;
-    }
-
-    public void setAppointmentTime(Date appointmentTime) {
-        this.appointmentTime = appointmentTime;
-    }
-
     public String getAppointmentRequesttype() {
         return appointmentRequesttype;
     }
@@ -147,20 +139,28 @@ public class Appointment implements Serializable {
         this.appointmentServicestr = appointmentServicestr;
     }
 
-    public int getAppointmentTotalprice() {
-        return appointmentTotalprice;
-    }
-
-    public void setAppointmentTotalprice(int appointmentTotalprice) {
-        this.appointmentTotalprice = appointmentTotalprice;
-    }
-
     public String getAppointmentStatus() {
         return appointmentStatus;
     }
 
     public void setAppointmentStatus(String appointmentStatus) {
         this.appointmentStatus = appointmentStatus;
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    public Double getAppointmentTotalprice() {
+        return appointmentTotalprice;
+    }
+
+    public void setAppointmentTotalprice(Double appointmentTotalprice) {
+        this.appointmentTotalprice = appointmentTotalprice;
     }
 
     @XmlTransient
@@ -180,21 +180,20 @@ public class Appointment implements Serializable {
         this.customerId = customerId;
     }
 
+    public Staff getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(Staff staffId) {
+        this.staffId = staffId;
+    }
+
     public Vehicle getVehicleId() {
         return vehicleId;
     }
 
     public void setVehicleId(Vehicle vehicleId) {
         this.vehicleId = vehicleId;
-    }
-
-    @XmlTransient
-    public Collection<Service> getServiceCollection() {
-        return serviceCollection;
-    }
-
-    public void setServiceCollection(Collection<Service> serviceCollection) {
-        this.serviceCollection = serviceCollection;
     }
 
     @Override

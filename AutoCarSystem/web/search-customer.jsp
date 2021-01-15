@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<%@page import="Entity.Customer, java.util.*" %>
+<% List<Customer> customerList = (List<Customer>) session.getAttribute("customerList"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,6 +42,10 @@
             h1 {
                 font-family: Arial, Helvetica, sans-serif;
                 margin-left: 15px;
+            }
+            
+            h3 {
+                font-family: Arial, Helvetica, sans-serif;
             }
             
             .search-tbl {
@@ -82,7 +88,7 @@
                 margin-top: 13px;
             }
             
-            .notification-btn {
+            .notifications-click {
                 font-family: Arial, Helvetica, sans-serif;
                 float: right;
                 margin-right: 35px;
@@ -100,26 +106,31 @@
                 margin-left: 50px;
                 border-radius: 3px
             }
-               
-            .result-tbl input {
-                border-top-style: hidden;
-                border-right-style: hidden;
-                border-left-style: hidden;
-                border-bottom-style: hidden;
-            }
             
-            .second-input-spacing {
-                margin-top: 10px;
-                margin-left: 50px;
-            }
-            
-            
-            .customer-detail-btn {
+            .search-result {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-left: 40px;
-                height: 30px;
-                width: 110px;
+                height: 250px;
+                width: 500px;
+                margin-left: 50px;
+                padding: 25px;
+                border-radius: 5px
             }
+            
+            .notification-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               border: 1px solid black;
+               padding: 6px;
+               margin-right: 30px;               
+               border-radius: 5px;
+            }
+            
+            .view-more-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               border: 1px solid black;
+               padding: 6px;              
+               border-radius: 5px;
+            }
+
         </style>
         
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
@@ -154,28 +165,17 @@
         <h1>Search</h1>
         
         <div class="search-tbl">
-            <input type="text" placeholder="Enter Customer & Vehicle No." class="search-input" required="">
+            <form action="SearchCustomer" method="GET" id="searchform">
+                <input type="text" placeholder="Enter Customer Name" name="customername" class="search-input" required="">
+                <button class="search-btn" form="searchform">Search</button>
+            </form>       
         </div>
-            <input type="submit" class="search-btn" value="Search">
             <a href="register-customer.jsp"><button class="new-customer-btn" >Register Customer</button></a>
-            
-            <a href="send-notification.jsp"><button class="notification-btn">Notification</button></a><br>
-            
-            
+            <a href="staff-send-notification.jsp"><button class="notifications-click">Notification</button></a><br>
         <div class="result-tbl">          
-            <label class="second-input-spacing">Name</label>
-            <input type="text" name="cname" class="second-input" placeholder="Ismael Bin Hassan" readonly>
-            
-            <label class="third-input">Phone No.</label>
-            <input type="text" name="cphoneno" class="third-input" placeholder="019 584 5912" readonly>
-            
-            <label>Email</label>
-            <input type="text" name="cemail" class="fourth-input" placeholder="ismaelHassan@gmail.com" readonly>
-            
-            <button class="customer-detail-btn" onclick="document.location='view-customer-details.jsp'">View</button>
-        </div>
-            
-       
-            
+            ${output}
+        </div>          
+         
+                  
     </body>
 </html>

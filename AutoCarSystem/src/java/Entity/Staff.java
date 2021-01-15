@@ -72,7 +72,7 @@ public class Staff implements Serializable {
     @Column(name = "STAFF_STATUS")
     private String staffStatus;
     @OneToMany(mappedBy = "staffId")
-    private Collection<Service> serviceCollection;
+    private Collection<Appointment> appointmentCollection;
 
     public Staff() {
     }
@@ -148,12 +148,12 @@ public class Staff implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Service> getServiceCollection() {
-        return serviceCollection;
+    public Collection<Appointment> getAppointmentCollection() {
+        return appointmentCollection;
     }
 
-    public void setServiceCollection(Collection<Service> serviceCollection) {
-        this.serviceCollection = serviceCollection;
+    public void setAppointmentCollection(Collection<Appointment> appointmentCollection) {
+        this.appointmentCollection = appointmentCollection;
     }
 
     @Override

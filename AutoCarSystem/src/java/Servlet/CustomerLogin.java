@@ -47,11 +47,12 @@ public class CustomerLogin extends HttpServlet {
                     session.setAttribute("customer", cust);
                     session.setAttribute("customerLoggedIn", true); 
                   
-                    Query vehiclequery = em.createNamedQuery("Vehicle.findAll");
+                    Query vehiclequery = em.createNamedQuery("Vehicle.findByCustomerId");		// edited
+                    vehiclequery.setParameter("customerId", cust);
                   
                     List<Vehicle> vehicleList = vehiclequery.getResultList();
                     session.setAttribute("vehicleList", vehicleList);
-                    
+
                     response.sendRedirect("index.jsp?status=customerloggingin");
                 }
             }

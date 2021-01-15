@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Vehicle.findByVehicleBrand", query = "SELECT v FROM Vehicle v WHERE v.vehicleBrand = :vehicleBrand")
     , @NamedQuery(name = "Vehicle.findByVehicleType", query = "SELECT v FROM Vehicle v WHERE v.vehicleType = :vehicleType")
     , @NamedQuery(name = "Vehicle.findByVehicleColor", query = "SELECT v FROM Vehicle v WHERE v.vehicleColor = :vehicleColor")
-    , @NamedQuery(name = "Vehicle.findByVehicleMileage", query = "SELECT v FROM Vehicle v WHERE v.vehicleMileage = :vehicleMileage")})
+    , @NamedQuery(name = "Vehicle.findByVehicleMileage", query = "SELECT v FROM Vehicle v WHERE v.vehicleMileage = :vehicleMileage")
+    , @NamedQuery(name = "Vehicle.findByCustomerId", query = "SELECT v FROM Vehicle v WHERE v.customerId = :customerId")})
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -74,13 +75,8 @@ public class Vehicle implements Serializable {
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
     @ManyToOne
     private Customer customerId;
-    @JoinColumn(name = "SERVICE_ID", referencedColumnName = "SERVICE_ID")
-    @ManyToOne
-    private Service serviceId;
     @OneToMany(mappedBy = "vehicleId")
     private Collection<Appointment> appointmentCollection;
-    @OneToMany(mappedBy = "vehicleId")
-    private Collection<Service> serviceCollection;
 
     public Vehicle() {
     }
@@ -89,15 +85,13 @@ public class Vehicle implements Serializable {
         this.vehicleId = vehicleId;
     }
 
-    public Vehicle(String vehicleId, String vehicleNumber, String vehicleBrand, String vehicleType, String vehicleColor, int vehicleMileage, Service serviceId, Appointment appointmentId, Customer customerId) {
+    public Vehicle(String vehicleId, String vehicleNumber, String vehicleBrand, String vehicleType, String vehicleColor, int vehicleMileage, Customer customerId) {
         this.vehicleId = vehicleId;
         this.vehicleNumber = vehicleNumber;
         this.vehicleBrand = vehicleBrand;
         this.vehicleType = vehicleType;
         this.vehicleColor = vehicleColor;
         this.vehicleMileage = vehicleMileage;
-        this.serviceId = serviceId;
-        this.appointmentId = appointmentId;
         this.customerId = customerId;
     }
 
@@ -165,14 +159,6 @@ public class Vehicle implements Serializable {
         this.customerId = customerId;
     }
 
-    public Service getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(Service serviceId) {
-        this.serviceId = serviceId;
-    }
-
     @XmlTransient
     public Collection<Appointment> getAppointmentCollection() {
         return appointmentCollection;
@@ -180,15 +166,6 @@ public class Vehicle implements Serializable {
 
     public void setAppointmentCollection(Collection<Appointment> appointmentCollection) {
         this.appointmentCollection = appointmentCollection;
-    }
-
-    @XmlTransient
-    public Collection<Service> getServiceCollection() {
-        return serviceCollection;
-    }
-
-    public void setServiceCollection(Collection<Service> serviceCollection) {
-        this.serviceCollection = serviceCollection;
     }
 
     @Override

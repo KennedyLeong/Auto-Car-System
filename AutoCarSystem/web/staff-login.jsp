@@ -78,13 +78,22 @@
                 border-left-style: hidden;
                 border-bottom-style: groove;
             }
+            
+            input[type=checkbox] {
+                transform: scale(2.0);
+                margin-left: 15px;
+            }
+            
+            .show-password {
+                margin-top: 15px;
+            }
 
             .submit-btn {
                 
                 float: left;
                 width: 300px;
                 height: 40px;
-                margin-top:  40px;
+                margin-top:  30px;
             }
 
             
@@ -130,18 +139,33 @@
                     document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +" "+ months[dt.getMonth()] +" "+ (dt.getFullYear()) +" <br> "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                 </script>
             </div>
-            <div class="table-signin">
-            
-                <h2>Log in</h2><br>
-                <div class="login-input">
-                    <input type="text" placeholder="ID / Email" name="uname" required><br><br>
-                
-                    <input type="password" placeholder="Password" name="upassword" required>
+            <form action="StaffLogin" method="POST" id="loginform">
+                <div class="table-signin">
+
+                    <h2>Log in</h2><br>
+                    <div class="login-input">
+                        <input type="text" placeholder="ID / Email" name="email" required><br><br>
+
+                        <input type="password" placeholder="Password" id="myInput" name="password" required>
+                    </div>
+                    <div class="show-password">
+                        <label>Show Password</label>
+                            <input type="checkbox" onclick="myFunction()" class="hide-btn">
+                            
+                            <script>
+                                function myFunction() {
+                                  var x = document.getElementById("myInput");
+                                  if (x.type === "password") {
+                                    x.type = "text";
+                                  } else {
+                                    x.type = "password";
+                                  }
+                                }
+                            </script>
+                        <a href="main-menu.jsp"><button class="submit-btn"  form="loginform">LOGIN</button></a>
+                    </div>
                 </div>
-                <div>
-                    <a href="main-menu.jsp"><button class="submit-btn" >LOGIN</button></a>
-                </div>
-            </div>
+            </form>
         </div>
     </body>
 </html>

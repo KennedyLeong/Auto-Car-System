@@ -1,6 +1,6 @@
 <%-- 
-    Document   : register-vehicle
-    Created on : Jan 7, 2021, 9:36:31 PM
+    Document   : staff-register-vehicle
+    Created on : Jan 15, 2021, 11:35:21 AM
     Author     : asus
 --%>
 
@@ -109,7 +109,7 @@
             }
             
         </style>
-        
+            
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
@@ -138,14 +138,13 @@
     
     </head>
     <body>
-        
         <a href="customer-profile.jsp"><button class="return-btn">Back</button></a>
 
         <input type="submit" class="submit-btn" value="Register" form="regform">
         <h1>Vehicle Details</h1>
         <form action="VehicleRegistration" method="POST" id="regform">
                 <div class="vehicle-table">
-                    <input type="hidden" name="id" value="<%= customer.getCustomerId()%>"><br>
+                    <input type="hidden" name="id" value="<%= request.getParameter("id") %>"><br>
                     
                     <label>Vehicle Number</label>
                     <input type="text" class="vehicle-first-input" name="vnumber"><br>
@@ -162,6 +161,6 @@
                     <label>Mileage</label> 
                     <input type="text" class="vehicle-fifth-input" name="vmileage"><br>
                 </div>
-            </form>        
+            </form>
     </body>
 </html>
