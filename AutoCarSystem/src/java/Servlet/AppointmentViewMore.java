@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import Entity.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.Query;
@@ -49,11 +50,12 @@ public class AppointmentViewMore extends HttpServlet{
                     Vehicle vehicle = (Vehicle) vehicleQuery.getSingleResult();            
 
                     output += "<div class=appointment-content>" +
-                              " <strong>Date</strong>  <p>" + appointment.getAppointmentDate()+ "</p>" +
+                              " <strong>Date</strong>  <p>" + (new SimpleDateFormat("dd.MM.yyyy").format(appointment.getAppointmentDate()))+ "</p>" +
                               " <strong>ID</strong>  <p>" + appointment.getAppointmentId()+ "</p>" +
                       	      " <strong>Time</strong>  <p>" + appointment.getAppointmentTime()+ "</p>" +
                               " <strong>Type</strong>  <p>" + appointment.getAppointmentRequesttype()+ "</p>" +
                               " <strong>Service List</strong>  <p>" + appointment.getAppointmentServicestr()+ "</p>" +
+                              " <strong>Status</strong> : <a>" + appointment.getAppointmentStatus()+ "</a><br>" +
                               " <strong>Total Price</strong>  <p>RM " + appointment.getAppointmentTotalprice()+ "</p>" +
                               " <h5><u>Customer Information</u></h5> <br>" +
                       	      " <strong>Name</strong>  <p>" + customer.getCustomerName() + "</p>" +

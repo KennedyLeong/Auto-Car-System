@@ -77,9 +77,11 @@ public class CustomerRegistration extends HttpServlet{
                     response.sendRedirect("index.jsp?success=true");  
             	
             } else { // duplicates found
-              
-              	response.sendRedirect("register-customer.jsp?status=duplicatedNameorEmail");
-              
+                
+                String message = "Error: Duplicate Name or Email Detected! Try Again";
+                
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("register-customer.jsp").forward(request, response);	             
             }         
       
         } catch (Exception ex) {

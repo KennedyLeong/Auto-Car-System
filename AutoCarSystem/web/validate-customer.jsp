@@ -1,6 +1,6 @@
 <%-- 
-    Document   : view-appointment
-    Created on : Dec 22, 2020, 10:36:52 AM
+    Document   : validate-customer
+    Created on : Jan 15, 2021, 11:18:28 PM
     Author     : asus
 --%>
 
@@ -11,9 +11,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View More</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <title>Create Appointment</title>
         <style>
             .navigation-bar {
                 font-family: Arial, Helvetica, sans-serif;
@@ -38,39 +38,54 @@
                 font-size: 15px;
             }
             
-            h5 {
+            h1 {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 25px;
-                margin-left: 45px;
+                margin-top: 80px;
+                margin-left: 625px;
             }
             
-            .appointment-content {
+            .validate-tbl {
+                border: 1px solid black;
+                padding-top: 15px;
+                margin-top: 80px;
+                margin-left: 500px;
+                width: 600px;
+                height: 280px;
+            }
+            
+            .id-label {
                 font-family: Arial, Helvetica, sans-serif;
-                font-size: 15px;
+                margin-left: 250px;
+                margin-top: 30px;
+            }
+            
+            .id-input {
+                margin-left: 175px;
                 margin-top: 20px;
-                margin-left: 50px;
-                padding: 25px;
-                border-radius: 5px
+                width: 250px;
+                border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+                border-bottom-style: groove;
             }
             
-            .transfer-btn {
-               font-family: Arial, Helvetica, sans-serif;
-               border: 1px solid black;
-               padding: 10px;
-               margin-left: 300px;
-               border-radius: 5px;
-            }
-            
-            .back-btn {
+            .proceed-btn {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-left: 30px;
-                margin-top: 20px;
+                margin-left: 150px;
+                margin-top: 50px;
                 height: 35px;
-                width: 100px;
+                width: 300px;
             }
-
-    </style>
-    <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
+            
+            .message-lbl {
+                font-family: font- Arial, Helvetica, sans-serif;
+                margin-top: 25px;
+                margin-left: 180px;
+                color: red;
+            }
+        </style>
+        
+        <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
@@ -96,14 +111,17 @@
             </ul>
         </div>
         <%}%>
+        
     </head>
     <body>
-        
-        <button onclick="document.location='appointment.jsp'" class="back-btn">Back</button>
-        
-        <h5><u>VIEW APPOINTMENT</u></h5>
-    
-        ${output}
-
+        <h1>Create Appointment</h1>
+        <div class="validate-tbl">
+            <form action="RetrieveVehicle" method="GET">
+                <label for="customerId" class="id-label">Customer ID</label><br>
+                <input type="text" class="id-input" name="customerId"><br>
+                <button class="proceed-btn">Proceed</button>
+                <div class="message-lbl">${message}</div>
+            </form>
+        </div>
     </body>
 </html>

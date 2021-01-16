@@ -47,6 +47,7 @@ public class SearchCustomer extends HttpServlet{
                             "<h3>Result</h3>" +
                             "_______________________________________________________________________________________________" + 
                             "<div class=search-result>" + 
+                            " <strong>ID</strong> : <a>" + customer.getCustomerId() + "</a><br>" +
                             " <strong>Name</strong> : <a>" + customer.getCustomerName() + "</a><br>" +
                             " <strong>Phone No.</strong> : <a>" + customer.getCustomerPhoneNumber() + "</a><br>" +
                             " <strong>Email</strong> : <a>" + customer.getCustomerEmail() + "</a><br>" +

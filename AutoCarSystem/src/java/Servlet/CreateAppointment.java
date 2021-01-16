@@ -50,7 +50,7 @@ public class CreateAppointment extends HttpServlet{
             String vehicleID = request.getParameter("vnumber");
             Vehicle vehicle = em.find(Vehicle.class, vehicleID);
             
-            
+            String output= "";
             
             String appointmentID = "";
             String date = request.getParameter("date");
@@ -146,9 +146,12 @@ public class CreateAppointment extends HttpServlet{
             Appointment appointment = new Appointment( appointmentID, appointmentDate, requestType, serviceStr, status, vehicle, customer, time, price );
             em.persist(appointment);
             utx.commit();
-            response.sendRedirect("customer-create-appointment.jsp?success=true");
             
+            output += "Appointment Successfully Created!";
             
+            request.setAttribute("output", output);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+         
         } catch (Exception ex) {
             ex.printStackTrace();
         }

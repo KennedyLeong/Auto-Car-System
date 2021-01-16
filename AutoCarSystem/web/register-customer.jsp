@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,15 +35,22 @@
             
             li{
                 display: inline;
-                padding: 60px;
+                padding: 50px;
                 font-size: 15px;
             }
             
             h1 {
                 font-family: Arial, Helvetica, sans-serif;
-                font-size: 28px;
+                font-size: 35px;
                 margin-top: 35px;
                 margin-left: 45px;
+            }
+            
+            .message-lbl {
+                font-family: font- Arial, Helvetica, sans-serif;
+                margin-top: 15px;
+                margin-left: 75px;
+                color: red;
             }
             
             .return-btn {
@@ -68,6 +76,7 @@
                 border: 1px solid black;
                 border-radius: 10px;
                 padding: 20px;
+                margin-top: 50px;
                 margin-left: 75px; 
                 width: 625px;
             }
@@ -186,24 +195,19 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
+            </ul>
+        </div>
+        <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
         <%} else {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
+                <li><a href="index.jsp">HOME</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>             
             </ul>
         </div>
@@ -211,13 +215,13 @@
         
     </head>
     <body>
-        <a href="search-customer.jsp"><button class="return-btn">Back</button></a>
+        <a href="search-customer.jsp"><button class="return-btn" hidden="">Back</button></a>
         
         <input type="submit" class="submit-btn" value="Register" form="regform">
             
         
         <h1>Customer Details</h1>
-        
+  
         <form action="CustomerRegistration" method="POST" id="regform">
             <div class="customer-table">
                 <label>Full Name</label>
@@ -240,6 +244,8 @@
                 <input type="password" name="confirmpassword" id="myInput2" class="customer-six-input" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>    
             </div>
         </form>
+        
+        <div class="message-lbl">${message}</div>
 
     </body>
 </html>

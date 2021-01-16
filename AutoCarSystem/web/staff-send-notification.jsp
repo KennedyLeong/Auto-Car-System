@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +34,7 @@
             
             li{
                 display: inline;
-                padding: 60px;
+                padding: 50px;
                 font-size: 15px;
             }
             
@@ -104,9 +105,8 @@
             
             .all-btn {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-left: 45px;
-                margin-top: 20px;
-                height: 35px;
+                margin-left: 50px;
+                height: 28px;
                 width: 100px;
             }
         </style>
@@ -114,16 +114,10 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
-        <%} else {%>
+        <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="main-menu.jsp">HOME</a></li>
@@ -132,32 +126,39 @@
                 <li><a href="#">BILLING</a></li>
                 <li><a href="#">INVENTORY</a></li>
                 <li><a href="#">REPORT</a></li>
+                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
+        <%} else {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="index.jsp">HOME</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>             
             </ul>
         </div>
         <%}%>
     </head>
     <body>
-        <button onclick="document.location='view-customer-details.jsp'" class="back-btn">Back</button>
+        <button onclick="document.location='search-customer.jsp'" class="back-btn">Back</button>
         <h1>Send Notification</h1>
+                <form action="AllEmail" method="GET" id="mailform"> 
+                    <button class="all-btn" form="mailform">All</button><br>
+                </form>
         <form action="SendMail">
             <div class="recipient-tbl">
                 <label for="recipientaddress" class="to-label">Recipient Address</label>
-                <input  type="textbox" name="recipientaddress" value="${emailStr}" class="email-input"><br>
+                <input  type="textbox" name="recipientaddress" value="${emailStr}" class="email-input" required=""><br>
 
                 <label for="subject" class="subject-label">Subject</label>
-                <input type="textbox" name="subject" class="subject-input"><br> 
+                <input type="textbox" name="subject" class="subject-input" required=""><br> 
 
                 <label for="msg" class="message-label">Message</label>
             </div>
 
 
-            <textarea  maxlength="250" name="msg" placeholder="Maximum character 250..." class="message-input"></textarea><br>
+                <textarea  maxlength="250" name="msg" placeholder="Maximum character 250..." class="message-input" required=""></textarea><br>
 
             <button class="send-btn">Send</button><br>  
             </form>
-                <form action="AllEmail" method="GET" id="mailform"> 
-                    <button class="all-btn" form="mailform">All</button><br>
-                </form>
     </body>
 </html>

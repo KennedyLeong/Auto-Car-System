@@ -75,26 +75,14 @@ public class StaffLogin extends HttpServlet{
                        
                   }
 
-                     // Example
-                    //System.out.println(appointment.getAppointmentId() + ", " + customer.getCustomerEmail() + ", " + vehicle.getVehicleNumber());
-                    /*Query customerquery = em.createNamedQuery("Customer.findAll");                 
-                    Query vehiclequery = em.createNamedQuery("Vehicle.findAll");
-                    Query appointmentquery = em.createNamedQuery("Appointment.findAll");
-                    
-                    List<Customer> customerList = customerquery.getResultList();
-                    session.setAttribute("customerList", customerList);
-                    List<Vehicle> vehicleList = vehiclequery.getResultList();
-                    session.setAttribute("vehicleList", vehicleList);
-                    List<Appointment> appointmentList = appointmentquery.getResultList();
-                    session.setAttribute("appointmentList", appointmentList);
-                    */
-                    
                     request.setAttribute("output", output);
-                    response.sendRedirect("main-menu.jsp?status=staffloggingin");
+                    response.sendRedirect("staff-profile.jsp?status=staffloggingin");
                 }
             }
             
-            response.sendRedirect("staff-login.jsp?status=loginfailed");
+            String message = "Incorrect ID / Email or Password";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("staff-login.jsp").forward(request, response);
             
             
         } catch (Exception ex) {

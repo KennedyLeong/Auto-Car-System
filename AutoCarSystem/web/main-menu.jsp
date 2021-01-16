@@ -36,7 +36,7 @@
             
             li{
                 display: inline;
-                padding: 60px;
+                padding: 50px;
                 font-size: 15px;
             }
             
@@ -111,7 +111,7 @@
     
     </head>
     <body>
-            <h1>CAR <br> WORKSHOP MANAGEMENT <br> SYSTEM</h1>
+            <h1>BERJAYA <br> ENGINEERING SDN BHD <br> AUTOCAR SYSTEM</h1>
         <div class="right-side">    
             <div class=" right-side-date-time">
                 <span id="datetime"></span><br>

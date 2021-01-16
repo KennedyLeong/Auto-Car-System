@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +36,7 @@
             
             li{
                 display: inline;
-                padding: 60px;
+                padding: 50px;
                 font-size: 15px;
             }
             
@@ -44,6 +45,13 @@
                 padding-left: 80px;
                 margin-top: 90px;
                 font-family: Arial, Helvetica, sans-serif;
+            }
+            
+            .message-lbl {
+                font-family: font- Arial, Helvetica, sans-serif;
+                margin-top: 15px;
+                margin-left: 30px;
+                color: red;
             }
 
             .right-side {
@@ -98,19 +106,13 @@
 
             
         </style>
-        <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
+         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="">BILLING</a></li>
-                <li><a href="">INVENTORY</a></li>
-                <li><a href="">REPORT</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
-        <%} else {%>
+        <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="main-menu.jsp">HOME</a></li>
@@ -119,6 +121,13 @@
                 <li><a href="#">BILLING</a></li>
                 <li><a href="#">INVENTORY</a></li>
                 <li><a href="#">REPORT</a></li>
+                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
+        <%} else {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="index.jsp">HOME</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>             
             </ul>
         </div>
@@ -128,7 +137,7 @@
     </head>
     <body>
         
-        <h1>AUTOCAR <br> SYSTEM</h1>
+        <h1>BERJAYA<br>ENGINEERING SDN BHD <br>AUTOCAR SYSTEM</h1>
         
         <div class="right-side">    
             <div class=" right-side-date-time">
@@ -145,7 +154,7 @@
                     <h2>Log in</h2><br>
                         <div class="login-input">
                             <input type="text" placeholder="ID / Email" name="email" class="first-input" required><br>
-
+                            
                             <input type="password" placeholder="Password" name="upassword" id="myInput" class="second-input" required><br><br>
                             
                         </div>
@@ -167,6 +176,7 @@
                             <labe>Not registered?</labe>
                             <a href="register-customer.jsp"><u>Create an account</u></a>
                         </div>
+                        <div class="message-lbl">${message}</div>
                 </div>
             </form>
         </div>

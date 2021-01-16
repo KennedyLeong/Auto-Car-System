@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,7 +33,7 @@
                 font-family: Arial, Helvetica, sans-serif;
                 float: left;
                 padding-left: 100px;
-                margin-top: 60px;
+                margin-top: 50px;
                 font-family: Arial, Helvetica, sans-serif;
                 font-size:80px;
             }
@@ -40,6 +41,13 @@
             h3 {
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 40px;
+            }
+            
+            .message-lbl {
+                font-family: font- Arial, Helvetica, sans-serif;
+                margin-top: 100px;
+                margin-left: 35px;
+                color: red;
             }
             
             ul {
@@ -102,16 +110,10 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
-        <%} else {%>
+        <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="main-menu.jsp">HOME</a></li>
@@ -120,6 +122,13 @@
                 <li><a href="#">BILLING</a></li>
                 <li><a href="#">INVENTORY</a></li>
                 <li><a href="#">REPORT</a></li>
+                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
+        <%} else {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="index.jsp">HOME</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>             
             </ul>
         </div>
@@ -162,8 +171,9 @@
                                   }
                                 }
                             </script>
-                        <a href="main-menu.jsp"><button class="submit-btn"  form="loginform">LOGIN</button></a>
+                        <a href="main-menu.jsp"><button class="submit-btn"  form="loginform">LOGIN</button></a>                      
                     </div>
+                    <div class="message-lbl">${message}</div>
                 </div>
             </form>
         </div>

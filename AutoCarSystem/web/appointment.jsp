@@ -34,7 +34,7 @@
             
             li{
                 display: inline;
-                padding: 60px;
+                padding: 50px;
                 font-size: 15px;
             }
             
@@ -84,10 +84,13 @@
                 width: 180px;
             }
             
+            .result-tbl {
+                margin-top: 30px;
+            }
         </style>
     </head>
     
-    <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
+     <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
@@ -117,8 +120,8 @@
     <body>
         <button onclick="document.location='main-menu.jsp'" class="back-btn">Back</button>
         
-        <h1>APPOINTMENT LIST</h1>  
-             ${output} 
-        <button onclick="document.location='create-appointment.jsp'" class="appointment-btn">Create Appointment</button>
+        <h1>APPOINTMENT LIST</h1>
+         <button onclick="document.location='validate-customer.jsp'" class="appointment-btn">Create Appointment</button>
+         <div class="result-tbl">${output}</div>       
     </body>
 </html>

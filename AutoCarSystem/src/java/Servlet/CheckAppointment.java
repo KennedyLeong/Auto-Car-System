@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import Entity.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.Query;
@@ -41,7 +42,9 @@ public class CheckAppointment extends HttpServlet{
             List<Appointment> appointmentList = appointmentQuery.getResultList();
 
             for (Appointment appointment : appointmentList) {
-
+                
+                if(appointment.getAppointmentStatus().equalsIgnoreCase("PENDING")) {
+                    
                     Query customerQuery = em.createNamedQuery("Customer.findByCustomerId");
                     customerQuery.setParameter("customerId", appointment.getCustomerId().getCustomerId());
                     Customer customer =  (Customer) customerQuery.getSingleResult();
@@ -51,14 +54,15 @@ public class CheckAppointment extends HttpServlet{
                     Vehicle vehicle =  (Vehicle) vehicleQuery.getSingleResult();            
 
                     output += "<div class=appointment-content>" +
-                              " <strong>Date</strong> : <a>" + appointment.getAppointmentDate() + "</a><br>" +
+                              " <strong>Date</strong> : <a>" + (new SimpleDateFormat("dd.MM.yyyy").format(appointment.getAppointmentDate())) + "</a><br>" +
                       	      " <strong>Time</strong> : <a>" + appointment.getAppointmentTime()+ "</a><br>" +
+                              " <strong>Status</strong> : <a>" + appointment.getAppointmentStatus()+ "</a><br>" +
                       	      " <strong>Name</strong> : <a>" + customer.getCustomerName() + "</a><br>" +
                               " <strong>Contact No</strong> : <a>" + customer.getCustomerPhoneNumber() + "</a><br>" +
                               " <strong>Registration No</strong> : <a>" + vehicle.getVehicleNumber() + " </a><br><br>" +
                               "<a href=\"AppointmentViewMore?appointmentId=" + appointment.getAppointmentId() + "\" class=view-more-btn>View More</a>" + 
-                              "<a href=\"\" class=transfer-btn>Transfer</a>" + "</div></a><br><br>";
-                       
+                              "<a href=\"CancelAppointment?appointmentId=" + appointment.getAppointmentId() + "\" class=transfer-btn>Cancel</a>" + "</div></a><br><br>";
+                    }   
                   }
 
                     request.setAttribute("output", output);

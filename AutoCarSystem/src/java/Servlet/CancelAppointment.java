@@ -23,8 +23,8 @@ import javax.transaction.UserTransaction;
  *
  * @author asus
  */
-@WebServlet(name = "UpdateAppointment", urlPatterns = {"/UpdateAppointment"})
-public class UpdateAppointment extends HttpServlet {
+@WebServlet(name = "CancelAppointment", urlPatterns = {"/CancelAppointment"})
+public class CancelAppointment extends HttpServlet{
     @PersistenceContext EntityManager em;
     @Resource UserTransaction utx;
     
@@ -38,24 +38,24 @@ public class UpdateAppointment extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         try {
-
-            //Update Appointment Status from "PENDING" to "IN PROGRESS"
+            
             String appointmentID = request.getParameter("appointmentId");
-            String status = "IN PROGRESS";
-
+            String status = "CANCEL";
+                    
             Appointment appointment = em.find(Appointment.class, appointmentID);
-
+            
             conn = DriverManager.getConnection(host, user, pass);
- 
+            
             utx.begin();
             appointment.setAppointmentStatus(status);
             em.merge(appointment);
             utx.commit();
-            response.sendRedirect("workflow-scheduler.jsp?status=updatestatus");
+            response.sendRedirect("appointment.jsp?status=successful");
             
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
     }
     
 }

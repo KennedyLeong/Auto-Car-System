@@ -53,10 +53,14 @@ public class CustomerLogin extends HttpServlet {
                     List<Vehicle> vehicleList = vehiclequery.getResultList();
                     session.setAttribute("vehicleList", vehicleList);
 
-                    response.sendRedirect("index.jsp?status=customerloggingin");
+                    response.sendRedirect("customer-profile.jsp?status=customerloggingin");
                 }
             }
-            response.sendRedirect("index.jsp?status=loginfailed");
+            
+            String message = "Incorrect ID / Email or Password";
+            
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
             
             
         } catch (Exception ex) {

@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +34,7 @@
             
             li{
                 display: inline;
-                padding: 60px;
+                padding: 50px;
                 font-size: 15px;
             }
             
@@ -71,6 +72,12 @@
                 margin-left: 85px;
                 width: 170px;
                 text-align: center;
+            }
+            
+            .result-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 15px;
+                margin-left: 80px;
             }
             
             .vehicle-No-label {
@@ -159,16 +166,10 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
-        <%} else {%>
+        <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="main-menu.jsp">HOME</a></li>
@@ -177,6 +178,13 @@
                 <li><a href="#">BILLING</a></li>
                 <li><a href="#">INVENTORY</a></li>
                 <li><a href="#">REPORT</a></li>
+                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
+        <%} else {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="index.jsp">HOME</a></li>
                 <li><a href=staff-login.jsp>SECURITY</a></li>             
             </ul>
         </div>
@@ -187,7 +195,7 @@
         
         <button onclick="document.location='main-menu.jsp'" class="back-btn">Back</button>
         
-    <form action="../" method="POST" class="">
+    <form action="CreateAppointment" method="POST" id="appointmentform">
         <h1>Create Appointment</h1>
     <div class="appointment-tbl"> 
         <label for="date" class="date-label">Date</label>
@@ -195,9 +203,14 @@
 
         <label for="time" class="time-label">Time</label>
         <input type="time" name="time" class="time-input" min="08:00" max="17:00" step="600"><br>
+        
+        <label for="id" class="vehicle-No-label">Customer ID</label>
+        <input type ="textbox" name="id" class="vehicle-No-Input" value="<%= request.getAttribute("customerId")%>"><br>
+        
+        <div class="result-tbl">${output}</div>
 
-        <label for="vehicleNo" class="vehicle-No-label">Vehicle No.</label>
-        <input type ="textbox" name="vehicleNo" class="vehicle-No-Input"><br>
+        <label for="vnumber" class="vehicle-No-label">Vehicle No.</label>
+        <input type ="textbox" name="vnumber" class="vehicle-No-Input"><br>
 
         <label for="serviceType" class="service-type-label">Request Type</label>
         <select name="serviceType" class="service-type-input">
@@ -209,61 +222,61 @@
     <div class="maintenance box">
         <fieldset>
             <legend>Lubricant/ Fluids</legend>
-            <input type="checkbox" class="" name="services" value="EngineOil">
+            <input type="checkbox" class="" name="services" value="Engine Oil">
             <label for="service1"><strong>Engine Oil</strong> RM 120 [Recommended : 5,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="ATF">
+            <input type="checkbox" class="" name="services" value="Automatic Transmission Fluid">
             <label for="service2"><strong>Automatic Transmission Fluid</strong> RM 75 [Recommended : 30,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="GearOil">
+            <input type="checkbox" class="" name="services" value="Gear Oil">
             <label for="service3"><strong>Gear Oil</strong> RM 80 [Recommended : 30,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="RadiatorCoolant">
+            <input type="checkbox" class="" name="services" value="Radiator Coolant">
             <label for="service4"><strong>Radiator Coolant</strong> RM 20 [Recommended : 50,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="BrakeFluid">
+            <input type="checkbox" class="" name="services" value="Brake Fluid">
             <label for="service5"><strong>Brake Fluid</strong> Rm 20 [Recommended : 60,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="PowerSteeringFluid">
+            <input type="checkbox" class="" name="services" value="Power Steering Fluid">
             <label for="service6"><strong>Power Steering Fluid</strong> RM 35 [Recommended : 60,000 KM]</label><br>
         </fieldset>
             
         <fieldset>
             <legend>Replacement Part</legend>
-            <input type="checkbox" class="" name="services" value="OilFilter">
+            <input type="checkbox" class="" name="services" value="Oil Filter">
             <label for="service7"><strong>Oil Filter</strong> RM 40 [Recommended : 5,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="FuelFilter">
+            <input type="checkbox" class="" name="services" value="Fuel Filter">
             <label for="service8"><strong>Fuel Filter</strong> Rm 30 [Recommended : 40,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="BreakPad">
+            <input type="checkbox" class="" name="services" value="Break Pad">
             <label for="service9"><strong>Break Pad</strong> RM 50 [Recommended : 5,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="AirFilter">
+            <input type="checkbox" class="" name="services" value="Air Filter">
             <label for="service10"><strong>Ail Filter</strong> RM 30 [Recommended : 20,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="SparkPlugs">
+            <input type="checkbox" class="" name="services" value="Spark Plugs">
             <label for="service11"><strong>Spark Plugs</strong> RM 20 [Recommended : 20,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="AircondBelt">
+            <input type="checkbox" class="" name="services" value="Aircond Belt">
             <label for="service12"><strong>Air-Cond Belt</strong> RM 38 [Recommended : 60,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="AlternatorBelt">
+            <input type="checkbox" class="" name="services" value="Alternator Belt">
             <label for="service13"><strong>Alternator Belt</strong> RM 60 [Recommended : 60,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="PowerSteeringBelt">
+            <input type="checkbox" class="" name="services" value="Power Steerin Belt">
             <label for="service14"><strong>Power Steering Belt</strong> RM 40 [Recommended : 60,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="TimingBelt">
+            <input type="checkbox" class="" name="services" value="Timing Belt">
             <label for="service15"><strong>Timing Belt</strong> RM 270 [Recommended : 60,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="TimingChain">
+            <input type="checkbox" class="" name="services" value="Timing Chain">
             <label for="service16"><strong>Timing Chain</strong> RM 360 [Recommended : 250,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="ClutchPlate">
+            <input type="checkbox" class="" name="services" value="Clutch Plate">
             <label for="service17"><strong>Clutch Plate</strong> RM 280 [Recommended : 100,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="WaterPump">
+            <input type="checkbox" class="" name="services" value="Water Pump">
             <label for="service18"><strong>Water Pump</strong> RM 320 [Recommended : 120,000 KM]</label><br>
         </fieldset>
     </div>
@@ -300,7 +313,7 @@
             <textarea class="comment-input" name="comment"></textarea><br>
         </div>
         </form> 
-        <input type="submit" value="Submit" class="submit-btn">
+        <input type="submit" value="Submit" class="submit-btn" form="appointmentform">
         
     </body>
 </html>
