@@ -46,6 +46,11 @@
                 width: 100px;
             }
 
+            .output-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 700px;
+                color: green
+            }
             
             .top-section input {
                 border-top-style: hidden;
@@ -82,24 +87,25 @@
                 width: 150px;
             }
             
-            .estimate-time-btn {
-                margin-left: 30px;
-                margin-top: 20px;
-                height: 50px;
-                width: 150px;
-            }
-            
             .activity-tbl {
                 margin-right: 80px;
                 margin-left: 350px;
                 padding-left: 50px;
             }
             
-            .updatde-btn {
+            .view-more-btn {
                font-family: Arial, Helvetica, sans-serif;
                border: 1px solid black;
                padding: 5px;
                border-radius: 5px;
+            }
+            
+            .updatde-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               border: 1px solid black;
+               padding: 5px;
+               margin-left: 20px;
+               border-radius: 5px; 
             }
             
             .complete-btn {
@@ -150,6 +156,7 @@
         <div class="top-section">
             <a href="main-menu.jsp"><button class="back-btn">Back</button></a>
         </div>
+        <div class="output-tbl">${message}</div>
             <div class="middle-section">
                 <div class="left-side-btn">
                     <form action="CheckAppointment" method="GET" id="appointmentform">
@@ -158,7 +165,7 @@
                     <form action="CheckService" method="GET" id="appointmentform">
                         <button class="waiting-list-btn">Refresh</button><br>
                     </form>
-                    <a href="estimate-time.jsp"><button class="estimate-time-btn">Estimate Time</button></a><br>
+
                 </div>
                 <div class="activity-tbl">
                     

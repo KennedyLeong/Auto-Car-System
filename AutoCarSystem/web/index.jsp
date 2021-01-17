@@ -57,7 +57,7 @@
             .output-tbl {
                 font-family: font- Arial, Helvetica, sans-serif;
                 margin-top: 15px;
-                margin-left: 80px;
+                margin-left: 20px;
                 color: green;
             }
 

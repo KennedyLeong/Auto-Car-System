@@ -42,6 +42,7 @@ public class UpdateAppointment extends HttpServlet {
             //Update Appointment Status from "PENDING" to "IN PROGRESS"
             String appointmentID = request.getParameter("appointmentId");
             String status = "IN PROGRESS";
+            String message = "";
 
             Appointment appointment = em.find(Appointment.class, appointmentID);
 
@@ -51,7 +52,11 @@ public class UpdateAppointment extends HttpServlet {
             appointment.setAppointmentStatus(status);
             em.merge(appointment);
             utx.commit();
-            response.sendRedirect("workflow-scheduler.jsp?status=updatestatus");
+            
+            message += "Service Update";
+            
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("workflow-scheduler.jsp").forward(request, response);
             
         } catch (Exception ex) {
             ex.printStackTrace();

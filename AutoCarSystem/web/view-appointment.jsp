@@ -99,8 +99,6 @@
     </head>
     <body>
         
-        <button onclick="document.location='appointment.jsp'" class="back-btn">Back</button>
-        
         <h5><u>VIEW APPOINTMENT</u></h5>
     
         ${output}

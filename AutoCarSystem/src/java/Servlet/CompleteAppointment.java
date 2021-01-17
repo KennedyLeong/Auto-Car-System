@@ -47,6 +47,7 @@ public class CompleteAppointment extends HttpServlet{
 
             String appointmentId = request.getParameter("appointmentId");
             String status = "COMPLETE";
+            String message = "";
             
             Query appointmentQuery = em.createNamedQuery("Appointment.findByAppointmentId");
             appointmentQuery.setParameter("appointmentId", appointmentId);
@@ -79,7 +80,11 @@ public class CompleteAppointment extends HttpServlet{
             utx.begin();
             em.merge(appointment);
             utx.commit();
-            response.sendRedirect("workflow-scheduler.jsp?status=EndService");
+            
+            message += "Service Completed";
+            
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("workflow-scheduler.jsp").forward(request, response);
 
         } catch (Exception ex) {
             ex.printStackTrace();

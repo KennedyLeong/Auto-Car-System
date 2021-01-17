@@ -46,39 +46,15 @@
                 margin-top: 60px;
                 font-family: Arial, Helvetica, sans-serif;
             }
-            
-            
-            
+
             .right-side {
                 float: right;
-                padding-right:  50px;
-                margin-top: 30px;
+                padding-right: 120px;
+                margin-top: 80px;
                 font-family: Arial, Helvetica, sans-serif;
             }
-            
-            .right-side-date-time {
-                
-            }
-            
-            .table-appointment {
-                font-family: Arial, Helvetica, sans-serif;
-                float: right; 
-                width: 380px;
-                border: 1px solid black;
-                border-radius: 10px;
-                padding: 20px;
-                margin-top: 5px;
-                
-            }
-            
-            .appointment-label {
-                border-bottom: groove;
-            }
-            
-            .submit-btn {
-                float: right;
-                font-size: 16px;
-            }
+
+
             
         </style>
         
@@ -121,15 +97,6 @@
                     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
                     document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +" "+ months[dt.getMonth()] +" "+ (dt.getFullYear()) +" <br> "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                 </script>
-            </div>
-            <div class="table-appointment">
-                <div class="appointment-label">
-                <h3>APPOINTMENT, <br>FOR TODAY</h3>
-                </div><br>
-            
-                <p> No Appointment.....</p> 
-  
-                <input type="button" onclick="document.location='appointment.jsp'" value="View Appointment" name="submit" class="submit-btn"> 
             </div>
         </div>
             

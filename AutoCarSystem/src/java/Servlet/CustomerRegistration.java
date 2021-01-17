@@ -51,6 +51,8 @@ public class CustomerRegistration extends HttpServlet{
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             
+            String message = "";
+            
             Query query = em.createNamedQuery("Customer.findAll");
             List<Customer> customerList = query.getResultList();
             
@@ -74,11 +76,15 @@ public class CustomerRegistration extends HttpServlet{
                     Customer customer = new Customer (customerID, name, phoneNumber, address, email, password);
                     em.persist(customer);
                     utx.commit();
-                    response.sendRedirect("index.jsp?success=true");  
+                    
+                    message += "Customer Account has been created";
+                
+                    request.setAttribute("output", message);
+                    request.getRequestDispatcher("index.jsp").forward(request, response); 
             	
             } else { // duplicates found
                 
-                String message = "Error: Duplicate Name or Email Detected! Try Again";
+                message += "Error: Duplicate Name or Email Detected! Try Again";
                 
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("register-customer.jsp").forward(request, response);	             

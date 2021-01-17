@@ -80,6 +80,8 @@ public class CheckService extends HttpServlet{
                               " <strong>Customer</strong> : <a>" + customer.getCustomerName() + " </a><br>" +
                               " <strong>Contact No.</strong> : <a>" + customer.getCustomerPhoneNumber() + " </a><br><br>" +
                             
+                              "<a href=\"AppointmentViewMore?appointmentId=" + appointment.getAppointmentId() + "\" class=view-more-btn>View More</a>" +
+                            
                               "<a href=\"UpdateAppointment?appointmentId=" + appointment.getAppointmentId() + "\" class=updatde-btn>Updated</a>" +
 
                               "<a href=\"CompleteAppointment?appointmentId=" + appointment.getAppointmentId() + "\" class=complete-btn>Complete</a>" + 

@@ -264,7 +264,7 @@
             <input type="checkbox" class="" name="services" value="Alternator Belt">
             <label for="service13"><strong>Alternator Belt</strong> RM 60 [Recommended : 60,000 KM]</label><br>
 
-            <input type="checkbox" class="" name="services" value="Power Steerin Belt">
+            <input type="checkbox" class="" name="services" value="Power Steering Belt">
             <label for="service14"><strong>Power Steering Belt</strong> RM 40 [Recommended : 60,000 KM]</label><br>
 
             <input type="checkbox" class="" name="services" value="Timing Belt">
