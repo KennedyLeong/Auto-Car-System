@@ -60,8 +60,13 @@ public class SearchCustomer extends HttpServlet{
                     request.setAttribute("output", output);
                     request.getRequestDispatcher("search-customer.jsp").forward(request, response);
               
-                }
+                }   
             }
+            
+                output += "<strong>No Search Found under this Name!</strong>";
+                
+                request.setAttribute("output", output);
+                request.getRequestDispatcher("search-customer.jsp").forward(request, response);
                     
        
         } catch (Exception ex) {

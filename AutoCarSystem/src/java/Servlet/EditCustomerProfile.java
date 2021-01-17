@@ -38,6 +38,8 @@ public class EditCustomerProfile extends HttpServlet {
             String newpassword = request.getParameter("newpassword");
             String oldpassword = request.getParameter("oldpassword");
             
+            String output = "";
+            
             Customer customer = em.find(Customer.class,id);
             
             if(customer.getCustomerPassword().equals(oldpassword)){
@@ -56,7 +58,10 @@ public class EditCustomerProfile extends HttpServlet {
                 session.setAttribute("customer", cus);
                 session.setAttribute("customerLoggedIn", true);
                 
-                response.sendRedirect("update-customer-details.jsp?status=Successfully");
+                output += "Password has been change successful";
+
+                request.setAttribute("success", output);
+                request.getRequestDispatcher("update-customer-details.jsp").forward(request, response);
                 
             } else if(newpassword.equals("")){
                 customer.setCustomerName(name);
@@ -73,10 +78,17 @@ public class EditCustomerProfile extends HttpServlet {
                 session.setAttribute("customer", cus);
                 session.setAttribute("customerLoggedIn", true);
                 
-                response.sendRedirect("update-customer-details.jsp?status=Successfully");
+                output += "Customer Information has been change Successful";
+
+                request.setAttribute("success", output);
+                request.getRequestDispatcher("update-customer-details.jsp").forward(request, response);
                 
             } else {
-                response.sendRedirect("update-customer-details.jsp?status=Error Occur");
+                
+                output += "Error: The Old Password Provided is Incorrect";
+
+                request.setAttribute("failed", output);
+                request.getRequestDispatcher("update-customer-details.jsp").forward(request, response);
             }
             
         } catch (Exception ex){

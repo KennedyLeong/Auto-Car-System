@@ -22,16 +22,20 @@ import Util.Mailer;
 @WebServlet(name = "SendMail", urlPatterns = {"/SendMail"})
 public class SendMail extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        String output= "";
         
         String recipient = request.getParameter("recipientaddress");
         String subject = request.getParameter("subject");
         String msg = request.getParameter("msg");
         
         Mailer.send(recipient, subject, msg);
-        out.print("Message has been sent successfully");
-        out.close();
+
+        output += "Message has been sent successfully";
+
+        request.setAttribute("output", output);
+        request.getRequestDispatcher("thank-you.jsp").forward(request, response);
+
     }
 }

@@ -50,6 +50,7 @@ public class CancelAppointment extends HttpServlet{
             appointment.setAppointmentStatus(status);
             em.merge(appointment);
             utx.commit();
+            
             response.sendRedirect("appointment.jsp?status=successful");
             
         } catch (Exception ex) {

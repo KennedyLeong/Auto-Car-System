@@ -25,8 +25,8 @@ import javax.transaction.UserTransaction;
  *
  * @author asus
  */
-@WebServlet(name = "VehicleRegistration", urlPatterns = {"/VehicleRegistration"})
-public class VehicleRegistration extends HttpServlet {
+@WebServlet(name = "StaffVehicleRegistration", urlPatterns = {"/StaffVehicleRegistration"})
+public class StaffVehicleRegistration extends HttpServlet{
     @PersistenceContext EntityManager em;
     @Resource UserTransaction utx;
     
@@ -78,20 +78,19 @@ public class VehicleRegistration extends HttpServlet {
                 
                 output += "Vehicle has been register successful";
 
-                request.setAttribute("success", output);
-                request.getRequestDispatcher("register-vehicle.jsp").forward(request, response);
+                request.setAttribute("output", output);
+                request.getRequestDispatcher("thank-you.jsp").forward(request, response);
             } else {
                 
                 output += "Error: Duplicate Vehicle Registration Number Detected!";
 
-                request.setAttribute("failed", output);
-                request.getRequestDispatcher("register-vehicle.jsp").forward(request, response);
+                request.setAttribute("output", output);
+                request.getRequestDispatcher("staff-register-vehicle.jsp").forward(request, response);
             }
             
-            
-                        
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
+        }
     }
-   } 
+    
 }

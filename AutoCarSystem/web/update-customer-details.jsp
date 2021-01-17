@@ -129,6 +129,20 @@
                 height: 40px;
                 width: 180px;
             }
+            
+            .failed-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 30px;
+                margin-left: 120px;
+                color: red;
+            }
+            
+            .success-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 30px;
+                margin-left: 120px;
+                color: green;
+            }
         </style>
         
        <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
@@ -190,6 +204,8 @@
             <div class="update-tbl-btn">
                 <input type="submit" class="update-btn" value="Update" form="updateform">
             </div>
+            <div class="success-tbl">${success}</div>
+            <div class="failed-tbl">${failed}</div>
                 
                 <script>
                    var password = document.getElementById("newpassword")

@@ -109,6 +109,14 @@
                 border-bottom-style: groove;
             }
             
+            .failed-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 20px;
+                margin-left: 80px;
+                color: red;
+            }
+
+            
         </style>
             
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
@@ -144,7 +152,7 @@
 
         <input type="submit" class="submit-btn" value="Register" form="regform">
         <h1>Vehicle Details</h1>
-        <form action="VehicleRegistration" method="POST" id="regform">
+        <form action="StaffVehicleRegistration" method="POST" id="regform">
                 <div class="vehicle-table">
                     <input type="hidden" name="id" value="<%= request.getParameter("id") %>"><br>
                     
@@ -164,5 +172,6 @@
                     <input type="text" class="vehicle-fifth-input" name="vmileage"><br>
                 </div>
             </form>
+                    <div class="failed-tbl">${output}</div>
     </body>
 </html>

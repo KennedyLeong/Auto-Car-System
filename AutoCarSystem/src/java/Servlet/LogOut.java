@@ -22,11 +22,18 @@ public class LogOut extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String output= "";
+        
         HttpSession session = request.getSession(false);
         if(session!=null){
             session.invalidate();
         }
-        response.sendRedirect("index.jsp?status=loggingout");
+        
+        output += "Logout Successful";
+
+        request.setAttribute("output", output);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
     
 }

@@ -108,6 +108,20 @@
                 border-bottom-style: groove;
             }
             
+            .failed-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 20px;
+                margin-left: 80px;
+                color: red;
+            }
+            
+            .success-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 20px;
+                margin-left: 80px;
+                color: green;
+            }
+            
         </style>
         
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
@@ -151,6 +165,8 @@
                     <label>Mileage</label> 
                     <input type="text" class="vehicle-fifth-input" name="vmileage"><br>
                 </div>
-            </form>        
+            </form>  
+                    <div class="success-tbl">${success}</div>
+                    <div class="failed-tbl">${failed}</div>
     </body>
 </html>

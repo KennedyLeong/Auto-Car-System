@@ -46,12 +46,19 @@
                 margin-top: 90px;
                 font-family: Arial, Helvetica, sans-serif;
             }
-            
+           
             .message-lbl {
                 font-family: font- Arial, Helvetica, sans-serif;
                 margin-top: 15px;
                 margin-left: 30px;
                 color: red;
+            }
+            
+            .output-tbl {
+                font-family: font- Arial, Helvetica, sans-serif;
+                margin-top: 15px;
+                margin-left: 80px;
+                color: green;
             }
 
             .right-side {
@@ -133,12 +140,13 @@
         </div>
         <%}%>
         
-    
     </head>
     <body>
         
-        <h1>BERJAYA<br>ENGINEERING SDN BHD <br>AUTOCAR SYSTEM</h1>
         
+        
+        <h1>BERJAYA<br>ENGINEERING SDN BHD <br>AUTOCAR SYSTEM</h1>
+
         <div class="right-side">    
             <div class=" right-side-date-time">
                 <span id="datetime"></span><br>
@@ -177,6 +185,7 @@
                             <a href="register-customer.jsp"><u>Create an account</u></a>
                         </div>
                         <div class="message-lbl">${message}</div>
+                        <div class="output-tbl">${output}</div>
                 </div>
             </form>
         </div>
