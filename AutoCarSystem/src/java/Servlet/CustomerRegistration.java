@@ -11,7 +11,6 @@ package Servlet;
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -82,7 +81,7 @@ public class CustomerRegistration extends HttpServlet{
                     request.setAttribute("output", message);
                     request.getRequestDispatcher("index.jsp").forward(request, response); 
             	
-            } else { // duplicates found
+            } else { 
                 
                 message += "Error: Duplicate Name or Email Detected! Try Again";
                 

@@ -54,6 +54,7 @@ public class SearchCustomer extends HttpServlet{
                             " <strong>Address</strong>  <p>" + customer.getCustomerAddress() + "</p>" +
                             "<a href=\"send-notification.jsp?recipientaddress=" + customer.getCustomerEmail() + "\" class=notification-btn>Send Notification</a>" + 
                             "<a href=\"staff-register-vehicle.jsp?id=" + customer.getCustomerId() + "\" class=view-more-btn>Register Vehicle</a>" +
+                            "<a href=\"SearchVehicle?customerId=" + customer.getCustomerId() + "\" class=view-vehicle-btn>View Vehicle</a>" +
                             "</div>" +
                             "_________________________________________________________________________________________________";
                     

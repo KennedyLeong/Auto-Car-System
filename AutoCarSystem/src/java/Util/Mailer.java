@@ -17,8 +17,8 @@ import javax.mail.internet.MimeMessage;
  */
 public class Mailer {
     public static void send(String recipient, String subject, String msg) {
-        final String user = "kennedyleong97@gmail.com";
-        final String pass = "Kennedy1";
+        final String user = "berjayaengineeringsdnbhd@gmail.com";
+        final String pass = "@Kennedy1";
         
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -38,7 +38,6 @@ public class Mailer {
             InternetAddress[] iAdressArray = InternetAddress.parse(recipient);
             message.setRecipients(Message.RecipientType.CC, iAdressArray);
             
-            //message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
             message.setSubject(subject);
             message.setText(msg);
             

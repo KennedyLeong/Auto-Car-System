@@ -6,7 +6,6 @@
 package Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,19 +22,33 @@ import Util.Mailer;
 public class SendMail extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html");
-        String output= "";
         
-        String recipient = request.getParameter("recipientaddress");
-        String subject = request.getParameter("subject");
-        String msg = request.getParameter("msg");
+            response.setContentType("text/html");
+            String output= "";
         
-        Mailer.send(recipient, subject, msg);
+        try {
 
-        output += "Message has been sent successfully";
+            String recipient = request.getParameter("recipientaddress");
+            String subject = request.getParameter("subject");
+            String msg = request.getParameter("msg");
 
-        request.setAttribute("output", output);
-        request.getRequestDispatcher("thank-you.jsp").forward(request, response);
+            Mailer.send(recipient, subject, msg);
+
+            output += "Message has been sent successfully";
+
+            request.setAttribute("output", output);
+            request.getRequestDispatcher("thank-you.jsp").forward(request, response);
+            
+        } catch (Exception ex){
+            
+            output += "Recipient Address provided is incorrect.";
+            
+            request.setAttribute("output", output);
+            request.getRequestDispatcher("staff-send-notification.jsp").forward(request, response);
+        }
+        
+        
+        
 
     }
 }

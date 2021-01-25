@@ -41,8 +41,7 @@ public class CompleteAppointment extends HttpServlet{
     throws ServletException, IOException {
         try {
             
-            //Update Appointment Status from "IN PROGRESS" to "COMPLETE"
-            
+            //Update Appointment Status from "IN PROGRESS" to "COMPLETE"            
             //Reduce the Item Quantity by 1 for every Checkbox Tick.
 
             String appointmentId = request.getParameter("appointmentId");
@@ -53,38 +52,49 @@ public class CompleteAppointment extends HttpServlet{
             appointmentQuery.setParameter("appointmentId", appointmentId);
             Appointment appointment = (Appointment) appointmentQuery.getSingleResult();
  
-            String serviceStr = appointment.getAppointmentServicestr();
-            String[] services = serviceStr.split(",");
-
-            Query itemQuery = em.createNamedQuery("Item.findByItemName");
+            if (appointment.getAppointmentStatus().equals("COMPLETE")) {
             
-            for(String service : services) {
+                message += "Service has already been complete";
                 
-                try {
-                itemQuery.setParameter("itemName", service.trim());
-                Item item = (Item) itemQuery.getSingleResult(); // 
-                item.setItemQuantity(item.getItemQuantity() - 1);
-                utx.begin();
-                em.merge(item);
-                utx.commit();
-              } catch (Exception ex) {
-              	System.out.println("Error with updating " + service + "."); 
-              }
-                    
-            }
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("workflow-scheduler.jsp").forward(request, response);
+                
+            } else {
+                
+                String serviceStr = appointment.getAppointmentServicestr();
+                String[] services = serviceStr.split(",");
 
-            appointment.setAppointmentStatus(status);
-            
-            conn = DriverManager.getConnection(host, user, pass);
-            
-            utx.begin();
-            em.merge(appointment);
-            utx.commit();
-            
-            message += "Service Completed";
-            
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("workflow-scheduler.jsp").forward(request, response);
+                Query stocksQuery = em.createNamedQuery("Stocks.findByStocktype");
+
+                for(String service : services) {
+
+                    try {
+                    stocksQuery.setParameter("stocktype", service.trim());
+                    Stocks stocks = (Stocks) stocksQuery.getSingleResult(); // 
+                    stocks.setTotalamount(stocks.getTotalamount() - 1);
+                    utx.begin();
+                    em.merge(stocks);
+                    utx.commit();
+                  } catch (Exception ex) {
+                    System.out.println("Error with updating " + service + "."); 
+                  }
+
+                }
+
+                appointment.setAppointmentStatus(status);
+
+                conn = DriverManager.getConnection(host, user, pass);
+
+                utx.begin();
+                em.merge(appointment);
+                utx.commit();
+
+                message += "Service Completed";
+
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("workflow-scheduler.jsp").forward(request, response);
+                
+            }
 
         } catch (Exception ex) {
             ex.printStackTrace();

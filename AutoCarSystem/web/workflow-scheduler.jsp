@@ -127,6 +127,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
+                <li><a href="Billing.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -136,9 +137,9 @@
                 <li><a href="main-menu.jsp">HOME</a></li>
                 <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
                 <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
                 <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>

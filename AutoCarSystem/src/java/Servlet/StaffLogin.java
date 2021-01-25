@@ -49,19 +49,15 @@ public class StaffLogin extends HttpServlet{
                     session.setAttribute("staff", staff);
                     session.setAttribute("staffLoggdIn", true);
 
-                    // get all appointments
                     Query appointmentQuery = em.createNamedQuery("Appointment.findAll");
                     List<Appointment> appointmentList = appointmentQuery.getResultList();
                   
-                    // loop through each appointment
                   for (Appointment appointment : appointmentList) {
 
-                    // for each appointment, get its customer
                     Query customerQuery = em.createNamedQuery("Customer.findByCustomerId");
                     customerQuery.setParameter("customerId", appointment.getCustomerId().getCustomerId());
                     Customer customer =  (Customer) customerQuery.getSingleResult();
 
-                    // for each appointment, get its vehicle
                     Query vehicleQuery = em.createNamedQuery("Vehicle.findByVehicleId");
                     vehicleQuery.setParameter("vehicleId", appointment.getVehicleId().getVehicleId());
                     Vehicle vehicle =  (Vehicle) vehicleQuery.getSingleResult();

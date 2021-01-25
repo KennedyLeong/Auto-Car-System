@@ -139,7 +139,14 @@
                 height: 35px;
                 width: 100px;
             }
-
+            
+            .success-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                color: green;
+                font-size: 20px;
+                margin-top: 40px;
+                margin-left: 70px;
+            }
             
         </style>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -162,6 +169,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
+                <li><a href="Billing.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -183,10 +191,14 @@
         <h1>Create Appointment</h1>
     <div class="appointment-tbl">    
         <label for="date" class="date-label">Date</label>
-        <input type="date" name="date" class="date-input"><br>
+        <input type="date" name="date" class="date-input" id="datePicker" required=""><br>
+        
+        <script>
+            datePicker.min = new Date().toISOString().split("T")[0];
+        </script>
         
         <label for="time" class="time-label">Time</label>
-        <input type="time" name="time" class="time-input" min="08:00" max="17:00" step="600"><br>
+        <input type="time" name="time" class="time-input" min="08:00" max="15:00" step="600" required=""><br>
         
         <label for="vehicleNo" class="vehicle-No-label" hidden="">Customer ID</label>
         <input type ="textbox" name="id" class="vehicle-No-Input" value="<%= customer.getCustomerId() %>" hidden=""><br>
@@ -309,5 +321,6 @@
         </div>       
     </form> 
         <input type="submit" value="Submit" class="submit-btn" form="appointmentform">
+        <div class="success-tbl">${output}</div>
     </body>
 </html>

@@ -64,7 +64,6 @@ public class CheckAppointment extends HttpServlet{
                               "<a href=\"CancelAppointment?appointmentId=" + appointment.getAppointmentId() + "\" class=transfer-btn>Cancel</a>" + "</div></a><br><br>";
                     }   
                   }
-
                     request.setAttribute("output", output);
                     request.getRequestDispatcher("appointment.jsp").forward(request, response);
         
@@ -72,5 +71,4 @@ public class CheckAppointment extends HttpServlet{
             ex.printStackTrace();
         }
     }
-    
 }

@@ -61,7 +61,6 @@ public class CheckService extends HttpServlet{
             for (Appointment appointment : appointmentList) {
               			
               	// Check if appointment is on the same day
-              	// Note: Using a custom function calleed "isSameDay" just to make it easier.
               	if (isSameDay(todayDate, appointment.getAppointmentDate())) {
 
                     Query customerQuery = em.createNamedQuery("Customer.findByCustomerId");
@@ -97,7 +96,7 @@ public class CheckService extends HttpServlet{
    
       }
     
-    boolean isSameDay(Date todayDate, Date appointmentDate) { // updated
+    boolean isSameDay(Date todayDate, Date appointmentDate) {
     	return todayDate.getYear() == appointmentDate.getYear() &&
               dateToLocalDate(todayDate).getDayOfYear() == dateToLocalDate(appointmentDate).getDayOfYear();
       // returns true if same day, returns false if not

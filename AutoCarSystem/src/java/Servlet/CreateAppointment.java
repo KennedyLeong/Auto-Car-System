@@ -150,7 +150,7 @@ public class CreateAppointment extends HttpServlet{
             output += "Appointment Successfully Created!";
             
             request.setAttribute("output", output);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("customer-create-appointment.jsp").forward(request, response);
          
         } catch (Exception ex) {
             ex.printStackTrace();

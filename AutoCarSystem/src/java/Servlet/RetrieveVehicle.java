@@ -31,10 +31,11 @@ public class RetrieveVehicle extends HttpServlet{
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
+                String output = "";
         try {
-
+            
             String customerID = request.getParameter("customerId");
-            String output = "";
 
             Query customerQuery = em.createNamedQuery("Customer.findByCustomerId");
             customerQuery.setParameter("customerId", customerID);
@@ -56,10 +57,14 @@ public class RetrieveVehicle extends HttpServlet{
             
             request.setAttribute("customerId", customerID);
             request.setAttribute("output", output);
-            request.getRequestDispatcher("create-appointment.jsp").forward(request, response);
+            request.getRequestDispatcher("staff-create-appointment.jsp").forward(request, response);
             
         } catch (Exception ex) {
-            ex.printStackTrace();
+            
+            output += "The Customer ID provided is incorrect.";
+            
+            request.setAttribute("output", output);
+            request.getRequestDispatcher("validate-customer.jsp").forward(request, response);
         }
     }
     

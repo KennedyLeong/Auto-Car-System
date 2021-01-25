@@ -44,6 +44,12 @@
                 margin-left: 45px;
             }
             
+            p {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 10px;
+                font-size: 15px;
+            }
+            
             .return-btn {
                 font-family: Arial, Helvetica, sans-serif;
                 margin-left: 60px;
@@ -76,13 +82,12 @@
             .vehicle-third-input {
                 margin-left: 133px;
                 width: 300px;
-                margin-top: 15px;
             }
             
             .vehicle-fourth-input {
                 margin-left: 130px;
-                width: 300px;
                 margin-top: 15px;
+                width: 300px;
             }
             
             .vehicle-fifth-input {
@@ -127,6 +132,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
+                <li><a href="Billing.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -155,9 +161,19 @@
 
                     <label>Brand</label>
                     <input type="text" class="vehicle-second-input" name="vbrand"><br>
-
-                    <label>Type</label>
-                    <input type="text" class="vehicle-third-input" name="vtype"><br>
+                     <p>&bull;E.g Perodua, Proton, Toyota, Honda, Nissan, Ford</p>
+                    
+                    <label for="vtype">Type</label>
+                    <select name="vtype" class="vehicle-third-input">
+                        <option>Choose your option</option>
+                        <option value="Compact">Compact</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Hatchback">Hatchback</option>
+                        <option value="Coupe">Coupe</option>
+                        <option value="Pickup Truck">Pickup Truck</option>
+                        <option value="SUV">SUV</option>
+                        <option value="MPV">MPV</option>
+                    <select><br>
 
                     <label>Color</label>
                     <input type="text" class="vehicle-fourth-input" name="vcolor"><br>

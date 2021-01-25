@@ -144,6 +144,8 @@
                 height: 35px;
                 width: 100px;
             }
+            
+            
         </style>
         
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -166,6 +168,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
+                <li><a href="Billing.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -175,9 +178,9 @@
                 <li><a href="main-menu.jsp">HOME</a></li>
                 <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
                 <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
                 <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
@@ -202,7 +205,7 @@
         <input type="date" name="date" class="date-input"><br>
 
         <label for="time" class="time-label">Time</label>
-        <input type="time" name="time" class="time-input" min="08:00" max="17:00" step="600"><br>
+        <input type="time" name="time" class="time-input" min="08:00" max="15:00" step="600"><br>
         
         <label for="id" class="vehicle-No-label">Customer ID</label>
         <input type ="textbox" name="id" class="vehicle-No-Input" value="<%= request.getAttribute("customerId")%>"><br>
@@ -314,6 +317,6 @@
         </div>
         </form> 
         <input type="submit" value="Submit" class="submit-btn" form="appointmentform">
-        
+
     </body>
 </html>

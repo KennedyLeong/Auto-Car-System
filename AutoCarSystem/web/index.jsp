@@ -98,10 +98,16 @@
             }
             
             input[type=checkbox] {
-                transform: scale(2.0);
-                margin-left: 15px;
+                transform: scale(1.5);
+                margin-left: 5px;
             }
-
+            
+            .forgot-pswd {
+                font-family: Arial, Helvetica, sans-serif;
+                color: blue;
+                font-size: 15px;
+                margin-left: 40px;
+            }
 
             u {
                 color: blue;
@@ -116,6 +122,7 @@
          <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
+                <li><a href="Billing.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -125,9 +132,9 @@
                 <li><a href="main-menu.jsp">HOME</a></li>
                 <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
                 <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="#">BILLING</a></li>
-                <li><a href="#">INVENTORY</a></li>
-                <li><a href="#">REPORT</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
                 <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
@@ -168,6 +175,7 @@
                         </div>
                             <label>Show Password</label>
                             <input type="checkbox" onclick="myFunction()" class="hide-btn">
+                            <a href="forgot-password.jsp" class="forgot-pswd">Forgot Password?</a>
                             
                             <script>
                                 function myFunction() {

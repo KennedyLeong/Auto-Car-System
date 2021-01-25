@@ -47,7 +47,7 @@ public class CustomerLogin extends HttpServlet {
                     session.setAttribute("customer", cust);
                     session.setAttribute("customerLoggedIn", true); 
                   
-                    Query vehiclequery = em.createNamedQuery("Vehicle.findByCustomerId");		// edited
+                    Query vehiclequery = em.createNamedQuery("Vehicle.findByCustomerId");	
                     vehiclequery.setParameter("customerId", cust);
                   
                     List<Vehicle> vehicleList = vehiclequery.getResultList();
