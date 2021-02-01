@@ -60,11 +60,19 @@
                border-radius: 5px;
             }
             
+            .reschedule-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               border: 1px solid black;
+               padding: 10px;
+               margin-left: 20px;
+               border-radius: 5px;
+            }
+            
             .transfer-btn {
                font-family: Arial, Helvetica, sans-serif;
                border: 1px solid black;
                padding: 10px;
-               margin-left: 30px;
+               margin-left: 20px;
                border-radius: 5px;
             }
 

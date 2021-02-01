@@ -74,6 +74,13 @@
                 text-align: center;
             }
             
+            .notice-label {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 13px;
+                margin-top: 15px;
+                margin-left: 80px;
+            }
+            
             .result-tbl {
                 font-family: Arial, Helvetica, sans-serif;
                 margin-top: 15px;
@@ -207,6 +214,8 @@
 
         <label for="time" class="time-label">Time</label>
         <input type="time" name="time" class="time-input" min="08:00" max="15:00" step="600" required=""><br>
+        <div class="notice-label">&lowast; Appointment only can be made from 8:00 A.M. to 3:00 P.M.</div>
+        
         
         <label for="id" class="vehicle-No-label">Customer ID</label>
         <input type ="textbox" name="id" class="vehicle-No-Input" value="<%= request.getAttribute("customerId")%>"><br>

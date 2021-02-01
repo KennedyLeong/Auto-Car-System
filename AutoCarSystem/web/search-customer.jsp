@@ -181,7 +181,7 @@
                 <button class="search-btn" form="searchform">Search</button>
             </form>       
         </div>
-            <a href="register-customer.jsp"><button class="new-customer-btn" >Register Customer</button></a>
+            <a href="staff-register-customer.jsp"><button class="new-customer-btn" >Register Customer</button></a>
             <a href="staff-send-notification.jsp"><button class="notifications-click">Notification</button></a><br>
         <div class="result-tbl">          
             ${output}

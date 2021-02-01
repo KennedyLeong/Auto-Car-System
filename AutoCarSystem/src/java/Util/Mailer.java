@@ -34,7 +34,7 @@ public class Mailer {
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mail4@mail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mail9@mail.com"));
             InternetAddress[] iAdressArray = InternetAddress.parse(recipient);
             message.setRecipients(Message.RecipientType.CC, iAdressArray);
             

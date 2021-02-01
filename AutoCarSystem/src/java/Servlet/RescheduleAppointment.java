@@ -16,15 +16,17 @@ import java.sql.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import Entity.*;
+import java.text.SimpleDateFormat;
 import javax.annotation.Resource;
+import javax.persistence.Query;
 import javax.transaction.UserTransaction;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "CancelAppointment", urlPatterns = {"/CancelAppointment"})
-public class CancelAppointment extends HttpServlet{
+@WebServlet(name = "RescheduleAppointment", urlPatterns = {"/RescheduleAppointment"})
+public class RescheduleAppointment extends HttpServlet{
     @PersistenceContext EntityManager em;
     @Resource UserTransaction utx;
     
@@ -35,33 +37,44 @@ public class CancelAppointment extends HttpServlet{
     private Connection conn;
     private PreparedStatement stmt;
     
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+            
+            String output = "" ;
+        
         try {
             
-            String appointmentID = request.getParameter("appointmentId");
-            String status = "CANCEL";
-            String output = "";
-                    
-            Appointment appointment = em.find(Appointment.class, appointmentID);
+            String appointmentID = (String)request.getParameter("id");
+            String date = request.getParameter("date");
+            String time = request.getParameter("time");
             
-            conn = DriverManager.getConnection(host, user, pass);
+            java.util.Date appointmentDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+            
+            Query appointmentQuery = em.createNamedQuery("Appointment.findByAppointmentId");
+            appointmentQuery.setParameter("appointmentId", appointmentID);
+            Appointment appointment = (Appointment) appointmentQuery.getSingleResult();
+            
+            appointment.setAppointmentDate(appointmentDate);
+            appointment.setAppointmentTime(time);
             
             utx.begin();
-            appointment.setAppointmentStatus(status);
             em.merge(appointment);
             utx.commit();
-
             
-            output += "Appointment ID: " + appointmentID + " has been cancelled.";
+            output += "Successfully reschedule appointment";
             
             request.setAttribute("output", output);
             request.getRequestDispatcher("thank-you.jsp").forward(request, response);
             
+            
         } catch (Exception ex) {
-            ex.printStackTrace();
+            
+            output += "Error";
+            
+            request.setAttribute("output", output);
+            request.getRequestDispatcher("reschedule-appointment.jsp").forward(request, response);
         }
-        
     }
     
 }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : createnewcustomer
-    Created on : Dec 17, 2020, 10:55:14 AM
+    Document   : staff-register-customer
+    Created on : Jan 31, 2021, 2:53:50 PM
     Author     : asus
 --%>
 
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content- Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register New Customer</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -189,9 +189,8 @@
                 transform: scale(2.0);
                 margin-left: 15px;
             }
-        
         </style>
-
+        
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
@@ -216,13 +215,14 @@
         
     </head>
     <body>
+        <a href="search-customer.jsp"><button class="return-btn">Back</button></a>
         
         <input type="submit" class="submit-btn" value="Register" form="regform">
             
         
         <h1>Customer Details</h1>
   
-        <form action="CustomerRegistration" method="POST" id="regform">
+        <form action="StaffCustomerRegistration" method="POST" id="regform">
             <div class="customer-table">
                 <label>Full Name</label>
                 <input type="text" name="name" class="customer-first-input" required><br>
@@ -246,6 +246,5 @@
         </form>
         
         <div class="message-lbl">${message}</div>
-
     </body>
 </html>

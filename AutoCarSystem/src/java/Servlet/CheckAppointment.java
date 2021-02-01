@@ -61,6 +61,7 @@ public class CheckAppointment extends HttpServlet{
                               " <strong>Contact No</strong> : <a>" + customer.getCustomerPhoneNumber() + "</a><br>" +
                               " <strong>Registration No</strong> : <a>" + vehicle.getVehicleNumber() + " </a><br><br>" +
                               "<a href=\"AppointmentViewMore?appointmentId=" + appointment.getAppointmentId() + "\" class=view-more-btn>View More</a>" + 
+                              "<a href=\"reschedule-appointment.jsp?id=" + appointment.getAppointmentId() + "\" class=reschedule-btn>Reschedule Appointment</a>" +
                               "<a href=\"CancelAppointment?appointmentId=" + appointment.getAppointmentId() + "\" class=transfer-btn>Cancel</a>" + "</div></a><br><br>";
                     }   
                   }

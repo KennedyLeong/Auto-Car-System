@@ -110,18 +110,13 @@
                 border-bottom-style: groove;
             }
             
-            .vehicle-tbl-btn {
+            .history-btn {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 15px;
-                margin-left: 135px;
-                padding-bottom: 25px;
-            }
-            
-            .vehicle-tbl-btn input {
-                margin-left: 12px;
-                border-radius: 10px;
-                height: 40px;
-                width: 180px;
+                margin-top: 20px;
+                margin-left: 125px;
+                border: 1px solid black;
+                width: 110px;
+                height: 35px;
             }
             
         </style>
@@ -156,7 +151,7 @@
             for (int i=0 ; i<vehicleList.size() ; i++){
                 Vehicle vehicle = vehicleList.get(i);
         %>
-        <div>
+        
             <div class="vehicle-table">
                 <label>Plate Number</label>
                 <input type="text" class="vehicle-first-input" name="" value="<%= vehicle.getVehicleNumber() %>" readonly><br>
@@ -173,10 +168,9 @@
                 <label>Mileage</label> 
                 <input type="text" class="vehicle-fifth-input" name="" value="<%= vehicle.getVehicleMileage() %>" readonly><br>
             </div>
-                <div class="vehicle-tbl-btn">
-                    <input type="button" href="" value="View History">
-                </div>
-            </div>
+               
+                <button class="history-btn" onclick="document.location='ServiceHistory?id=<%= vehicle.getVehicleId() %>'">View History</button>
+                
          <%}}else{%>
          
          <p>Currently there's no vehicle record under this customer.</p>
