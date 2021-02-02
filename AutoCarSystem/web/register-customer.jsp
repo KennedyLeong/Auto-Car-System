@@ -202,14 +202,14 @@
         <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
+                <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
         <%} else {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>             
+                <li><a href="staff-login.jsp">SECURITY</a></li>             
             </ul>
         </div>
         <%}%>

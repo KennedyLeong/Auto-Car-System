@@ -1,19 +1,19 @@
 <%-- 
-    Document   : validate-customer
-    Created on : Jan 15, 2021, 11:18:28 PM
+    Document   : all-staff
+    Created on : Feb 2, 2021, 9:07:38 PM
     Author     : asus
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="customer" scope="session" class="Entity.Customer" />
 <jsp:useBean id="staff" scope="session" class="Entity.Staff" />
+<jsp:useBean id="customer" scope="session" class="Entity.Customer" />
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <title>Create Appointment</title>
         <style>
             .navigation-bar {
                 font-family: Arial, Helvetica, sans-serif;
@@ -40,51 +40,42 @@
             
             h1 {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 80px;
-                margin-left: 625px;
-            }
-            
-            .validate-tbl {
-                border: 1px solid black;
-                padding-top: 15px;
-                margin-top: 80px;
-                margin-left: 500px;
-                width: 600px;
-                height: 280px;
-            }
-            
-            .id-label {
-                font-family: Arial, Helvetica, sans-serif;
-                margin-left: 250px;
-                margin-top: 30px;
-            }
-            
-            .id-input {
-                margin-left: 175px;
-                margin-top: 20px;
-                width: 250px;
-                border-top-style: hidden;
-                border-right-style: hidden;
-                border-left-style: hidden;
-                border-bottom-style: groove;
-            }
-            
-            .proceed-btn {
-                font-family: Arial, Helvetica, sans-serif;
-                margin-left: 150px;
-                margin-top: 50px;
-                height: 35px;
-                width: 300px;
-            }
-            
-            .message-lbl {
-                font-family: font- Arial, Helvetica, sans-serif;
                 margin-top: 25px;
-                margin-left: 180px;
-                color: red;
+                margin-left: 45px;
+                
             }
+            
+            .back-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 45px;
+                margin-top: 20px;
+                height: 35px;
+                width: 100px;
+            }
+            
+            .staff-content {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 30px;
+                margin-left: 60px;
+            }
+            
+            .deactive-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               margin-left: 60px;
+               border: 1px solid black;
+               padding: 10px;
+               border-radius: 5px;
+            }
+            
+            .active-btn {
+               font-family: Arial, Helvetica, sans-serif;
+               border: 1px solid black;
+               padding: 10px;
+               margin-left: 20px;
+               border-radius: 5px;
+            }
+            
         </style>
-        
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
@@ -124,17 +115,14 @@
             </ul>
         </div>
         <%}%>
-        
     </head>
     <body>
-        <h1>Create Appointment</h1>
-        <div class="validate-tbl">
-            <form action="RetrieveVehicle" method="GET">
-                <label for="customerId" class="id-label">Customer ID</label><br>
-                <input type="text" class="id-input" name="customerId"><br>
-                <button class="proceed-btn">Proceed</button>
-                <div class="message-lbl">${output}</div>
-            </form>
-        </div>
+        
+        <button onclick="document.location='manager-profile.jsp'" class="back-btn">Back</button>
+        
+        <h1>Staff List</h1>
+        
+        ${output}
+        
     </body>
 </html>

@@ -55,7 +55,7 @@ public class ServiceHistory extends HttpServlet{
                         "<strong>Date</strong> : &nbsp;&nbsp;" + (new SimpleDateFormat("dd.MM.yyyy").format(appointment.getAppointmentDate())) + "<br>" +
                         "<strong>Time</strong> : &nbsp;&nbsp;" + appointment.getAppointmentTime() + "<br>" +
                         "<strong>Service List</strong> : &nbsp;&nbsp;" + appointment.getAppointmentServicestr() + "<br>" +
-                        "--------------------------------------------------------------------------------------" + "</div><br>";
+                        "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" + "</div><br>";
               }
             }
             request.setAttribute("output", output);

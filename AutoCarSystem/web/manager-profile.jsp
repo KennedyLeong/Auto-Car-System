@@ -1,19 +1,19 @@
 <%-- 
-    Document   : validate-customer
-    Created on : Jan 15, 2021, 11:18:28 PM
+    Document   : manager-profile
+    Created on : Feb 2, 2021, 3:45:05 PM
     Author     : asus
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="customer" scope="session" class="Entity.Customer" />
 <jsp:useBean id="staff" scope="session" class="Entity.Staff" />
+<jsp:useBean id="customer" scope="session" class="Entity.Customer" />
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Manager Profile</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <title>Create Appointment</title>
         <style>
             .navigation-bar {
                 font-family: Arial, Helvetica, sans-serif;
@@ -39,52 +39,39 @@
             }
             
             h1 {
+                font-size: 55px;
+            }
+            
+            .title-label {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 80px;
-                margin-left: 625px;
+                margin-left: 80px;
+                margin-top: 65px;
             }
             
-            .validate-tbl {
-                border: 1px solid black;
-                padding-top: 15px;
-                margin-top: 80px;
-                margin-left: 500px;
-                width: 600px;
-                height: 280px;
-            }
-            
-            .id-label {
+            .new-account-btn {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-left: 250px;
-                margin-top: 30px;
-            }
-            
-            .id-input {
-                margin-left: 175px;
-                margin-top: 20px;
-                width: 250px;
-                border-top-style: hidden;
-                border-right-style: hidden;
-                border-left-style: hidden;
-                border-bottom-style: groove;
-            }
-            
-            .proceed-btn {
-                font-family: Arial, Helvetica, sans-serif;
-                margin-left: 150px;
+                margin-left: 80px;
                 margin-top: 50px;
                 height: 35px;
-                width: 300px;
+                width: 160px;
             }
             
-            .message-lbl {
-                font-family: font- Arial, Helvetica, sans-serif;
+            .view-all-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 80px;
                 margin-top: 25px;
-                margin-left: 180px;
-                color: red;
+                height: 35px;
+                width: 160px;
+            }
+            
+            .submit-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 80px;
+                margin-top: 25px;
+                height: 35px;
+                width: 160px;
             }
         </style>
-        
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
@@ -124,17 +111,28 @@
             </ul>
         </div>
         <%}%>
-        
     </head>
     <body>
-        <h1>Create Appointment</h1>
-        <div class="validate-tbl">
-            <form action="RetrieveVehicle" method="GET">
-                <label for="customerId" class="id-label">Customer ID</label><br>
-                <input type="text" class="id-input" name="customerId"><br>
-                <button class="proceed-btn">Proceed</button>
-                <div class="message-lbl">${output}</div>
-            </form>
+        <div class="title-label">
+            <h1>Welcome, <%= staff.getStaffName()%></h1>
+
+            <span id="datetime"></span><br>
         </div>
+                <script>
+                    var dt = new Date();
+                    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                    document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +" "+ months[dt.getMonth()] +" "+ (dt.getFullYear()) +" <br> "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+                </script>
+                
+                <a href="create-account.jsp"><button class="new-account-btn">Create Account</button></a><br>
+                
+                <form action="AllStaff" method="GET">
+                    <button class="view-all-btn">All Staff</button><br>
+                </form>
+
+
+                <form action="LogOut" method="GET" id="logoutform">
+                    <input type="submit" class="submit-btn" value="Logout" form="logoutform">
+                </form>
     </body>
 </html>

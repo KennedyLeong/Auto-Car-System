@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="customer" scope="session" class="Entity.Customer" />
+<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,162 +52,144 @@
                 font-family: Arial, Helvetica, sans-serif;
             }
             
-            h3 {
-               margin-top: 15px;
-               margin-left: 35px;
-               font-family: Arial, Helvetica, sans-serif; 
-               border-bottom: groove;
-               width: 300px;
-            }
-            
-            .admin-tbl {
-                width: 650px;
-                height: 175px;
-                border: 1px solid black;
-                border-radius: 10px;
-                margin-left: 30px;
+            .account-table {
                 font-family: Arial, Helvetica, sans-serif;
-            }
-            
-            .admin-tbl input {
-                
-            }
-            
-            .email-label {
-                margin-top: 20px;
-                margin-left: 55px;
-            }
-            
-            .admin-first-input {
-                margin-left: 65px;
-                width: 300px;
-            }
-            
-            .password-label {
-                margin-top: 20px;
-                margin-left: 55px;
-            }
-            
-            .admin-second-input {
-                margin-left: 35px;
-                width: 300px;
-            }
-            
-            .staff-tbl {
-                width: 650px;
-                height: 325px;
-                margin-top: 35px;
-                margin-left: 30px;
-                border: 1px solid black;
                 border-radius: 10px;
-                font-family: Arial, Helvetica, sans-serif;
+                padding: 20px;
+                margin-top: 30px;
+                margin-left: 75px; 
+                width: 625px;
+            }
+            .account-table input {
+                border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+                border-bottom-style: groove;
             }
             
-            .staff-tbl input {
-                
-            }
-            
-            .staff-first-label {
-                margin-top: 45px;
-                margin-left: 55px;
-            }
-            
-            .staff-first-input {
-                margin-left: 63px;
+            .first-input {
+                margin-top: 15px;
+                margin-left: 100px;
                 width: 300px;
             }
             
-            .staff-second-label {
-                margin-top: 20px;
-                margin-left: 55px;
-            }
-            
-            .staff-second-input {
-                margin-left: 34px;
+            .second-input {
+                margin-top: 15px;
+                margin-left: 62px;
                 width: 300px;
             }
             
-            .staff-third-label {
-                margin-top: 20px;
-                margin-left: 55px;
-            }
-            
-            .staff-third-input {
-                margin-left: 65px;
-                width: 300px;
-            }
-            
-            .staff-fourth-label {
-                margin-top: 20px;
-                margin-left: 55px;
-            }
-            
-            .staff-fourth-input {
-                margin-left: 35px;
-                width: 300px;
-            }
-            
-            .type-tbl {
+            .third-input {
                 margin-top: 25px;
-                margin-left: 55px;
+                margin-left: 130px;
+                width: 300px;
+            }
+            
+            .fourth-input {
+                margin-top: 25px;
+                margin-left: 100px;
+                width: 300px;
+            }
+            
+            .fifth-input {
+                margin-top: 25px;
+                margin-left: 40px;
+                width: 300px;
             }
 
-            .create-account-btn {
+            .failed-tbl {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-left: 45px;
-                margin-top: 30px;
+                margin-left: 90px;
+                color: red;
+            }
+            
+            .success-tbl {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 15px;
+                margin-left: 90px;
+                color: green;
+            }
+            
+            .submit-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 40px;
                 height: 35px;
                 width: 100px;
             }
+
         </style>
         
+        <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href=main-menu.jsp>HOME</a></li>
-                <li><a href=workflow-scheduler.jsp>WORKFLOW SCHEDULER</a></li>
-                <li><a href=search-customer.jsp>CRM</a></li>
-                <li><a href=>BILING</a></li>
-                <li><a href=>INVENTORY</a></li>
-                <li><a href=>REPORT</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>
+                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
+        <%} else if (request.getSession().getAttribute("managerLoggdIn") != null) {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="main-menu.jsp">HOME</a></li>
+                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
+                <li><a href="search-customer.jsp">CRM</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
+                <li><a href="manager-profile.jsp"><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
+        <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="main-menu.jsp">HOME</a></li>
+                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
+                <li><a href="search-customer.jsp">CRM</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
+                <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
+        <%} else {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="index.jsp">HOME</a></li>
+                <li><a href="staff-login.jsp">SECURITY</a></li>    
+            </ul>
+        </div>
+        <%}%>
+    
     </head>
     <body>
  
-        <button onclick="document.location='staff-login.jsp'" class="back-btn">Back</button>
+        <button onclick="document.location='manager-profile.jsp'" class="back-btn">Back</button>
         
         <h1>New Account</h1>
         
-        <div class="admin-tbl">
-            <h3>Administration</h3>
-            <label class="email-label">Email</label>
-            <input type="text" class="admin-first-input"><br>
-            <label class="password-label">Password</label>
-            <input type="password" class="admin-second-input"><br>
-        </div>
-        
-        <div class="staff-tbl">
-            <label for="sname" class="staff-first-label">Name</label>
-            <input type="text" name="sname" class="staff-first-input"><br>
-            <label for="sphoneno" class="staff-second-label">Phone No</label>
-            <input type="text" name="sphoneno" class="staff-second-input"><br>
-            <label for="semail" class="staff-third-label">Email</label>
-            <input type="text" name="semail" class="staff-third-input"><br>
-            <label for="spassword" class="staff-fourth-label">Password</label>
-            <input type="password" name="spassword" class="staff-fourth-input"><br>
-            
-            <div class="type-tbl">
-                <input type="checkbox" name="optionone" value="technician">
-                <label for="optionone">Technician</label><br>
-            
-                <input type="checkbox" name="optiontwo" value="staff">
-                <label for="optiontwo">Staff</label><br>
+        <form action="CreateAccount" method="POST">
+            <div class="account-table">
+                <label>Full Name</label>
+                <input type="text" name="name" class="first-input" required=""><br>
+                <p>&bull;Your full name <Strong>MUST</strong> be the same as your MyKad</p>
+                
+                <label>Phone Number</label>
+                <input type="text" name="phonenumber" class="second-input" required="" placeholder="e.g 888 888 8888" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"><br>
+                
+                <label>Email</label>
+                <input type="text" name="email" class="third-input" required="" placeholder="abc@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
+                
+                <label>Password</label>
+                <input type="password" name="password" class="fourth-input" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>
+                
+                <label>Confirm Password</label>
+                <input type="password" name="confirmpassword" class="fifth-input" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>
+                
+                <input type="submit" class="submit-btn" value="Register">
+                
             </div>
-            
-         </div>
+        </form>
         
-        <button class="create-account-btn" class="create-account-btn">Create</button>
-
+        <div class="success-tbl">${success}</div>
+        <div class="failed-tbl">${failed}</div>
     </body>
 </html>

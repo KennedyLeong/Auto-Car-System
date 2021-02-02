@@ -120,6 +120,18 @@
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
+        <%} else if (request.getSession().getAttribute("managerLoggdIn") != null) {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="main-menu.jsp">HOME</a></li>
+                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
+                <li><a href="search-customer.jsp">CRM</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
+                <li><a href="manager-profile.jsp"><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
         <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
@@ -129,14 +141,14 @@
                 <li><a href="inventoryMain.jsp">INVENTORY</a></li>
                 <li><a href="supplier.jsp">SUPPLIERS</a></li>
                 <li><a href="procurement.jsp">PROCUREMENT</a></li>
-                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
+                <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
         <%} else {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>             
+                <li><a href="staff-login.jsp">SECURITY</a></li>    
             </ul>
         </div>
         <%}%>

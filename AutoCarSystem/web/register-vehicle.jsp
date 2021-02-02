@@ -140,7 +140,7 @@
         <div class="navigation-bar">    
             <ul>
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>             
+                <li><a href="staff-login.jsp">SECURITY</a></li>             
             </ul>
         </div>
         <%}%>

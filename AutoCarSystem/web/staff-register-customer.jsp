@@ -198,17 +198,35 @@
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
+        <%} else if (request.getSession().getAttribute("managerLoggdIn") != null) {%>
+        <div class="navigation-bar">    
+            <ul>
+                <li><a href="main-menu.jsp">HOME</a></li>
+                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
+                <li><a href="search-customer.jsp">CRM</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
+                <li><a href="manager-profile.jsp"><%= staff.getStaffName()%></a></li>             
+            </ul>
+        </div>
         <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href=staff-profile.jsp><%= staff.getStaffName()%></a></li>             
+                <li><a href="main-menu.jsp">HOME</a></li>
+                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
+                <li><a href="search-customer.jsp">CRM</a></li>
+                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
+                <li><a href="supplier.jsp">SUPPLIERS</a></li>
+                <li><a href="procurement.jsp">PROCUREMENT</a></li>
+                <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
         <%} else {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>             
+                <li><a href="staff-login.jsp">SECURITY</a></li>    
             </ul>
         </div>
         <%}%>
@@ -229,19 +247,19 @@
                 <p>&bull;Your full name <Strong>MUST</strong> be the same as your MyKad</p>
 
                 <label>Phone Number</label>
-                <input type="text" name="phonenumber" class="customer-second-input" required placeholder="e.g 888 888 8888" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"><br>
+                <input type="text" name="phonenumber" class="customer-second-input" required="" placeholder="e.g 888 888 8888" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"><br>
 
                 <label>Address</label>
                 <input type="text" name="address" class="customer-third-input"><br>
 
                 <label>Email</label>
-                <input type="text" name="email" class="customer-fourth-input" required placeholder="abc@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
+                <input type="text" name="email" class="customer-fourth-input" required="" placeholder="abc@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
 
                 <label>Password</label>
-                <input type="password" name="password" id="myInput" class="customer-fifth-input" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>
+                <input type="password" name="password" id="myInput" class="customer-fifth-input" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>
                 
                 <label>Confirm Password</label>
-                <input type="password" name="confirmpassword" id="myInput2" class="customer-six-input" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>    
+                <input type="password" name="confirmpassword" id="myInput2" class="customer-six-input" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"><br>    
             </div>
         </form>
         

@@ -55,8 +55,8 @@
             
             .history-content {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 28px;
-                margin-left: 60px;
+                margin-top: 30px;
+                margin-left: 80px;
             }
             
         </style>
@@ -72,7 +72,7 @@
         <div class="navigation-bar">    
             <ul>
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href=staff-login.jsp>SECURITY</a></li>             
+                <li><a href="staff-login.jsp">SECURITY</a></li>             
             </ul>
         </div>
         <%}%>
