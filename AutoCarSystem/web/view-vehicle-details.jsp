@@ -59,7 +59,7 @@
             
             p {
                font-family: Arial, Helvetica, sans-serif;
-               font-size: 20px;
+               font-size: 17px;
                margin-top: 80px;
                margin-left: 80px;
             }
@@ -173,7 +173,11 @@
                 
          <%}}else{%>
          
-         <p>Currently there's no vehicle record under this customer.</p>
+         <p>
+             &bull;Currently there's no vehicle record under this customer.<br><br>
+             &bull;If you already register the vehicle, but not display on the list.<br>
+             &nbsp;Recommended to logout and login back.
+         </p>
          
          <%}%>
     </body>

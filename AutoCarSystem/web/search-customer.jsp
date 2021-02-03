@@ -42,7 +42,8 @@
             
             h1 {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-left: 15px;
+                margin-top: 25px;
+                margin-left: 45px;
             }
             
             h3 {
@@ -58,8 +59,9 @@
             }
             
             .search-input {
-                margin-top: 15px;
-                width: 415px;
+                margin-left: 55px;
+                margin-top: 40px;
+                width: 400px;
                 
             }
             
@@ -86,7 +88,7 @@
                 width: 150px;
                 text-align: center;
                 border: 1px solid black;
-                margin-top: 13px;
+                margin-top: 40px;
             }
             
             .notifications-click {
@@ -97,14 +99,14 @@
                 width: 150px;
                 text-align: center;
                 border: 1px solid black;
-                margin-top: 13px; 
+                margin-top: 40px; 
             }
                 
             .result-tbl {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 100px;
+                margin-top: 120px;
                 width: 1100px;
-                margin-left: 50px;
+                margin-left: 80px;
                 border-radius: 3px
             }
             
@@ -169,7 +171,6 @@
                 <li><a href="search-customer.jsp">CRM</a></li>
                 <li><a href="inventoryMain.jsp">INVENTORY</a></li>
                 <li><a href="supplier.jsp">SUPPLIERS</a></li>
-                <li><a href="procurement.jsp">PROCUREMENT</a></li>
                 <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>

@@ -53,13 +53,20 @@
                 margin-left: 45px;
             }
             
+            p {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-top: 10px;
+                font-size: 15px;
+            }
+            
             .customer-table {
                 font-family: Arial, Helvetica, sans-serif;
                 border: 1px solid black;
                 border-radius: 10px;
                 padding: 20px;
                 margin-top: 25px;
-                margin-left: 125px; 
+                margin-left: 90px;
+                height: 400px;
                 width: 625px;
             }
             
@@ -68,28 +75,28 @@
                 width: 300px;
             }
             
-            .customer-second-input {
-                margin-left: 122px;
-                width: 300px;
-                margin-top: 15px;
-            }
-            
             .customer-third-input {
                 margin-left: 188px;
                 width: 300px;
                 margin-top: 15px;
             }
             
+            .customer-second-input {
+                margin-left: 122px;
+                width: 300px;
+                margin-top: 30px;
+            }
+
             .customer-fourth-input {
                 margin-left: 170px;
                 width: 300px;
-                margin-top: 15px;
+                margin-top: 10px;
             }
             
             .customer-fifth-input {
                 margin-left: 130px;
                 width: 300px;
-                margin-top: 15px;
+                margin-top: 30px;
             }
             
             .customer-six-input {
@@ -176,28 +183,28 @@
                 <label>Name</label>
                 <input type="text" name="cname" class="customer-first-input" value="<%= customer.getCustomerName()%>" readonly="">
                 <br>
-            
-                <label>Phone Number</label>
-                    <input type="text" name="cphonenumber" class="customer-second-input" value="<%= customer.getCustomerPhoneNumber()%>" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12">
-                <br>
-            
-                <label>Address</label>
-                    <input type="text" name="caddress" class="customer-fourth-input" value="<%= customer.getCustomerAddress()%>">
-                <br>
                 
                 <label>Email</label>
                 <input type="text" name="cemail" class="customer-third-input" value="<%= customer.getCustomerEmail()%>" readonly="">
                 <br>
+            
+                <label>Phone Number&lowast;</label>
+                    <input type="text" name="cphonenumber" class="customer-second-input" value="<%= customer.getCustomerPhoneNumber()%>" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12">
+                <br>
+            
+                <label>Address&lowast;</label>
+                    <input type="text" name="caddress" class="customer-fourth-input" value="<%= customer.getCustomerAddress()%>">
+                <br>
                 
-                <label>Old Password</label>
+                <label>Old Password&lowast;</label>
                     <input type="password" name="oldpassword" class="customer-fifth-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                 <br>
                 
-                <label>New Password</label>
+                <label>New Password&lowast;</label>
                     <input type="password" name="newpassword" class="customer-six-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                 <br>
                 
-                <label>Confirm New Password</label>
+                <label>Confirm New Password&lowast;</label>
                     <input type="password" name="cnpassowrd" class="customer-seven-input" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                 <br>
                 

@@ -125,7 +125,6 @@
                 <li><a href="search-customer.jsp">CRM</a></li>
                 <li><a href="inventoryMain.jsp">INVENTORY</a></li>
                 <li><a href="supplier.jsp">SUPPLIERS</a></li>
-                <li><a href="procurement.jsp">PROCUREMENT</a></li>
                 <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
@@ -139,7 +138,7 @@
         <%}%>
     
     <body>
-        <button onclick="document.location='main-menu.jsp'" class="back-btn">Back</button>
+        <button onclick="document.location='workflow-scheduler.jsp'" class="back-btn">Back</button>
         
         <h1>APPOINTMENT LIST</h1>
          <button onclick="document.location='validate-customer.jsp'" class="appointment-btn">Create Appointment</button>

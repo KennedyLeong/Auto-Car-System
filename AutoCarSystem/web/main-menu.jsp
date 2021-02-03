@@ -85,7 +85,6 @@
                 <li><a href="search-customer.jsp">CRM</a></li>
                 <li><a href="inventoryMain.jsp">INVENTORY</a></li>
                 <li><a href="supplier.jsp">SUPPLIERS</a></li>
-                <li><a href="procurement.jsp">PROCUREMENT</a></li>
                 <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>

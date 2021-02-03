@@ -58,14 +58,16 @@
                 border: 1px solid black;
                 border-radius: 10px;
                 padding: 20px;
-                margin-left: 125px; 
+                margin-top: 25px;
+                margin-left: 90px; 
+                height: 280px;
                 width: 625px;
             }
             
             .customer-tbl-btn {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 15px;
-                margin-left: 135px;
+                margin-top: 25px;
+                margin-left: 85px;
                 padding-bottom: 25px;
             }
             
@@ -77,7 +79,6 @@
             }
             
             .customer-tbl-btn button {
-                margin-left: 12px;
                 border-radius: 10px;
                 height: 40px;
                 width: 180px;
@@ -85,31 +86,26 @@
             
             .customer-first-input{
                 margin-left: 128px;
+                margin-top: 15px;
                 width: 300px;
             }
             
             .customer-second-input {
                 margin-left: 63px;
                 width: 300px;
-                margin-top: 15px;
+                margin-top: 30px;
             }
             
             .customer-third-input {
                 margin-left: 129px;
                 width: 300px;
-                margin-top: 15px;
+                margin-top: 30px;
             }
             
             .customer-fourth-input {
                 margin-left: 110px;
                 width: 300px;
-                margin-top: 15px;
-            }
-            
-            .customer-fifth-input {
-                margin-left: 124px;
-                width: 300px;
-                margin-top: 15px;
+                margin-top: 30px;
             }
             
             .customer-table input {

@@ -150,7 +150,7 @@
             .success-tbl {
                 font-family: Arial, Helvetica, sans-serif;
                 color: green;
-                font-size: 20px;
+                font-size: 18px;
                 margin-top: 40px;
                 margin-left: 70px;
             }
@@ -206,7 +206,9 @@
         
         <label for="time" class="time-label">Time</label>
         <input type="time" name="time" class="time-input" min="08:00" max="15:00" step="600" required=""><br>
-        <div class="notice-label">&lowast; Appointment only can be made from 8:00 A.M. to 3:00 P.M.</div>
+        <div class="notice-label">
+            &lowast; Appointment only can be made from 8:00 A.M. to 3:00 P.M.<br>
+        </div>
         
         <label for="vehicleNo" class="vehicle-No-label" hidden="">Customer ID</label>
         <input type ="textbox" name="id" class="vehicle-No-Input" value="<%= customer.getCustomerId() %>" hidden=""><br>

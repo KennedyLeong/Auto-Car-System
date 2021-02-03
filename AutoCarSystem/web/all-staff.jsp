@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Staff List</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -103,7 +103,6 @@
                 <li><a href="search-customer.jsp">CRM</a></li>
                 <li><a href="inventoryMain.jsp">INVENTORY</a></li>
                 <li><a href="supplier.jsp">SUPPLIERS</a></li>
-                <li><a href="procurement.jsp">PROCUREMENT</a></li>
                 <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
             </ul>
         </div>
