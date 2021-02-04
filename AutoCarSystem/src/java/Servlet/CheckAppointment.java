@@ -43,7 +43,7 @@ public class CheckAppointment extends HttpServlet{
 
             for (Appointment appointment : appointmentList) {
                 
-                if(appointment.getAppointmentStatus().equalsIgnoreCase("PENDING")) {
+                if(appointment.getAppointmentStatus().equalsIgnoreCase("PAID")) {
                     
                     Query customerQuery = em.createNamedQuery("Customer.findByCustomerId");
                     customerQuery.setParameter("customerId", appointment.getCustomerId().getCustomerId());

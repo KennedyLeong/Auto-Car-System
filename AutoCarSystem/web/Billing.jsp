@@ -107,7 +107,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="billingEntry.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -115,7 +115,7 @@
         <div class="navigation-bar">    
             <ul>
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="staff-login.jsp">SECURITY</a></li>             
+                <li><a href=staff-login.jsp>SECURITY</a></li>             
             </ul>
         </div>
         <%}%>
@@ -128,10 +128,13 @@
             double price = 0;
             double pricereal =0;
             LocalDate poDate = java.time.LocalDate.now();
-            
+            String appointmentID = request.getAttribute("appID").toString();
             Connection connection = DriverManager.getConnection("jdbc:derby://localhost:1527/CarWorkshopDB", "nbuser", "nbuser");
+            
+            try{
             Statement statement = connection.createStatement();
-            ResultSet resultset = statement.executeQuery("SELECT APP.APPOINTMENT_TOTALPRICE FROM APPOINTMENT APP,CUSTOMER C WHERE APP.CUSTOMER_ID = C.CUSTOMER_ID AND APP.APPOINTMENT_DATE ='"+ poDate +"' AND APP.CUSTOMER_ID = '"+ customer.getCustomerId()+"'");
+            
+            ResultSet resultset = statement.executeQuery("SELECT APP.APPOINTMENT_TOTALPRICE FROM APPOINTMENT APP,CUSTOMER C WHERE APP.CUSTOMER_ID = C.CUSTOMER_ID AND APP.APPOINTMENT_ID ='"+ appointmentID +"' AND APP.CUSTOMER_ID = '"+ customer.getCustomerId()+"'");
             System.out.println(customer.getCustomerId());
             System.out.println(poDate);
 
@@ -146,6 +149,19 @@
             price = bd.doubleValue();
             
             System.out.println("RM" + price);
+            
+            statement.executeUpdate("UPDATE APPOINTMENT SET APPOINTMENT_STATUS='PAID' WHERE APPOINTMENT_ID='"+appointmentID+"'");
+           
+            
+            connection.commit();
+            statement.close();
+            connection.close();
+            
+            }catch (Exception e){
+                e.printStackTrace();
+                response.sendRedirect("index.jsp");
+                //request.getRequestDispatcher("create-appointment.jsp").forward(request,response);
+            }
         %>
         
         <h1>AUTOCAR <br> SYSTEM</h1>
@@ -206,15 +222,17 @@
                             }
                             
                             String transactionID = "TR" + count;
-                            ResultSet resultset3 = statement2.executeQuery("SELECT APP.APPOINTMENT_ID FROM APPOINTMENT APP,CUSTOMER C WHERE APP.CUSTOMER_ID = C.CUSTOMER_ID AND APP.APPOINTMENT_DATE ='"+ poDate +"' AND APP.CUSTOMER_ID = '"+ customer.getCustomerId()+"'");
+                            ResultSet resultset3 = statement2.executeQuery("SELECT APP.APPOINTMENT_ID FROM APPOINTMENT APP,CUSTOMER C WHERE APP.CUSTOMER_ID = C.CUSTOMER_ID AND APP.APPOINTMENT_ID ='"+ appointmentID +"' AND APP.CUSTOMER_ID = '"+ customer.getCustomerId()+"'");
                             String appID="invalid";
                             while(resultset3.next()){
                                 appID=resultset3.getString(1);
                             }
                             System.out.println(appID);
-                            statement2.executeUpdate("INSERT INTO TRANSACTIONS VALUES ('"+ transactionID +"','"+ poDate +"',"+pricereal+",'"+appID+"')");
+                            try{statement2.executeUpdate("INSERT INTO TRANSACTIONS VALUES ('"+ transactionID +"','"+ poDate +"',"+pricereal+",'"+appID+"')");}catch (Exception e){request.getRequestDispatcher("create-appointment.jsp").forward(request,response);}
+
+                            connection.close();
+                            connection2.close();
                     %>
-                    window.location.href="http://localhost:8080/carWorkshopSystem2/customer-profile.jsp";
                 });
             }
 

@@ -236,7 +236,7 @@ input:focus ~ .highlight {
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="billingEntry.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -356,12 +356,22 @@ input:focus ~ .highlight {
                     <span class="bar"></span>
                     <label>Contact</label>
                 </div>
+
+        <%
+           Connection connection2 = DriverManager.getConnection("jdbc:derby://localhost:1527/CarWorkshopDB","nbuser","nbuser");
+           Statement statement2 = connection.createStatement() ;
+           ResultSet resultset2 = statement2.executeQuery("select DISTINCT(STOCKTYPE) from STOCKS") ;
+%>
+                    
+                <div class="group2">
+                    <p style="font-family:Roboto;font-size: 20px">Select Stock :</p>
+                </div>
                 
-                <div class="group">      
-                    <input type="text" name="supplierType" maxlength="20">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Stock</label>
+                
+                <div class="group">
+                <select id="multiple-checkboxes" style="font-size: 15px;" name="supplierType">
+                    <% while(resultset2.next()){  %><option value="<%= resultset2.getString(1) %>"> <%= resultset2.getString(1) %> </option><% } %>
+                </select>
                 </div>
                     
                 <input type="submit" class="submit-btn" value = "Add Supplier" name="addsupplier"  >

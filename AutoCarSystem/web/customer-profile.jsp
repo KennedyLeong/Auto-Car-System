@@ -52,7 +52,7 @@
                 margin-left: 80px;
                 margin-top: 50px;
                 height: 35px;
-                width: 160px;
+                width: 180px;
             }
             
             .add-vehicle-btn {
@@ -60,7 +60,7 @@
                 margin-left: 80px;
                 margin-top: 25px;
                 height: 35px;
-                width: 160px;
+                width: 180px;
             }
             
             .submit-btn {
@@ -68,14 +68,14 @@
                 margin-left: 80px;
                 margin-top: 25px;
                 height: 35px;
-                width: 160px;
+                width: 180px;
             }
             
         </style>
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="billingEntry.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -106,7 +106,9 @@
                 
                 <a href="view-vehicle-details.jsp"><button class="add-vehicle-btn">View Vehicle</button></a><br>
                 
-                <a href="customer-create-appointment.jsp"><button class="add-vehicle-btn">Make Appointment</button></a>
+                <a href="customer-create-appointment.jsp"><button class="add-vehicle-btn">Make Appointment</button></a><br>
+                
+                <a href="AppointmentHistory?id=<%= customer.getCustomerId()%>"><button class="add-vehicle-btn">Appointment History</button></a><br>
                 
                 <form action="LogOut" method="GET" id="logoutform">
                     <input type="submit" class="submit-btn" value="Logout" form="logoutform">

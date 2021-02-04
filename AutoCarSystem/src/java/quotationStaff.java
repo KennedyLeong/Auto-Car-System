@@ -78,8 +78,7 @@ public class quotationStaff extends HttpServlet {
                 Logger.getLogger(procurementServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
                 
-                out.println("<a href=\"mailto:"+emails+"?subject=Placement of Purchase Order for("+ stockName +","+ totalAmount +")&body=Send a quotation with link below.%20http://localhost:8080/carWorkshopSystem2/quotationSupplier.jsp\"><input type=\"submit\" class=\"btn btn-primary\" value = \"Send Quotations\" id=\"quotation\" name=\"quotation\"></a>");
-
+                out.println("<a href=\"mailto:"+emails+"?subject=Placement of Purchase Order for("+ stockName +","+ totalAmount +")&body=We would like to inform that we would like to place a purchase order for "+stockName+" with quantity of "+quantity+" which costs RM"+totalAmount+"  \"><input type=\"submit\" class=\"btn btn-primary\" value = \"Send Quotations\" id=\"quotation\" name=\"quotation\"></a>");    
             }
             
         }

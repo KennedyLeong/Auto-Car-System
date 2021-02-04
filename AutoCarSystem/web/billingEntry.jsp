@@ -1,17 +1,19 @@
 <%-- 
-    Document   : manager-profile
-    Created on : Feb 2, 2021, 3:45:05 PM
+    Document   : billingEntry
+    Created on : Feb 4, 2021, 2:19:38 PM
     Author     : asus
 --%>
-
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="staff" scope="session" class="Entity.Staff" />
 <jsp:useBean id="customer" scope="session" class="Entity.Customer" />
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manager Profile</title>
+        <title>Select Appointment To Pay</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -38,6 +40,14 @@
                 font-size: 15px;
             }
             
+            .return-btn {
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 80px;
+                margin-top: 50px;
+                height: 35px;
+                width: 160px;
+            }
+            
             h1 {
                 font-size: 55px;
             }
@@ -48,7 +58,7 @@
                 margin-top: 65px;
             }
             
-            .new-account-btn {
+            .customer-detail-btn {
                 font-family: Arial, Helvetica, sans-serif;
                 margin-left: 80px;
                 margin-top: 50px;
@@ -56,7 +66,7 @@
                 width: 160px;
             }
             
-            .view-all-btn {
+            .add-vehicle-btn {
                 font-family: Arial, Helvetica, sans-serif;
                 margin-left: 80px;
                 margin-top: 25px;
@@ -64,7 +74,7 @@
                 width: 160px;
             }
             
-            .report-btn {
+            .submit-btn {
                 font-family: Arial, Helvetica, sans-serif;
                 margin-left: 80px;
                 margin-top: 25px;
@@ -72,13 +82,6 @@
                 width: 160px;
             }
             
-            .logout-btn {
-                font-family: Arial, Helvetica, sans-serif;
-                margin-left: 80px;
-                margin-top: 25px;
-                height: 35px;
-                width: 160px;
-            }
         </style>
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
@@ -87,41 +90,26 @@
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
-        <%} else if (request.getSession().getAttribute("managerLoggdIn") != null) {%>
-        <div class="navigation-bar">    
-            <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
-                <li><a href="supplier.jsp">SUPPLIERS</a></li>
-                <li><a href="procurement.jsp">PROCUREMENT</a></li>
-                <li><a href="manager-profile.jsp"><%= staff.getStaffName()%></a></li>             
-            </ul>
-        </div>
-        <%} else if (request.getSession().getAttribute("staffLoggdIn") != null) {%>
-        <div class="navigation-bar">    
-            <ul>
-                <li><a href="main-menu.jsp">HOME</a></li>
-                <li><a href="workflow-scheduler.jsp">WORKFLOW SCHEDULER</a></li>
-                <li><a href="search-customer.jsp">CRM</a></li>
-                <li><a href="inventoryMain.jsp">INVENTORY</a></li>
-                <li><a href="supplier.jsp">SUPPLIERS</a></li>
-                <li><a href="staff-profile.jsp"><%= staff.getStaffName()%></a></li>             
-            </ul>
-        </div>
         <%} else {%>
         <div class="navigation-bar">    
             <ul>
                 <li><a href="index.jsp">HOME</a></li>
-                <li><a href="staff-login.jsp">SECURITY</a></li>    
+                <li><a href="staff-login.jsp">SECURITY</a></li>             
             </ul>
         </div>
         <%}%>
     </head>
+    <% 
+            Connection connection = DriverManager.getConnection("jdbc:derby://localhost:1527/CarWorkshopDB", "nbuser", "nbuser");
+            Statement statement = connection.createStatement();
+            String customerID = customer.getCustomerId();
+            ResultSet rs1= statement.executeQuery("SELECT * FROM APPOINTMENT WHERE CUSTOMER_ID='"+customerID+"' AND APPOINTMENT_STATUS='UNPAID'");
+            
+    %>
+    
     <body>
         <div class="title-label">
-            <h1>Welcome, <%= staff.getStaffName()%></h1>
+            <h1>Welcome, <%= customer.getCustomerName() %></h1>
 
             <span id="datetime"></span><br>
         </div>
@@ -131,16 +119,30 @@
                     document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +" "+ months[dt.getMonth()] +" "+ (dt.getFullYear()) +" <br> "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
                 </script>
                 
-                <a href="create-account.jsp"><button class="new-account-btn">Create Account</button></a><br>
+                    
+                <form action="billingServlet" method="post">
+                    
+                    
+                <div style="margin-left:70px;"> 
+                <div class="group2">
+                    <p style="font-family:Roboto;font-size: 20px">Select Appointment For Payment :</p>
+                </div>
                 
-                <form action="AllStaff" method="GET">
-                    <button class="view-all-btn">All Staff</button><br>
-                </form>
                 
-                <a href="reportMain.jsp"><button class="report-btn">Report</button></a><br>
+                <div class="group">
+                <select id="multiple-checkboxes" style="font-size: 15px;" name="appointmentIDSelect">
+                    <% while(rs1.next()){  %><option value="<%= rs1.getString(1) %>"> <%= rs1.getString(2) %> </option><% } %>
+                </select>
+                </div> 
 
-                <form action="LogOut" method="GET" id="logoutform">
-                    <input type="submit" class="logout-btn" value="Logout" form="logoutform">
+                </div>
+                    <br>
+                <input type="submit" class="customer-detail-btn" name="proceed" value="Proceed"><br>     
                 </form>
+                
+                <a href="customer-profile.jsp"><button class="return-btn">Back</button></a><br>
+                
+        
     </body>
 </html>
+

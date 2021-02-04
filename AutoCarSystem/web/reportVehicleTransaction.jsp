@@ -176,7 +176,7 @@
            Statement statement = connection.createStatement() ;
            String vehicle = request.getAttribute("vehicle").toString();
            System.out.println(vehicle); 
-           ResultSet resultset = statement.executeQuery("SELECT VEHICLE_TYPE,(SELECT COUNT(*) FROM APPOINTMENT A,VEHICLE V WHERE A.VEHICLE_ID = V.VEHICLE_ID AND V.VEHICLE_TYPE = '"+vehicle+"') AS QUANTITY,(SELECT SUM(T.TRANSACTIONAMOUNT) FROM APPOINTMENT A,VEHICLE V,TRANSACTIONS T WHERE T.APPOINTMENTID = A.APPOINTMENT_ID AND A.VEHICLE_ID = V.VEHICLE_ID AND V.VEHICLE_TYPE = '"+vehicle+"') AS TOTAL_EARNINGS FROM VEHICLE WHERE VEHICLE_TYPE='"+vehicle+"'");
+           ResultSet resultset = statement.executeQuery("SELECT DISTINCT(VEHICLE_TYPE),(SELECT COUNT(*) FROM APPOINTMENT A,VEHICLE V WHERE A.VEHICLE_ID = V.VEHICLE_ID AND V.VEHICLE_TYPE = '"+vehicle+"') AS QUANTITY,(SELECT SUM(T.TRANSACTIONAMOUNT) FROM APPOINTMENT A,VEHICLE V,TRANSACTIONS T WHERE T.APPOINTMENTID = A.APPOINTMENT_ID AND A.VEHICLE_ID = V.VEHICLE_ID AND V.VEHICLE_TYPE = '"+vehicle+"') AS TOTAL_EARNINGS FROM VEHICLE WHERE VEHICLE_TYPE='"+vehicle+"'");
 %>
         <div class="container p-3 my-3 border">
                 

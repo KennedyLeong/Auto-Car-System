@@ -1,6 +1,6 @@
 <%-- 
-    Document   : vehicle-service-history
-    Created on : Feb 1, 2021, 7:25:10 PM
+    Document   : appointment-history
+    Created on : Feb 4, 2021, 12:19:54 PM
     Author     : asus
 --%>
 
@@ -10,17 +10,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Service History</title>
+        <title>History</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
-             .navigation-bar {
+            .navigation-bar {
                 font-family: Arial, Helvetica, sans-serif;
                 height: 35px;
                 padding-top: 6px;
                 background-color: #cccccc; 
             }
-
+            
             a {
                 text-decoration: none;
                 color: black;
@@ -47,7 +47,7 @@
                 font-size: 16px;
             }
             
-            h5 {
+            h1 {
                font-family: Arial, Helvetica, sans-serif;
                margin-top: 60px;
                margin-left: 80px;
@@ -55,12 +55,13 @@
             
             .history-content {
                 font-family: Arial, Helvetica, sans-serif;
-                margin-top: 30px;
+                border: 1px solid black;
+                width: 700px;
                 margin-left: 80px;
+                padding: 12px;
+                border-radius: 5px
             }
-            
         </style>
-        
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
@@ -76,12 +77,12 @@
             </ul>
         </div>
         <%}%>
-        
     </head>
     <body>
-        <a href="view-vehicle-details.jsp"><button class="return-btn">Back</button></a><br>
         
-        <h5>Service History</h5>
+        <a href="customer-profile.jsp"><button class="return-btn">Back</button></a><br>
+        
+        <h1>Appointment History</h1><br>
         
         ${output}
         

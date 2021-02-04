@@ -58,7 +58,7 @@ public class StaffCreateAppointment extends HttpServlet{
             String requestType = request.getParameter("serviceType");
             String[] services = request.getParameterValues("services");
             String serviceStr = "";
-            String status = "PENDING";
+            String status = "UNPAID";
             double price = 0.0;
             
             Date appointmentDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);

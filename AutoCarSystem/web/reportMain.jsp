@@ -177,7 +177,7 @@
                 
                 <input type="submit" class="add-vehicle-btn" name="History" value="Transaction History"><br>
                 
-                <input type="submit" class="add-vehicle-btn" name="stocksold" value="Stock Sold">
+                <input type="submit" class="add-vehicle-btn" name="stocksold" value="Low Stock Count">
                 
                 </form>
                 

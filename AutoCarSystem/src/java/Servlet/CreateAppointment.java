@@ -58,7 +58,7 @@ public class CreateAppointment extends HttpServlet{
             String requestType = request.getParameter("serviceType");
             String[] services = request.getParameterValues("services");
             String serviceStr = "";
-            String status = "PENDING";
+            String status = "UNPAID";
             double price = 0.0;
 
             Date appointmentDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
@@ -147,7 +147,7 @@ public class CreateAppointment extends HttpServlet{
             em.persist(appointment);
             utx.commit();
             
-            output += "Appointment Successfully Created!";
+            output += "Appointment Successfully Created.<br>Please proceed to billing to make your payment.";
             
             request.setAttribute("output", output);
             request.getRequestDispatcher("customer-create-appointment.jsp").forward(request, response);

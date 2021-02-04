@@ -150,7 +150,7 @@
             .success-tbl {
                 font-family: Arial, Helvetica, sans-serif;
                 color: green;
-                font-size: 18px;
+                font-size: 16px;
                 margin-top: 40px;
                 margin-left: 70px;
             }
@@ -176,7 +176,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="billingEntry.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>

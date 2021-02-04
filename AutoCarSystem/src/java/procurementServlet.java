@@ -57,7 +57,7 @@ public class procurementServlet extends HttpServlet {
                 Logger.getLogger(procurementServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            out.println("<a href=\"mailto:"+emails+"?subject=Request For Quotation("+ request.getParameter("stockSelectP")+","+ request.getParameter("totalAmount") +")&body=Send a quotation with link below.%20http://localhost:8080/carWorkshopSystem2/quotationSupplier.jsp\"><input type=\"submit\" class=\"btn btn-primary\" value = \"Send Quotations\" id=\"quotation\" name=\"quotation\"></a>");
+            out.println("<a href=\"mailto:"+emails+"?subject=Request For Quotation("+ request.getParameter("stockSelectP")+","+ request.getParameter("totalAmount") +")&body=Send a quotation with link below.%20http://localhost:8080/AutoCarSystem/quotationSupplier.jsp\"><input type=\"submit\" class=\"btn btn-primary\" value = \"Send Quotations\" id=\"quotation\" name=\"quotation\"></a>");
 
             out.println("<form action=\"procurement.jsp\">");
             out.println("<input type=\"submit\" class=\"btn btn-primary\" value = \"Back\" name=\"back\"  >");

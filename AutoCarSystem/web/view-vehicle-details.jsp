@@ -57,6 +57,13 @@
                margin-left: 80px;
             }
             
+            .notice-label {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 13px;
+                margin-top: 15px;
+                margin-left: 80px;
+            }
+            
             p {
                font-family: Arial, Helvetica, sans-serif;
                font-size: 17px;
@@ -124,7 +131,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="billingEntry.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -141,11 +148,15 @@
     <body>
         
         <a href="customer-profile.jsp"><button class="return-btn">Back</button></a><br>
-         
+
+        
         <%
             if(vehicleList.size() !=0){
         %>
         <h1>Vehicle Details</h1>
+        
+        <div class="notice-label">&lowast; If you already register the vehicle, but not display on the list.<br>Recommended to logout and login back.</div>
+        
         <%  int counts = 0;
             
             for (int i=0 ; i<vehicleList.size() ; i++){

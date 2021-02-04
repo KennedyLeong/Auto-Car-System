@@ -130,7 +130,7 @@
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="billingEntry.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -175,8 +175,9 @@
            Connection connection = DriverManager.getConnection("jdbc:derby://localhost:1527/CarWorkshopDB","nbuser","nbuser");
            Statement statement = connection.createStatement() ;
            Integer month = Integer.parseInt(request.getAttribute("date").toString());
+           Integer monthNext = month+1;
            System.out.println(month); //TRANSACTIONDATE BETWEEN 2021-
-           ResultSet resultset = statement.executeQuery("select * from TRANSACTIONS WHERE '2021-"+month+"-1' <= TRANSACTIONDATE AND TRANSACTIONDATE < '2021-"+month + 1+"-1'") ;
+           ResultSet resultset = statement.executeQuery("select * from TRANSACTIONS WHERE '2021-"+month+"-1' <= TRANSACTIONDATE AND TRANSACTIONDATE < '2021-"+monthNext+"-1'") ;
 %>
         <div class="container p-3 my-3 border">
                 

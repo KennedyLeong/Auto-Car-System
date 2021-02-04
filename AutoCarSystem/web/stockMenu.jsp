@@ -236,7 +236,7 @@ input:focus ~ .highlight {
         <% if (request.getSession().getAttribute("customerLoggedIn") != null) {%>
         <div class="navigation-bar">    
             <ul>
-                <li><a href="Billing.jsp">BILLING</a></li>
+                <li><a href="billingEntry.jsp">BILLING</a></li>
                 <li><a href="customer-profile.jsp"><%= customer.getCustomerName()%></a></li>
             </ul>
         </div>
@@ -353,14 +353,14 @@ input:focus ~ .highlight {
                 </div>
                 
                 <div class="group">      
-                    <input type="number" name="totalAmount" placeholder="Enter stock amount" value="0">
+                    <input type="number" name="totalAmount" placeholder="Enter stock amount e.g. 1" value="1" min="1">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Amount</label>
                 </div>
                     
                     <div class="group">      
-                    <input type="number" name="unitPrice" placeholder="Enter price per unit" value="0">
+                        <input type="number" name="unitPrice" placeholder="Enter price per unit e.g 1.00"value="1" min="1.00">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Unit Price</label>
